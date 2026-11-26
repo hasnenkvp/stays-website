@@ -14,9 +14,10 @@ export const footerData = {
     {
       title: 'Stays',
       links: [
-        { text: 'Le séjour', href: '/#sejour' },
-        { text: 'Le passeport', href: '/#passeport' },
+        { text: 'Le carnet', href: '/#carnet' },
         { text: 'Amis', href: '/#amis' },
+        { text: 'Le Passeport', href: '/#statistiques' },
+        { text: 'Comment ça marche', href: '/#fonctionnement' },
         { text: 'Confidentialité', href: '/#confidentialite' },
       ],
     },

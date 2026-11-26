@@ -3,18 +3,23 @@ import Layout from '~/layouts/PageLayout.astro';
 import StructuredData from '~/components/common/StructuredData.astro';
 import Button from '~/components/stays/Button.astro';
 import SectionHeading from '~/components/stays/SectionHeading.astro';
-import ScreenshotPlaceholder from '~/components/stays/ScreenshotPlaceholder.astro';
 import HeroLandscapeMockup from '~/components/stays/HeroLandscapeMockup.astro';
-import AppStoreBadge from '~/components/stays/AppStoreBadge.astro';
+import PhoneFrame from '~/components/stays/PhoneFrame.astro';
+import Availability from '~/components/stays/Availability.astro';
 import Faq from '~/components/stays/Faq.astro';
 import { stays } from '~/config/stays';
 import { SITE, I18N } from 'astrowind:config';
 
+import capSejours from '~/assets/images/app/01-sejours.png';
+import capFiche from '~/assets/images/app/02-fiche.png';
+import capPasseport from '~/assets/images/app/04-passeport.png';
+import capAmis from '~/assets/images/app/05-amis.png';
+
 const metadata = {
-  title: 'Stays — Gardez la mémoire de chaque séjour',
+  title: 'Stays — Tous vos séjours, au même endroit',
   ignoreTitleTemplate: true,
   description:
-    'Conservez la mémoire de vos séjours à l’hôtel : établissements, photos, notes personnelles et passeport de voyage, dans une application privée pour iPhone.',
+    'Booking, Airbnb, site de l’hôtel : Stays réunit vos séjours dans un carnet pour iPhone, les partage avec ceux qui voyagent avec vous et en tire vos statistiques de voyage.',
   canonical: 'https://staysapp.fr/',
 };
 
@@ -38,362 +43,362 @@ const structuredData = [
     logo: new URL('/stays-logo.png', SITE?.site).toString(),
   },
 ];
+
+// Où dorment les infos d'un séjour, avant Stays. Exemples, sans logo de marque.
+const sources = [
+  { from: 'Mail', title: 'Confirmation de votre réservation', meta: 'Reçu il y a 3 mois' },
+  { from: 'Booking.com', title: 'Votre séjour à Lisbonne', meta: 'Dans l’app' },
+  { from: 'Airbnb', title: 'Instructions d’arrivée', meta: 'Message de l’hôte' },
+  { from: 'Photos', title: 'Capture du voucher de l’agence', meta: 'IMG_4821' },
+];
+
+// Ce que contient une fiche de séjour (02-fiche).
+const ficheItems = [
+  { title: 'La réservation', text: 'Référence, plateforme, montant réglé et conditions d’annulation.' },
+  { title: 'L’arrivée et le départ', text: 'Dates et heures, avec le compte à rebours jusqu’au départ.' },
+  { title: 'L’hôtel', text: 'Le plan, l’appel et le site web, à un geste.' },
+  { title: 'Vos souvenirs', text: 'Notes et photos, gardées sur votre iPhone.' },
+];
+
+const steps = [
+  {
+    title: 'Cherchez l’hôtel',
+    text: 'Tapez son nom : Stays retrouve la ville, le pays et le groupe hôtelier grâce à Plans d’Apple.',
+  },
+  {
+    title: 'Ajoutez votre réservation',
+    text: 'Dates, horaires, référence, montant, notes : gardez ce qui vous sera utile le jour J.',
+  },
+  {
+    title: 'Partagez, si vous voulez',
+    text: 'Échangez vos codes Amis à 6 chiffres avec vos compagnons de voyage. C’est facultatif.',
+  },
+];
+
+const passportFacts = ['Nuits', 'Pays', 'Villes', 'Hôtels', 'Années'];
+
+const container = 'mx-auto w-full max-w-6xl px-5 sm:px-8';
+const accent = 'italic font-normal text-forest dark:text-brass-light';
 ---
 
 <Layout metadata={metadata}>
   <StructuredData slot="head" schema={structuredData} />
 
-  <!-- 1. HERO SECTION (#haut) -->
-  <section id="haut" class="relative pt-16 pb-12 sm:pt-20 sm:pb-16 md:pt-28 md:pb-20 lg:pt-32 lg:pb-24 overflow-hidden">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6">
-      <!-- Hero Editorial Block (Top, Centered) -->
-      <div class="relative z-20 max-w-4xl mx-auto text-center space-y-6 sm:space-y-8">
-        <p
-          class="font-sans text-[0.8125rem] tracking-[0.16em] uppercase font-semibold text-brass-ink dark:text-brass-light"
-        >
-          Application iOS · Séjours & voyages
+  <!-- Hero : la promesse en une phrase -->
+  <section id="haut" class="overflow-hidden pt-14 pb-10 sm:pt-20 sm:pb-14 lg:pt-24">
+    <div class={container}>
+      <div class="mx-auto max-w-3xl text-center">
+        <p class="font-sans text-[0.8125rem] font-semibold uppercase tracking-[0.14em] text-brass-ink">
+          Carnet de séjours pour iPhone
         </p>
-
         <h1
-          class="font-display font-light text-[2.5rem] sm:text-5xl md:text-6xl lg:text-[4.25rem] leading-[1.08] tracking-tight text-ink text-balance max-w-4xl mx-auto"
+          class="mt-5 font-display text-[2.625rem] font-light leading-[1.04] tracking-tight text-ink text-balance sm:text-6xl lg:text-[4.75rem]"
         >
-          Vos séjours passent. <em class="italic font-normal text-forest dark:text-brass-light"
-            >Les souvenirs restent.</em
-          >
+          Tous vos séjours, <em class={accent}>au même endroit.</em>
         </h1>
-
         <p
-          class="font-sans text-[1.125rem] sm:text-xl text-ink-soft dark:text-sage leading-relaxed max-w-2xl mx-auto text-pretty"
+          class="mx-auto mt-6 max-w-2xl font-sans text-[1.125rem] leading-relaxed text-ink-soft text-pretty sm:text-xl"
         >
-          Vos hôtels, vos souvenirs et votre passeport de voyage, réunis dans Stays. Une façon personnelle de garder une
-          trace de vos escales et de les partager avec vos proches.
+          Booking, Airbnb, le site de l’hôtel ou une agence : peu importe où vous avez réservé. Stays garde chaque
+          séjour à portée de main, et le partage avec ceux qui voyagent avec vous.
         </p>
-
-        <!-- Action buttons -->
-        {
-          stays.appStoreUrl && (
-            <div class="flex items-center justify-center pt-2">
-              <AppStoreBadge />
-            </div>
-          )
-        }
+        <div class="mt-8 flex flex-col items-center justify-center gap-4">
+          <Button variant="primary" href="#fonctionnement">Voir comment ça marche</Button>
+          <Availability />
+        </div>
       </div>
 
-      <!-- Hero Landscape Mockup Slot (Bottom, Deployed wide) -->
-      <div class="relative z-10 mt-8 sm:mt-12 lg:-mt-12 xl:-mt-16 flex justify-center">
-        <HeroLandscapeMockup priority="eager" />
+      <div class="mt-6 sm:mt-4 lg:-mt-6">
+        <HeroLandscapeMockup
+          priority="eager"
+          alt="Stays sur iPhone : la liste des séjours à venir, de Tokyo à Bora-Bora"
+        />
       </div>
     </div>
   </section>
 
-  <!-- 2. SECTION « LE SÉJOUR » (#sejour) -->
-  <!-- Direct composition centered around the real mockup, title, and subtitle, without the 3 redundant card boxes -->
-  <section id="sejour" class="relative py-20 sm:py-28 md:py-32 border-t border-rule scroll-mt-16 overflow-hidden">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6">
-      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
-        <!-- Editorial Text Column (Clean & uncluttered) -->
-        <div class="lg:col-span-6 space-y-6 lg:space-y-8">
-          <SectionHeading
-            eyebrow="LE SÉJOUR"
-            title="Chaque séjour, <em class='italic font-normal text-forest dark:text-brass-light'>dans les détails</em>."
-            lede="Retrouvez vos hôtels, vos photos et vos notes personnelles. L’essentiel de vos séjours, réuni au même endroit."
-          />
-
-          <!-- Discreet, refined typographical cue list replacing the 3 redundant boxes -->
-          <ul
-            class="pt-4 border-t border-rule flex flex-wrap gap-x-6 gap-y-2 text-[0.9375rem] text-ink-soft dark:text-sage font-sans"
-          >
-            <li class="inline-flex items-center gap-2">
-              <span class="w-1.5 h-1.5 rounded-full bg-brass dark:bg-brass-light" aria-hidden="true"></span>
-              Établissement & lieu
-            </li>
-            <li class="inline-flex items-center gap-2">
-              <span class="w-1.5 h-1.5 rounded-full bg-brass dark:bg-brass-light" aria-hidden="true"></span>
-              Photos personnelles
-            </li>
-            <li class="inline-flex items-center gap-2">
-              <span class="w-1.5 h-1.5 rounded-full bg-brass dark:bg-brass-light" aria-hidden="true"></span>
-              Notes & souvenirs
-            </li>
-            <li class="inline-flex items-center gap-2">
-              <span class="w-1.5 h-1.5 rounded-full bg-brass dark:bg-brass-light" aria-hidden="true"></span>
-              Repères d’escale
-            </li>
-          </ul>
-        </div>
-
-        <!-- Real Mockup Slot (Prominent and clear) -->
-        <div class="lg:col-span-6 flex justify-center lg:justify-end">
-          <ScreenshotPlaceholder
-            id="sejour"
-            title="Fiche de séjour"
-            subtitle="Détails de l’hôtel, dates, photos et notes personnelles"
-            alt="Fiche détaillée d’un séjour dans l’application Stays"
-          />
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- 3. SECTION « LE PASSEPORT » (#passeport) -->
-  <!-- Showcase of mockup and real available statistics: Pays, Villes, Séjours, Nuits -->
-  <section
-    id="passeport"
-    class="relative py-20 sm:py-28 md:py-32 border-t border-rule scroll-mt-16 bg-ivory/40 dark:bg-ivory-2/15 overflow-hidden"
-  >
-    <div class="max-w-7xl mx-auto px-4 sm:px-6">
-      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
-        <!-- Mockup Slot (Left on desktop) -->
-        <div class="lg:col-span-6 order-2 lg:order-1 flex justify-center lg:justify-start">
-          <ScreenshotPlaceholder
-            id="passeport"
-            title="Le Passeport"
-            subtitle="Synthèse de vos voyages, pays visités et nuits cumulées"
-            alt="Vue passeport de l’application Stays présentant les voyages et statistiques"
-          />
-        </div>
-
-        <!-- Content & Typographical Stats (Right on desktop) -->
-        <div class="lg:col-span-6 order-1 lg:order-2 space-y-8">
-          <SectionHeading
-            eyebrow="LE PASSEPORT"
-            title="Le passeport, <em class='italic font-normal text-forest dark:text-brass-light'>vos voyages réunis</em>."
-            lede="Le passeport rassemble vos statistiques de voyage en un coup d’œil : pays explorés, villes d’escale, nombre de séjours et nuits cumulées au fil des années."
-          />
-
-          <!-- Typographical Travel Statistics Strip (No fake numbers, just the real categories tracked by Stays) -->
-          <div class="p-6 sm:p-8 rounded-[24px] bg-paper dark:bg-forest-deep border border-rule/80 space-y-6">
-            <div class="grid grid-cols-2 sm:grid-cols-4 gap-6 text-center sm:text-left">
-              <div>
-                <span
-                  class="block font-display italic text-2xl sm:text-3xl text-forest dark:text-brass-light font-normal"
-                >
-                  Pays
-                </span>
-                <span
-                  class="block font-sans text-[0.8125rem] tracking-wider uppercase text-ink-soft dark:text-sage mt-1"
-                >
-                  Traversés
-                </span>
-              </div>
-
-              <div>
-                <span
-                  class="block font-display italic text-2xl sm:text-3xl text-forest dark:text-brass-light font-normal"
-                >
-                  Villes
-                </span>
-                <span
-                  class="block font-sans text-[0.8125rem] tracking-wider uppercase text-ink-soft dark:text-sage mt-1"
-                >
-                  Explorées
-                </span>
-              </div>
-
-              <div>
-                <span
-                  class="block font-display italic text-2xl sm:text-3xl text-forest dark:text-brass-light font-normal"
-                >
-                  Séjours
-                </span>
-                <span
-                  class="block font-sans text-[0.8125rem] tracking-wider uppercase text-ink-soft dark:text-sage mt-1"
-                >
-                  Consignés
-                </span>
-              </div>
-
-              <div>
-                <span
-                  class="block font-display italic text-2xl sm:text-3xl text-forest dark:text-brass-light font-normal"
-                >
-                  Nuits
-                </span>
-                <span
-                  class="block font-sans text-[0.8125rem] tracking-wider uppercase text-ink-soft dark:text-sage mt-1"
-                >
-                  Cumulées
-                </span>
-              </div>
-            </div>
-
-            <p
-              class="font-sans text-[0.9375rem] text-ink-soft dark:text-sage border-t border-rule pt-4 leading-relaxed"
-            >
-              Une archive personnelle qui grandit à chaque escale, sans profil public ni mise en scène.
-            </p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- 4. SECTION « AMIS » (#amis) -->
-  <!-- Intimate, centered showcase: short title, 2 sentences, 3 cues maximum, no technical CloudKit jargon -->
-  <section id="amis" class="relative py-20 sm:py-28 md:py-32 border-t border-rule scroll-mt-16">
-    <div class="max-w-4xl mx-auto px-4 sm:px-6 text-center">
+  <!-- Problème : les infos sont partout -->
+  <section id="probleme" class="border-t border-rule py-20 sm:py-28">
+    <div class:list={[container, 'grid grid-cols-1 items-center gap-12 lg:grid-cols-2 lg:gap-20']}>
       <SectionHeading
-        eyebrow="AMIS"
-        title="Partager ses séjours, <em class='italic font-normal text-forest dark:text-brass-light'>simplement avec ses proches</em>."
-        lede="Échangez vos séjours avec les personnes de votre choix, grâce à un code à 6 chiffres. Un partage privé et réciproque, loin de tout réseau social ouvert."
-        align="center"
+        class="!mb-0"
+        eyebrow="Avant Stays"
+        title={`Où était ce mail, <em class='${accent}'>déjà ?</em>`}
+        lede="Une confirmation dans vos mails, une autre dans l’app de réservation, les instructions d’arrivée dans un message, le voucher en capture d’écran. Le jour de l’arrivée, on cherche partout."
       />
 
-      <!-- 3 Clear Cues (Cards replaced with an airy, refined trio) -->
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 pt-4 text-left">
-        <div class="p-6 rounded-[20px] bg-ivory-2/60 dark:bg-ivory-2/20 border border-rule/70">
-          <div class="w-6 h-[2px] bg-brass dark:bg-brass-light rounded-full mb-3" aria-hidden="true"></div>
-          <h3 class="font-display font-medium text-xl text-ink tracking-tight mb-1.5">Sur acceptation</h3>
-          <p class="font-sans text-[0.9375rem] text-ink-soft dark:text-sage leading-relaxed">
-            Rien n’est partagé tant que vous n’avez pas accepté la demande d’une personne.
-          </p>
-        </div>
+      <ul
+        class="mx-auto w-full max-w-md space-y-3"
+        aria-label="Exemples d’endroits où se perdent les infos d’un séjour"
+      >
+        {
+          sources.map((source, index) => (
+            <li
+              class:list={[
+                'flex items-center gap-4 rounded-2xl border border-rule bg-paper px-4 py-3.5 shadow-soft',
+                index % 2 === 1 ? 'sm:translate-x-8' : 'sm:-translate-x-2',
+              ]}
+            >
+              <span
+                class="grid h-10 w-10 shrink-0 place-items-center rounded-xl bg-ivory-2 font-sans text-base font-semibold text-ink-soft"
+                aria-hidden="true"
+              >
+                {source.from.charAt(0)}
+              </span>
+              <span class="min-w-0 flex-1">
+                <span class="block font-sans text-[0.8125rem] font-semibold text-ink-soft">{source.from}</span>
+                <span class="block truncate font-sans text-[0.9375rem] text-ink">{source.title}</span>
+              </span>
+              <span class="hidden shrink-0 font-sans text-[0.8125rem] text-ink-soft min-[400px]:block">
+                {source.meta}
+              </span>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </section>
 
-        <div class="p-6 rounded-[20px] bg-ivory-2/60 dark:bg-ivory-2/20 border border-rule/70">
-          <div class="w-6 h-[2px] bg-brass dark:bg-brass-light rounded-full mb-3" aria-hidden="true"></div>
-          <h3 class="font-display font-medium text-xl text-ink tracking-tight mb-1.5">L’essentiel seulement</h3>
-          <p class="font-sans text-[0.9375rem] text-ink-soft dark:text-sage leading-relaxed">
-            Hôtel, ville et dates. Jamais vos prix, photos, notes ni références de réservation.
-          </p>
-        </div>
-
-        <div class="p-6 rounded-[20px] bg-ivory-2/60 dark:bg-ivory-2/20 border border-rule/70">
-          <div class="w-6 h-[2px] bg-brass dark:bg-brass-light rounded-full mb-3" aria-hidden="true"></div>
-          <h3 class="font-display font-medium text-xl text-ink tracking-tight mb-1.5">Contrôle permanent</h3>
-          <p class="font-sans text-[0.9375rem] text-ink-soft dark:text-sage leading-relaxed">
-            Retirez, bloquez ou signalez une personne à tout moment. Le retrait coupe l’accès dans les deux sens.
-          </p>
-        </div>
+  <!-- Solution : le carnet, tout au même endroit -->
+  <section id="carnet" class="overflow-hidden bg-ivory py-20 sm:py-28">
+    <div class:list={[container, 'grid grid-cols-1 items-center gap-14 lg:grid-cols-2 lg:gap-20']}>
+      <div class="lg:order-2">
+        <SectionHeading
+          eyebrow="Le carnet"
+          title={`Le jour J, <em class='${accent}'>tout est là.</em>`}
+          lede="Ajoutez un séjour une fois, retrouvez-le en un geste. Vos séjours à venir s’affichent dans l’ordre, chacun avec sa fiche : plus de mail à chercher ni d’application à ouvrir."
+        />
+        <dl class="grid gap-x-8 gap-y-6 sm:grid-cols-2">
+          {
+            ficheItems.map((item) => (
+              <div class="border-t border-rule pt-4">
+                <dt class="font-sans text-base font-semibold text-ink">{item.title}</dt>
+                <dd class="mt-1 font-sans text-[0.9375rem] leading-relaxed text-ink-soft">{item.text}</dd>
+              </div>
+            ))
+          }
+        </dl>
+        <p class="mt-8 font-sans text-[0.9375rem] leading-relaxed text-ink-soft">
+          <span class="font-semibold text-ink">Des rappels utiles.</span> Avec votre accord, Stays vous prévient la veille
+          de la fin de l’annulation gratuite, le jour d’arrivée et le jour du départ.
+        </p>
       </div>
 
-      <div class="mt-8 space-y-2">
-        <p class="font-sans text-[0.9375rem] text-ink-soft dark:text-sage">
-          Amis est facultatif et demande iOS 26 et un compte iCloud. Le reste de l’app fonctionne sans.
-        </p>
-        <a
-          href="/privacy/#c-amis--partage-de-vos-séjours-cloudkit"
-          class="inline-flex min-h-11 items-center font-sans text-[0.9375rem] text-forest dark:text-brass-light font-medium underline underline-offset-4 hover:text-forest-deep dark:hover:text-white transition-colors duration-150"
-        >
-          Le fonctionnement d’Amis en détail, dans la politique de confidentialité
-        </a>
+      <div class="relative mx-auto flex w-full max-w-[22rem] justify-center sm:max-w-[30rem] lg:order-1">
+        <PhoneFrame
+          src={capSejours}
+          alt="Liste des séjours à venir dans Stays : Park Hyatt Tokyo, Fairmont Montreux Palace, The Westin Palace Madrid."
+          class="w-[46%] translate-y-10 -rotate-[4deg] opacity-95 sm:w-[44%]"
+          sizes="(max-width: 640px) 160px, 220px"
+        />
+        <PhoneFrame
+          src={capFiche}
+          alt="Fiche du Park Hyatt Tokyo dans Stays : dates, heures d’arrivée et de départ, référence de réservation, montant réglé et plan."
+          class="-ml-[8%] w-[54%] sm:w-[52%]"
+          sizes="(max-width: 640px) 190px, 260px"
+        />
       </div>
     </div>
   </section>
 
-  <!-- 5. SECTION « CONFIDENTIALITÉ » (#confidentialite) -->
-  <!-- Shortened, technical jargon removed (no SwiftData, IDFA, SDK), confirmed guarantees only -->
+  <!-- Amis : l'exemple de la Grèce -->
+  <section id="amis" class="overflow-hidden py-20 sm:py-28">
+    <div class:list={[container, 'grid grid-cols-1 items-center gap-14 lg:grid-cols-2 lg:gap-20']}>
+      <div>
+        <SectionHeading
+          class="!mb-8"
+          eyebrow="Amis"
+          title={`On part ensemble ? <em class='${accent}'>Chacun a les infos.</em>`}
+        />
+        <div class="space-y-6 font-sans text-[1.0625rem] leading-relaxed text-ink-soft">
+          <p>
+            Léa et Tom partent en Grèce. Léa a réservé l’hôtel de Naxos sur Booking ; Tom n’a que le nom de l’île.
+            D’habitude, il faut transférer le mail ou envoyer une capture.
+          </p>
+
+          <figure class="max-w-sm">
+            <blockquote class="rounded-[1.25rem] rounded-bl-md bg-ivory-2 px-4 py-3 text-ink">
+              <p>Tu me renvoies l’hôtel ? Et on arrive à quelle heure ?</p>
+            </blockquote>
+            <figcaption class="mt-1.5 pl-1 text-[0.8125rem] text-ink-soft">Tom, trois jours avant le départ</figcaption>
+          </figure>
+
+          <p>
+            <span class="font-semibold text-ink">Avec Stays, ils sont amis dans l’app.</span> Le séjour de Léa apparaît chez
+            Tom : l’hôtel, les dates, les heures d’arrivée et de départ, et sa place sur la carte.
+          </p>
+
+          <div
+            class="flex max-w-sm items-center gap-4 rounded-2xl border border-rule bg-paper px-4 py-3.5 shadow-soft"
+            role="img"
+            aria-label="Chez Tom, dans Amis : Léa, Hôtel Kymata, Naxos, Grèce, vendredi 12 juin, 5 nuits, arrivée 15 h."
+          >
+            <span
+              class="grid h-10 w-10 shrink-0 place-items-center rounded-full bg-forest font-sans text-base font-semibold text-[#fbf8f2]"
+              aria-hidden="true">L</span
+            >
+            <span class="min-w-0 flex-1" aria-hidden="true">
+              <span class="block text-[0.8125rem] font-semibold text-ink-soft">Léa · ven. 12 juin</span>
+              <span class="block truncate text-[0.9375rem] font-semibold text-ink">Hôtel Kymata</span>
+              <span class="block text-[0.8125rem] text-ink-soft">Naxos, Grèce · 5 nuits · arrivée 15:00</span>
+            </span>
+          </div>
+
+          <p class="border-t border-rule pt-5 text-[0.9375rem]">
+            Rien n’est partagé avant d’accepter une demande, et jamais vos prix, photos, notes ni références de
+            réservation. Amis est facultatif et demande iOS 26 et iCloud.{' '}
+            <a
+              href="/privacy/#c-amis--partage-de-vos-séjours-cloudkit"
+              class="font-medium text-forest underline underline-offset-4 hover:text-forest-deep dark:text-brass-light dark:hover:text-white"
+              >Le détail dans la politique de confidentialité</a
+            >.
+          </p>
+        </div>
+      </div>
+
+      <div class="mx-auto w-full max-w-[15rem] sm:max-w-[17rem]">
+        <PhoneFrame
+          src={capAmis}
+          alt="Onglet Amis de Stays : les séjours en cours et à venir de Camille, partagés sans prix, photo, note ni référence."
+        />
+      </div>
+    </div>
+  </section>
+
+  <!-- Statistiques : le Passeport -->
+  <section id="statistiques" class="overflow-hidden bg-ivory py-20 sm:py-28">
+    <div class:list={[container, 'grid grid-cols-1 items-center gap-14 lg:grid-cols-2 lg:gap-20']}>
+      <div class="lg:order-2">
+        <SectionHeading
+          class="!mb-8"
+          eyebrow="Le Passeport"
+          title={`Vos voyages, <em class='${accent}'>en chiffres.</em>`}
+          lede="Pour les curieux et les amateurs de chiffres : le Passeport compte vos nuits, vos pays, vos villes et vos hôtels, année après année. Chaque séjour devient un point sur le globe."
+        />
+        <ul
+          class="flex flex-wrap gap-x-3 gap-y-1 font-display text-[1.75rem] font-normal italic leading-snug text-forest dark:text-brass-light sm:text-[2rem]"
+          aria-label="Ce que compte le Passeport"
+        >
+          {
+            passportFacts.map((fact, index) => (
+              <li class="flex items-center gap-3">
+                {index > 0 && (
+                  <span class="text-brass-ink not-italic" aria-hidden="true">
+                    ·
+                  </span>
+                )}
+                {fact}
+              </li>
+            ))
+          }
+        </ul>
+        <p class="mt-8 font-sans text-[0.9375rem] leading-relaxed text-ink-soft">
+          Une belle année ? Stays en fait une image à partager, en un geste.
+        </p>
+      </div>
+
+      <div class="mx-auto w-full max-w-[15rem] sm:max-w-[17rem] lg:order-1">
+        <PhoneFrame
+          src={capPasseport}
+          alt="Passeport de Stays sur le globe : 31 nuits, 7 pays, 9 villes, 9 hôtels et 2 années."
+        />
+      </div>
+    </div>
+  </section>
+
+  <!-- Fonctionnement : trois étapes -->
+  <section id="fonctionnement" class="py-20 sm:py-28">
+    <div class={container}>
+      <SectionHeading
+        align="center"
+        eyebrow="Comment ça marche"
+        title={`Trois gestes, <em class='${accent}'>pas plus.</em>`}
+      />
+      <ol class="grid gap-4 sm:gap-6 md:grid-cols-3">
+        {
+          steps.map((step, index) => (
+            <li class="rounded-3xl border border-rule bg-ivory/70 p-6 sm:p-7">
+              <span class="font-display text-3xl font-light italic text-brass-ink" aria-hidden="true">
+                {index + 1}
+              </span>
+              <h3 class="mt-3 font-display text-[1.375rem] font-normal tracking-tight text-ink">{step.title}</h3>
+              <p class="mt-2 font-sans text-[0.9375rem] leading-relaxed text-ink-soft">{step.text}</p>
+            </li>
+          ))
+        }
+      </ol>
+    </div>
+  </section>
+
+  <!-- Confidentialité -->
   <section
     id="confidentialite"
-    class="relative py-20 sm:py-28 md:py-32 bg-forest dark:bg-forest-deep text-[#fbf8f2] scroll-mt-16 not-prose"
+    class="bg-forest py-20 text-[#fbf8f2] sm:py-24 dark:bg-forest-deep not-prose"
     data-surface="inverse"
   >
-    <div class="max-w-7xl mx-auto px-4 sm:px-6">
-      <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center">
-        <div class="lg:col-span-8 space-y-6">
-          <p class="font-sans text-[0.8125rem] tracking-[0.14em] uppercase font-semibold text-brass-light">
-            Confidentialité
-          </p>
-
-          <h2
-            class="font-display font-light text-[2rem] sm:text-4xl md:text-5xl leading-[1.1] tracking-tight text-[#fbf8f2] text-balance"
-          >
-            Privé <em class="italic font-normal text-brass-light">par conception</em>.
-          </h2>
-
-          <p class="font-sans text-[1.0625rem] sm:text-lg text-sage leading-relaxed max-w-2xl text-pretty">
-            Vos séjours, vos notes et vos photos sont conservés sur votre iPhone. Aucun compte à créer, aucun serveur
-            pour analyser vos voyages et aucune revente de données.
-          </p>
-
-          <div class="grid grid-cols-1 sm:grid-cols-3 gap-6 pt-4 border-t border-rule-inverse/25">
-            <div>
-              <h3 class="font-display text-xl text-[#fbf8f2] mb-1">Sur votre appareil</h3>
-              <p class="font-sans text-[0.9375rem] text-sage leading-relaxed">
-                Stockage local sur votre iPhone, protégé par le chiffrement matériel d’iOS.
-              </p>
-            </div>
-            <div>
-              <h3 class="font-display text-xl text-[#fbf8f2] mb-1">Sans intermédiaire</h3>
-              <p class="font-sans text-[0.9375rem] text-sage leading-relaxed">
-                Aucun serveur propriétaire. Seule la fonction Amis, si vous l’utilisez, passe par iCloud.
-              </p>
-            </div>
-            <div>
-              <h3 class="font-display text-xl text-[#fbf8f2] mb-1">Sans pistage</h3>
-              <p class="font-sans text-[0.9375rem] text-sage leading-relaxed">
-                Aucune publicité, aucun outil de suivi d’activité et aucun ciblage.
-              </p>
-            </div>
-          </div>
-
-          <div class="pt-4">
-            <Button variant="inverse" href="/privacy/"> Lire la politique de confidentialité </Button>
-          </div>
-        </div>
-
-        <div class="lg:col-span-4 hidden lg:flex justify-end">
-          <div
-            class="relative w-56 h-56 rounded-[32px] bg-forest-deep dark:bg-black/50 border border-rule-inverse/30 p-8 flex flex-col items-center justify-center text-center shadow-float"
-          >
-            <img
-              src="/stays-logo.png"
-              alt=""
-              class="w-20 h-20 rounded-[18px] object-cover mb-4 ring-1 ring-brass-light/20"
-              width="80"
-              height="80"
-            />
-            <span class="font-display italic text-lg text-brass-light">Mémoire privée</span>
-            <span class="font-sans text-[0.8125rem] text-sage uppercase tracking-wider mt-1"> Sur votre appareil </span>
-          </div>
+    <div class:list={[container, 'grid grid-cols-1 gap-10 lg:grid-cols-12 lg:gap-16']}>
+      <div class="lg:col-span-5">
+        <p class="font-sans text-[0.8125rem] font-semibold uppercase tracking-[0.14em] text-brass-light">
+          Confidentialité
+        </p>
+        <h2
+          class="mt-3 font-display text-[2rem] font-light leading-[1.1] tracking-tight text-balance sm:text-[2.75rem] md:text-5xl"
+        >
+          Privé <em class="font-normal italic text-brass-light">par conception.</em>
+        </h2>
+        <div class="mt-8">
+          <Button variant="inverse" href="/privacy/">Lire la politique de confidentialité</Button>
         </div>
       </div>
+      <ul class="grid gap-6 sm:grid-cols-3 lg:col-span-7 lg:gap-8">
+        <li class="border-t border-rule-inverse pt-4">
+          <h3 class="font-display text-xl">Sur votre iPhone</h3>
+          <p class="mt-1.5 font-sans text-[0.9375rem] leading-relaxed text-sage">
+            Vos séjours, notes et photos restent sur l’appareil. Aucun compte à créer.
+          </p>
+        </li>
+        <li class="border-t border-rule-inverse pt-4">
+          <h3 class="font-display text-xl">Sans serveur</h3>
+          <p class="mt-1.5 font-sans text-[0.9375rem] leading-relaxed text-sage">
+            Stays n’a pas de serveur. Seule la fonction Amis, si vous l’utilisez, passe par iCloud.
+          </p>
+        </li>
+        <li class="border-t border-rule-inverse pt-4">
+          <h3 class="font-display text-xl">Sans pistage</h3>
+          <p class="mt-1.5 font-sans text-[0.9375rem] leading-relaxed text-sage">
+            Aucune publicité, aucun outil de mesure d’audience, aucune revente de données.
+          </p>
+        </li>
+      </ul>
     </div>
   </section>
 
-  <!-- 6. SECTION « QUESTIONS FRÉQUENTES » (#faq) -->
-  <!-- Concise, useful, no repetition with sections above -->
-  <section id="faq" class="relative py-20 sm:py-28 md:py-32 border-t border-rule scroll-mt-16">
-    <div class="max-w-3xl mx-auto px-4 sm:px-6">
+  <!-- Questions fréquentes -->
+  <section id="faq" class="py-20 sm:py-28">
+    <div class="mx-auto w-full max-w-3xl px-5 sm:px-8">
       <SectionHeading
-        eyebrow="QUESTIONS FRÉQUENTES"
-        title="Des réponses <em class='italic font-normal text-forest dark:text-brass-light'>courtes et utiles</em>."
-        lede="L’essentiel pour comprendre ce que fait Stays, et ce qu’elle ne fait pas."
         align="center"
+        eyebrow="Questions fréquentes"
+        title={`Bon à <em class='${accent}'>savoir.</em>`}
       />
-
       <Faq items={stays.faq} />
     </div>
   </section>
 
-  <!-- 7. CTA FINAL & CLÔTURE (#contact) -->
-  <section id="contact" class="relative py-20 sm:py-28 md:py-32 border-t border-rule scroll-mt-16">
-    <div class="max-w-3xl mx-auto px-4 sm:px-6 text-center space-y-6">
+  <!-- Appel final -->
+  <section id="contact" class="border-t border-rule py-20 sm:py-28">
+    <div class="mx-auto w-full max-w-3xl px-5 text-center sm:px-8">
       <h2
-        class="font-display font-light text-[2rem] sm:text-4xl md:text-5xl leading-tight tracking-tight text-ink text-balance"
+        class="font-display text-[2.25rem] font-light leading-[1.08] tracking-tight text-ink text-balance sm:text-5xl md:text-6xl"
       >
-        Vos séjours passent. <em class="italic font-normal text-forest dark:text-brass-light">Les souvenirs restent.</em
-        >
+        L’utile, <em class={accent}>et l’agréable.</em>
       </h2>
-
-      <p class="font-sans text-[1.0625rem] sm:text-lg text-ink-soft dark:text-sage leading-relaxed max-w-lg mx-auto">
-        Une question, une remarque ou besoin d’aide ? Écrivez-nous à <a
-          href={`mailto:${stays.supportEmail}`}
-          class="text-forest dark:text-brass-light font-medium underline underline-offset-4">{stays.supportEmail}</a
-        >. Réponse sous {stays.supportResponseTime}.
+      <p class="mx-auto mt-5 max-w-xl font-sans text-[1.0625rem] leading-relaxed text-ink-soft sm:text-lg">
+        Vos réservations prêtes pour le jour J, et le plaisir de voir vos voyages prendre forme.
       </p>
-
-      <div class="flex flex-wrap items-center justify-center gap-4 pt-4">
-        {stays.appStoreUrl && <AppStoreBadge />}
-        <Button variant="secondary" href="/support/"> Page d’assistance </Button>
-      </div>
-
-      <div class="pt-2">
-        <a
-          href="/privacy/"
-          class="inline-flex min-h-11 items-center font-sans text-[0.9375rem] text-ink-soft dark:text-sage underline underline-offset-4 hover:text-ink dark:hover:text-ink transition-colors"
-        >
-          Consulter la politique de confidentialité
-        </a>
+      <div class="mt-8 flex flex-col items-center justify-center gap-4">
+        <Availability />
+        <Button variant="secondary" href="/support/">Contacter l’assistance</Button>
       </div>
     </div>
   </section>

@@ -7,14 +7,14 @@ import { stays } from '~/config/stays';
 
 const metadata = {
   title: 'Assistance',
-  description: `Assistance Stays : une question, un problème, un signalement ? Écrivez à ${stays.supportEmail}, réponse sous ${stays.supportResponseTime}.`,
+  description: `Assistance Stays : une question, un problème, un signalement ? Écrivez à ${stays.supportEmail}, réponse sous ${stays.supportResponseTime}.`,
   canonical: 'https://staysapp.fr/support/',
 };
 
-// Modèle de message : les informations qui aident à répondre vite.
+// Modèle de message : les informations qui aident à répondre vite.
 const mailtoSubject = encodeURIComponent('Stays — Assistance');
 const mailtoBody = encodeURIComponent(
-  `Modèle d’iPhone : \nVersion d’iOS : \nVersion de Stays : \n\nVotre question ou les étapes pour reproduire le problème : \n`
+  `Modèle d’iPhone : \nVersion d’iOS : \nVersion de Stays : \n\nVotre question ou les étapes pour reproduire le problème : \n`
 );
 const mailtoLink = `mailto:${stays.supportEmail}?subject=${mailtoSubject}&body=${mailtoBody}`;
 
@@ -24,7 +24,7 @@ const linkClass =
 
 <Layout metadata={metadata}>
   <div class="py-12 sm:py-20 md:py-24">
-    <div class="max-w-3xl mx-auto px-4 sm:px-6 space-y-12 sm:space-y-14">
+    <div class="max-w-3xl mx-auto px-5 sm:px-8 space-y-12 sm:space-y-14">
       <header class="space-y-4">
         <p
           class="font-sans text-[0.8125rem] tracking-[0.14em] uppercase font-semibold text-brass-ink dark:text-brass-light"
@@ -37,7 +37,7 @@ const linkClass =
           Assistance
         </h1>
         <p class="font-sans text-[1.125rem] sm:text-xl text-ink-soft dark:text-sage leading-relaxed max-w-2xl">
-          Une question, un problème, un signalement ? Écrivez-nous : réponse sous {stays.supportResponseTime}.
+          Une question, un problème, un signalement ? Écrivez-nous : réponse sous {stays.supportResponseTime}.
         </p>
       </header>
 
@@ -74,14 +74,14 @@ const linkClass =
           <div class="py-5 sm:grid sm:grid-cols-3 sm:gap-6">
             <dt class="font-semibold text-ink">Supprimer vos données Amis</dt>
             <dd class="mt-1 sm:mt-0 sm:col-span-2 text-ink-soft dark:text-sage leading-relaxed">
-              Dans les Réglages de l’app, touchez « Supprimer mes données Amis ». Votre profil public et vos partages
-              sont supprimés ; vos séjours restent sur votre iPhone.
+              Dans les Réglages de l’app, touchez « Supprimer mes données Amis ». Votre profil public et vos partages
+              sont supprimés ; vos séjours restent sur votre iPhone.
             </dd>
           </div>
           <div class="py-5 sm:grid sm:grid-cols-3 sm:gap-6">
             <dt class="font-semibold text-ink">Signaler une personne</dt>
             <dd class="mt-1 sm:mt-0 sm:col-span-2 text-ink-soft dark:text-sage leading-relaxed">
-              Dans l’onglet Amis, ouvrez « Gérer les amis », puis Signaler. L’app prépare un e-mail vers{' '}
+              Dans l’onglet Amis, ouvrez « Gérer les amis », puis Signaler. L’app prépare un e-mail vers{' '}
               {stays.supportEmail}, que vous envoyez vous-même. Chaque signalement est examiné sous {
                 stays.supportResponseTime
               }.
@@ -103,23 +103,23 @@ const linkClass =
           Pour nous aider à vous répondre
         </h2>
         <p class="font-sans text-[1.0625rem] text-ink-soft dark:text-sage leading-relaxed">
-          Indiquez si possible dans votre message :
+          Indiquez si possible dans votre message :
         </p>
         <ul class="space-y-2.5 font-sans text-[1.0625rem] text-ink-soft dark:text-sage">
           <li class="flex items-start gap-3">
             <span class="w-1.5 h-1.5 rounded-full bg-brass dark:bg-brass-light mt-[0.6em] shrink-0" aria-hidden="true"
             ></span>
-            <span>le modèle de votre iPhone ;</span>
+            <span>le modèle de votre iPhone ;</span>
           </li>
           <li class="flex items-start gap-3">
             <span class="w-1.5 h-1.5 rounded-full bg-brass dark:bg-brass-light mt-[0.6em] shrink-0" aria-hidden="true"
             ></span>
-            <span>la version d’iOS (Réglages &gt; Général &gt; Informations) ;</span>
+            <span>la version d’iOS (Réglages &gt; Général &gt; Informations) ;</span>
           </li>
           <li class="flex items-start gap-3">
             <span class="w-1.5 h-1.5 rounded-full bg-brass dark:bg-brass-light mt-[0.6em] shrink-0" aria-hidden="true"
             ></span>
-            <span>la version de Stays ;</span>
+            <span>la version de Stays ;</span>
           </li>
           <li class="flex items-start gap-3">
             <span class="w-1.5 h-1.5 rounded-full bg-brass dark:bg-brass-light mt-[0.6em] shrink-0" aria-hidden="true"
