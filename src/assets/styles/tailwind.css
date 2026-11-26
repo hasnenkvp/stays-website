@@ -4,7 +4,8 @@
 
 /* ---------------------------------------------------------------------------
    Système Stays : page blanche, police système Apple, un seul accent.
-   Le site est en clair uniquement : les captures de l'app sont en mode clair.
+   Le mode sombre suit le réglage du système (prefers-color-scheme), en CSS seul :
+   aucun bouton, aucun script, rien d'enregistré dans le navigateur.
    --------------------------------------------------------------------------- */
 
 @theme {
@@ -16,6 +17,7 @@
   --color-accent: #0066cc;
   --color-accent-strong: #0052a3;
   --color-accent-tint: #e6f0fa;
+  --color-on-accent: #ffffff;
   --color-rule: #e3e3e8;
 
   /* Police système Apple ; les autres systèmes retombent sur leur sans-serif. */
@@ -52,6 +54,23 @@
   --shadow-shot: 0 0 0 1px rgb(24 24 32 / 0.07), 0 2px 4px rgb(24 24 32 / 0.04), 0 28px 56px -32px rgb(24 24 32 / 0.24);
 }
 
+/* Mode sombre (contrastes sur #161618 : ink 15,3:1, ink-soft 7,0:1, accent 6,6:1). */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-canvas: #161618;
+    --color-canvas-alt: #1e1e21;
+    --color-ink: #ececef;
+    --color-ink-soft: #a0a0a8;
+    --color-accent: #4c9eff;
+    --color-accent-strong: #7ab6ff;
+    --color-accent-tint: #1d3552;
+    --color-on-accent: #161618;
+    --color-rule: #2e2e33;
+    /* Sur fond sombre : un filet clair à peine visible, l'ombre portée reste discrète. */
+    --shadow-shot: 0 0 0 1px rgb(255 255 255 / 0.1), 0 2px 4px rgb(0 0 0 / 0.3), 0 28px 56px -32px rgb(0 0 0 / 0.7);
+  }
+}
+
 /* Mesure de lecture : 60 caractères au plus par ligne, au corps du texte (17 px). */
 @utility measure {
   max-width: 28rem;
@@ -81,6 +100,24 @@
   }
 }
 
+/* Politique de confidentialité : le plugin typography suit les jetons, en clair comme en sombre. */
+.prose {
+  --tw-prose-body: var(--color-ink);
+  --tw-prose-headings: var(--color-ink);
+  --tw-prose-lead: var(--color-ink-soft);
+  --tw-prose-links: var(--color-accent);
+  --tw-prose-bold: var(--color-ink);
+  --tw-prose-counters: var(--color-ink-soft);
+  --tw-prose-bullets: var(--color-ink-soft);
+  --tw-prose-hr: var(--color-rule);
+  --tw-prose-quotes: var(--color-ink);
+  --tw-prose-quote-borders: var(--color-rule);
+  --tw-prose-captions: var(--color-ink-soft);
+  --tw-prose-code: var(--color-ink);
+  --tw-prose-th-borders: var(--color-rule);
+  --tw-prose-td-borders: var(--color-rule);
+}
+
 /* Capture d'écran de l'app : coins d'un écran d'iPhone, quelle que soit la taille. */
 @utility app-shot {
   border-radius: 12.5% / 5.75%;
@@ -89,7 +126,7 @@
 }
 
 :root {
-  color-scheme: light;
+  color-scheme: light dark;
   accent-color: var(--color-accent);
 }
 
@@ -114,7 +151,7 @@ body {
 /* Toucher : pas de délai de double-tap, surbrillance discrète dans la couleur d'accent. */
 :where(a, button, summary) {
   touch-action: manipulation;
-  -webkit-tap-highlight-color: rgb(0 102 204 / 0.12);
+  -webkit-tap-highlight-color: color-mix(in srgb, var(--color-accent) 14%, transparent);
 }
 
 /* Focus clavier visible partout, dans la couleur d'accent. */
@@ -157,5 +194,15 @@ body {
     --color-accent-strong: #003d7a;
     --color-rule: #8e8e96;
     --shadow-shot: 0 0 0 1px rgb(24 24 32 / 0.45);
+  }
+}
+@media (prefers-contrast: more) and (prefers-color-scheme: dark) {
+  :root {
+    --color-ink: #ffffff;
+    --color-ink-soft: #cfcfd6;
+    --color-accent: #8cc2ff;
+    --color-accent-strong: #b3d6ff;
+    --color-rule: #6e6e78;
+    --shadow-shot: 0 0 0 1px rgb(255 255 255 / 0.45);
   }
 }

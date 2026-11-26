@@ -73,7 +73,7 @@ export default defineConfig({
       rehypePlugins: [responsiveTablesRehypePlugin],
     }),
     shikiConfig: {
-      // Le site est en clair uniquement.
+      // Blocs de code : aucun sur le site ; thème clair par défaut.
       theme: 'github-light',
     },
   },

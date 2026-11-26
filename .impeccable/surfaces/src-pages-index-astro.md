@@ -9,7 +9,7 @@ related_targets: []
 
 Scope: page d'accueil (/), mode Persuade. Les pages /privacy/, /support/ et 404 héritent du même monde (mode Read).
 
-Audience: voyageurs qui réservent sur plusieurs plateformes et découvrent Stays. Action: comprendre l'app et noter sa disponibilité (« Bientôt sur l'App Store », badge automatique quand appStoreUrl est renseigné). Preuve: les captures réelles de l'app. Contraintes: aucune animation hormis :hover, aucun JS de thème, clair uniquement tant qu'il n'existe pas de captures sombres.
+Audience: voyageurs qui réservent sur plusieurs plateformes et découvrent Stays. Action: comprendre l'app et noter sa disponibilité (« Bientôt sur l'App Store », badge automatique quand appStoreUrl est renseigné). Preuve: les captures réelles de l'app. Contraintes: aucune animation hormis :hover, aucun JS de thème, clair ou sombre selon le système, en CSS seul (captures claires et sombres).
 
 ## Direction contract
 

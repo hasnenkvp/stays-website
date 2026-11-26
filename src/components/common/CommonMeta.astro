@@ -8,7 +8,8 @@ import { stays } from '~/config/stays';
 
 <link rel="sitemap" href={getAsset('/sitemap-index.xml')} />
 
-<meta name="theme-color" content="#FFFFFF" />
-<meta name="color-scheme" content="light" />
+<meta name="theme-color" content="#FFFFFF" media="(prefers-color-scheme: light)" />
+<meta name="theme-color" content="#161618" media="(prefers-color-scheme: dark)" />
+<meta name="color-scheme" content="light dark" />
 
 {stays.appStoreId && <meta name="apple-itunes-app" content={`app-id=${stays.appStoreId}`} />}
