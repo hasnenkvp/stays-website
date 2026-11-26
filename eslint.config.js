@@ -54,10 +54,14 @@ export default [
     },
   },
   {
-    files: ['src/components/common/Analytics.astro', 'src/components/common/Analytics.astro/**'],
+    // Typographie française : espaces insécables voulues avant ? ! ; : et dans « … ».
+    // Autorisées dans les textes et les commentaires, toujours interdites dans le code.
+    files: ['**/*.{js,ts,astro}'],
     rules: {
-      'prefer-rest-params': 'off',
-      'no-var': 'off',
+      'no-irregular-whitespace': [
+        'error',
+        { skipStrings: true, skipTemplates: true, skipJSXText: true, skipComments: true },
+      ],
     },
   },
   {
