@@ -12,10 +12,11 @@ const { email, label = 'Copier l’adresse', class: className = '' } = Astro.pro
   <button
     type="button"
     class:list={[
-      'copy-email-btn hidden items-center gap-2 text-sm font-sans font-medium text-forest dark:text-brass-light hover:text-forest-deep dark:hover:text-white px-3.5 py-1.5 rounded-full border border-rule hover:border-forest/40 dark:border-rule dark:hover:border-brass-light transition cursor-pointer focus-visible:outline-2 focus-visible:outline-brass-ink',
+      'copy-email-btn hidden min-h-11 items-center gap-2 text-[0.9375rem] font-sans font-medium text-forest dark:text-brass-light hover:text-forest-deep dark:hover:text-white px-5 py-2.5 rounded-full border border-rule hover:border-forest/40 dark:border-rule dark:hover:border-brass-light transition cursor-pointer focus-visible:outline-2 focus-visible:outline-brass-ink',
       className,
     ]}
     data-email={email}
+    data-label={label}
     aria-label={`${label} (${email})`}
   >
     <svg
@@ -72,13 +73,13 @@ const { email, label = 'Copier l’adresse', class: className = '' } = Astro.pro
           const iconCopy = btn.querySelector('.icon-copy');
           const iconCheck = btn.querySelector('.icon-check');
 
-          if (textSpan) textSpan.textContent = 'Adresse copiée !';
+          if (textSpan) textSpan.textContent = 'Adresse copiée';
           if (iconCopy) iconCopy.classList.add('hidden');
           if (iconCheck) iconCheck.classList.remove('hidden');
           if (status) status.textContent = 'Adresse e-mail copiée dans le presse-papiers.';
 
           setTimeout(() => {
-            if (textSpan) textSpan.textContent = 'Copier l’adresse';
+            if (textSpan) textSpan.textContent = btn.dataset.label || 'Copier l’adresse';
             if (iconCopy) iconCopy.classList.remove('hidden');
             if (iconCheck) iconCheck.classList.add('hidden');
             if (status) status.textContent = '';

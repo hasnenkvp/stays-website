@@ -2,121 +2,144 @@
 import Layout from '~/layouts/PageLayout.astro';
 import Button from '~/components/stays/Button.astro';
 import CopyEmailButton from '~/components/stays/CopyEmailButton.astro';
+import Faq from '~/components/stays/Faq.astro';
 import { stays } from '~/config/stays';
 
 const metadata = {
-  title: 'Assistance Stays',
-  ignoreTitleTemplate: true,
-  description: 'Contacter l’assistance de Stays.',
+  title: 'Assistance',
+  description: `Assistance Stays : une question, un problème, un signalement ? Écrivez à ${stays.supportEmail}, réponse sous ${stays.supportResponseTime}.`,
   canonical: 'https://staysapp.fr/support/',
 };
 
-const mailtoSubject = encodeURIComponent('Stays — Support');
-const mailtoBody = encodeURIComponent(`Appareil : \nVersion d’iOS : \nVersion de Stays : \nDescription : \n`);
+// Modèle de message : les informations qui aident à répondre vite.
+const mailtoSubject = encodeURIComponent('Stays — Assistance');
+const mailtoBody = encodeURIComponent(
+  `Modèle d’iPhone : \nVersion d’iOS : \nVersion de Stays : \n\nVotre question ou les étapes pour reproduire le problème : \n`
+);
 const mailtoLink = `mailto:${stays.supportEmail}?subject=${mailtoSubject}&body=${mailtoBody}`;
+
+const linkClass =
+  'text-forest dark:text-brass-light font-medium underline underline-offset-4 hover:text-forest-deep dark:hover:text-white';
 ---
 
 <Layout metadata={metadata}>
-  <div class="py-16 sm:py-20 md:py-24">
-    <div class="max-w-3xl mx-auto px-4 sm:px-6 space-y-12">
-      <!-- Page Header -->
+  <div class="py-12 sm:py-20 md:py-24">
+    <div class="max-w-3xl mx-auto px-4 sm:px-6 space-y-12 sm:space-y-14">
       <header class="space-y-4">
-        <div
-          class="font-sans text-xs sm:text-[0.8125rem] tracking-[0.16em] uppercase font-semibold text-brass-ink dark:text-brass-light"
+        <p
+          class="font-sans text-[0.8125rem] tracking-[0.14em] uppercase font-semibold text-brass-ink dark:text-brass-light"
         >
-          Assistance & Contact
-        </div>
-        <h1 class="font-display font-light text-4xl sm:text-5xl md:text-6xl tracking-tight text-ink">Support</h1>
-        <p class="font-sans text-lg sm:text-xl text-ink-soft dark:text-sage leading-relaxed max-w-2xl">
-          Pour toute question sur Stays, écrivez-nous. Nous répondons directement à chaque message.
+          Stays
+        </p>
+        <h1
+          class="font-display font-light text-[2.5rem] sm:text-5xl md:text-6xl leading-[1.08] tracking-tight text-ink"
+        >
+          Assistance
+        </h1>
+        <p class="font-sans text-[1.125rem] sm:text-xl text-ink-soft dark:text-sage leading-relaxed max-w-2xl">
+          Une question, un problème, un signalement ? Écrivez-nous : réponse sous {stays.supportResponseTime}.
         </p>
       </header>
 
-      <!-- Carte principale : Nous écrire -->
-      <div
-        class="bg-ivory-2 dark:bg-ivory-2/40 border border-rule dark:border-rule/80 rounded-[24px] p-6 sm:p-8 space-y-6 shadow-xs"
+      <!-- Contact principal -->
+      <section
+        aria-labelledby="ecrire"
+        class="bg-ivory-2/70 dark:bg-ivory-2/40 border border-rule rounded-[24px] p-6 sm:p-8 space-y-5"
       >
-        <div class="w-10 h-[2px] bg-brass dark:bg-brass-light rounded-full" aria-hidden="true"></div>
-
-        <div>
-          <div class="text-xs uppercase tracking-wider font-semibold text-brass-ink dark:text-brass-light mb-1">
-            Adresse de contact direct
-          </div>
-          <div class="font-display text-2xl sm:text-3xl text-ink font-normal">
-            {stays.supportEmail}
-          </div>
-        </div>
-
-        <div class="flex flex-wrap items-center gap-3 pt-2">
-          <Button variant="primary" href={mailtoLink}> Écrire un e-mail </Button>
+        <h2 id="ecrire" class="font-sans text-[0.8125rem] uppercase tracking-[0.12em] font-semibold text-ink-soft">
+          Écrire à l’assistance
+        </h2>
+        <p class="font-display text-[1.625rem] sm:text-3xl text-ink font-normal break-words">
+          <a href={`mailto:${stays.supportEmail}`} class="hover:underline underline-offset-4">{stays.supportEmail}</a>
+        </p>
+        <div class="flex flex-col sm:flex-row sm:flex-wrap sm:items-center gap-3">
+          <Button variant="primary" href={mailtoLink}>Écrire un e-mail</Button>
           <CopyEmailButton email={stays.supportEmail} label="Copier l’adresse" />
         </div>
-      </div>
+      </section>
 
-      <!-- Carte d'aide : Informations utiles à transmettre -->
-      <div class="bg-ivory/60 dark:bg-ivory/30 border border-rule rounded-[24px] p-6 sm:p-8 space-y-6">
-        <h2 class="font-display font-medium text-2xl text-ink tracking-tight">Pour nous aider à vous répondre</h2>
+      <!-- Demandes particulières -->
+      <section aria-labelledby="autres-demandes" class="space-y-6">
+        <h2 id="autres-demandes" class="font-display font-light text-[1.75rem] sm:text-3xl tracking-tight text-ink">
+          Selon votre demande
+        </h2>
+        <dl class="divide-y divide-rule border-y border-rule font-sans">
+          <div class="py-5 sm:grid sm:grid-cols-3 sm:gap-6">
+            <dt class="font-semibold text-ink">Données personnelles</dt>
+            <dd class="mt-1 sm:mt-0 sm:col-span-2 text-ink-soft dark:text-sage leading-relaxed">
+              Pour exercer vos droits ou pour toute question sur vos données :{' '}
+              <a href={`mailto:${stays.privacyEmail}`} class={linkClass}>{stays.privacyEmail}</a>.
+            </dd>
+          </div>
+          <div class="py-5 sm:grid sm:grid-cols-3 sm:gap-6">
+            <dt class="font-semibold text-ink">Supprimer vos données Amis</dt>
+            <dd class="mt-1 sm:mt-0 sm:col-span-2 text-ink-soft dark:text-sage leading-relaxed">
+              Dans les Réglages de l’app, touchez « Supprimer mes données Amis ». Votre profil public et vos partages
+              sont supprimés ; vos séjours restent sur votre iPhone.
+            </dd>
+          </div>
+          <div class="py-5 sm:grid sm:grid-cols-3 sm:gap-6">
+            <dt class="font-semibold text-ink">Signaler une personne</dt>
+            <dd class="mt-1 sm:mt-0 sm:col-span-2 text-ink-soft dark:text-sage leading-relaxed">
+              Dans l’onglet Amis, ouvrez « Gérer les amis », puis Signaler. L’app prépare un e-mail vers{' '}
+              {stays.supportEmail}, que vous envoyez vous-même. Chaque signalement est examiné sous {
+                stays.supportResponseTime
+              }.
+            </dd>
+          </div>
+          <div class="py-5 sm:grid sm:grid-cols-3 sm:gap-6">
+            <dt class="font-semibold text-ink">Confidentialité</dt>
+            <dd class="mt-1 sm:mt-0 sm:col-span-2 text-ink-soft dark:text-sage leading-relaxed">
+              Ce que Stays conserve, partage et ne collecte pas :{' '}
+              <a href="/privacy/" class={linkClass}>politique de confidentialité</a>.
+            </dd>
+          </div>
+        </dl>
+      </section>
 
-        <p class="font-sans text-base text-ink-soft dark:text-sage leading-relaxed">
-          Pour nous aider à comprendre rapidement votre demande ou résoudre une anomalie, indiquez si possible les
-          éléments suivants dans votre message :
+      <!-- Informations utiles -->
+      <section aria-labelledby="aider" class="space-y-4">
+        <h2 id="aider" class="font-display font-light text-[1.75rem] sm:text-3xl tracking-tight text-ink">
+          Pour nous aider à vous répondre
+        </h2>
+        <p class="font-sans text-[1.0625rem] text-ink-soft dark:text-sage leading-relaxed">
+          Indiquez si possible dans votre message :
         </p>
-
-        <ul class="space-y-2.5 font-sans text-sm sm:text-base text-ink-soft dark:text-sage">
+        <ul class="space-y-2.5 font-sans text-[1.0625rem] text-ink-soft dark:text-sage">
           <li class="flex items-start gap-3">
-            <span class="w-1.5 h-1.5 rounded-full bg-brass dark:bg-brass-light mt-2 shrink-0"></span>
-            <span>Le modèle de votre iPhone (ex. iPhone 15 Pro).</span>
+            <span class="w-1.5 h-1.5 rounded-full bg-brass dark:bg-brass-light mt-[0.6em] shrink-0" aria-hidden="true"
+            ></span>
+            <span>le modèle de votre iPhone ;</span>
           </li>
           <li class="flex items-start gap-3">
-            <span class="w-1.5 h-1.5 rounded-full bg-brass dark:bg-brass-light mt-2 shrink-0"></span>
-            <span>La version d’iOS installée (dans Réglages &gt; Général &gt; Informations).</span>
+            <span class="w-1.5 h-1.5 rounded-full bg-brass dark:bg-brass-light mt-[0.6em] shrink-0" aria-hidden="true"
+            ></span>
+            <span>la version d’iOS (Réglages &gt; Général &gt; Informations) ;</span>
           </li>
           <li class="flex items-start gap-3">
-            <span class="w-1.5 h-1.5 rounded-full bg-brass dark:bg-brass-light mt-2 shrink-0"></span>
-            <span>La version de Stays (affichée dans les réglages de l'application).</span>
+            <span class="w-1.5 h-1.5 rounded-full bg-brass dark:bg-brass-light mt-[0.6em] shrink-0" aria-hidden="true"
+            ></span>
+            <span>la version de Stays ;</span>
           </li>
           <li class="flex items-start gap-3">
-            <span class="w-1.5 h-1.5 rounded-full bg-brass dark:bg-brass-light mt-2 shrink-0"></span>
-            <span>Une description claire de votre question ou des étapes pour reproduire le problème rencontré.</span>
+            <span class="w-1.5 h-1.5 rounded-full bg-brass dark:bg-brass-light mt-[0.6em] shrink-0" aria-hidden="true"
+            ></span>
+            <span>votre question, ou les étapes pour reproduire le problème.</span>
           </li>
         </ul>
+        <p class="pt-4 border-t border-rule font-sans text-[0.9375rem] text-ink-soft dark:text-sage leading-relaxed">
+          Ne transmettez jamais de données bancaires. Sur une capture d’écran, masquez toute information personnelle.
+        </p>
+      </section>
 
-        <div class="pt-4 border-t border-rule text-xs sm:text-sm text-ink-soft/80 dark:text-sage/80 leading-relaxed">
-          <strong class="font-medium text-ink">Sécurité et vie privée :</strong> Ne transmettez jamais de mot de passe ni
-          de données bancaires. Si vous joignez une capture d’écran, veillez à masquer toute information personnelle ou sensible.
-        </div>
-      </div>
-
-      <!-- Bloc Confidentialité -->
-      <div
-        class="flex items-center justify-between p-6 rounded-[20px] bg-ivory-2/60 dark:bg-ivory-2/20 border border-rule"
-      >
-        <div class="space-y-1">
-          <div class="font-display font-medium text-lg text-ink">Données personnelles &amp; Confidentialité</div>
-          <div class="text-sm text-ink-soft dark:text-sage">
-            Les questions relatives à vos données sont détaillées dans notre politique.
-          </div>
-        </div>
-        <Button variant="secondary" href="/privacy/" class="shrink-0 ml-4"> Consulter </Button>
-      </div>
-
-      <!-- FAQ (rendered only if items are confirmed in config) -->
       {
         stays.faq.length > 0 && (
-          <div class="space-y-4 pt-6">
-            <h2 class="font-display font-medium text-2xl text-ink mb-4">Questions fréquentes</h2>
-            <div class="space-y-3">
-              {stays.faq.map((item) => (
-                <details class="group bg-ivory-2/50 dark:bg-ivory-2/20 border border-rule rounded-[16px] p-5 cursor-pointer">
-                  <summary class="font-display font-medium text-lg text-ink flex justify-between items-center">
-                    {item.q}
-                    <span class="text-brass dark:text-brass-light group-open:rotate-180 transition-transform">↓</span>
-                  </summary>
-                  <p class="font-sans text-sm text-ink-soft dark:text-sage mt-3 leading-relaxed">{item.a}</p>
-                </details>
-              ))}
-            </div>
-          </div>
+          <section aria-labelledby="faq" class="space-y-6">
+            <h2 id="faq" class="font-display font-light text-[1.75rem] sm:text-3xl tracking-tight text-ink">
+              Questions fréquentes
+            </h2>
+            <Faq items={stays.faq} />
+          </section>
         )
       }
     </div>

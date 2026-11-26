@@ -1,31 +1,31 @@
+// Réglages propres à Stays, lus par les pages et composants du site.
 export const stays = {
   siteUrl: 'https://staysapp.fr',
   appStoreUrl: '', // vide = aucun bouton ni lien App Store affiché
-  appStoreId: '', // vide = pas de meta apple-itunes-app
-  appStoreBadge: '/app-store-badge-fr.svg', // chemin du badge officiel Apple FR
+  appStoreId: '', // vide = pas de balise apple-itunes-app
+  appStoreBadge: '/app-store-badge-fr.svg', // badge officiel Apple, en français
   supportEmail: 'support@staysapp.fr',
-  privacyEmail: { address: 'privacy@staysapp.fr', active: false }, // false = jamais affichée
-  publisher: { name: 'Hasnen Nourah' }, // affiché dans le footer
-  legal: { published: false }, // false = aucun lien vers /legal/ (ne crée pas cette page)
-  friends: { status: 'available' as 'hidden' | 'available' },
-  screenshots: {} as Record<string, { src: string; alt: string; width: number; height: number }>,
+  privacyEmail: 'privacy@staysapp.fr', // contact « données personnelles » de la politique de confidentialité
+  supportResponseTime: '5 jours ouvrés', // délai de réponse annoncé sur /support/ et dans la politique
+  publisher: { name: 'Hasnen Nourah' }, // affiché dans le pied de page
+  // Questions fréquentes, affichées sur l'accueil et sur /support/.
+  // Chaque réponse doit rester conforme à src/pages/privacy.md.
   faq: [
     {
       q: 'Stays est-elle une application de réservation ?',
-      a: 'Non. Stays ne propose aucune réservation d’hôtel. C’est un carnet personnel pour conserver la mémoire de vos séjours et de vos adresses favorites.',
+      a: 'Non. Stays ne propose aucune réservation d’hôtel. C’est un carnet personnel pour garder la mémoire de vos séjours et de vos adresses favorites.',
     },
     {
       q: 'Où sont stockées mes données et mes photos ?',
-      a: 'Directement sur votre iPhone. Stays n’exploite aucun serveur applicatif propriétaire et n’a pas accès à vos séjours.',
+      a: 'Sur votre iPhone, et dans sa sauvegarde si vous l’avez activée. Stays n’exploite aucun serveur et n’a pas accès à vos séjours. Seule la fonction Amis, si vous l’utilisez, passe par votre iCloud.',
     },
     {
       q: 'Comment fonctionne le partage avec mes proches ?',
-      a: 'Le partage est strictement volontaire. Vous choisissez vous-même les séjours à envoyer à vos invités, sans fil d’actualité ni profil public.',
+      a: 'Avec Amis (iOS 26 et iCloud), vous échangez vos séjours avec les personnes dont vous acceptez la demande, grâce à un code à 6 chiffres. Une fois la demande acceptée, chacun voit les séjours non annulés de l’autre : hôtel, ville, dates. Jamais vos prix, photos, notes ni références de réservation.',
     },
     {
       q: 'Puis-je exporter mes séjours ?',
-      a: 'Oui, à tout moment. Vous pouvez exporter l’ensemble de vos données aux formats standard JSON ou CSV directement depuis les réglages.',
+      a: 'Oui, à tout moment, au format CSV depuis les Réglages de l’app. Le fichier contient vos séjours et peut être réimporté ; les photos et les notes n’y figurent pas.',
     },
   ],
-  ogImage: '/stays-logo.png',
 };
