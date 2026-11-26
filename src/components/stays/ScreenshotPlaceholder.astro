@@ -46,17 +46,15 @@ const isHero = id === 'hero';
         'relative w-full flex items-center justify-center select-none overflow-hidden lg:overflow-visible pointer-events-none',
         className,
       ]}
-      role="figure"
-      aria-label={alt}
     >
       {hasImage ? (
-        <div class="relative w-[540px] max-w-[540px] sm:w-[600px] sm:max-w-[600px] md:max-w-[640px] lg:w-[700px] lg:max-w-[700px] xl:w-[720px] xl:max-w-[720px] shrink-0">
+        <div class="relative -my-20 sm:my-0 w-[400px] max-w-[400px] sm:w-[600px] sm:max-w-[600px] md:max-w-[640px] lg:w-[700px] lg:max-w-[700px] xl:w-[720px] xl:max-w-[720px] shrink-0">
           <Image
             src={resolvedImage}
             alt={alt}
             width={720}
             widths={[360, 540, 720, 1080, 1440, 2160]}
-            sizes="(max-width: 640px) 540px, (max-width: 1024px) 640px, 720px"
+            sizes="(max-width: 640px) 400px, (max-width: 1024px) 640px, 720px"
             format="webp"
             quality={90}
             loading={isEager ? 'eager' : 'lazy'}
@@ -67,7 +65,7 @@ const isHero = id === 'hero';
         </div>
       ) : (
         <div class="relative w-full max-w-[340px] aspect-[393/852] rounded-[44px] p-6 text-center flex flex-col items-center justify-center bg-ivory-2/50 dark:bg-forest-deep border border-rule">
-          <div class="w-12 h-12 rounded-[14px] bg-forest text-ivory flex items-center justify-center p-2.5 shadow-card mb-3.5">
+          <div class="w-12 h-12 rounded-[14px] bg-forest text-[#fbf8f2] flex items-center justify-center p-2.5 shadow-card mb-3.5">
             <img src="/stays-logo.png" alt="Stays" width="32" height="32" class="w-8 h-8 rounded-[8px] object-cover" />
           </div>
           <h3 class="font-display italic text-xl text-forest dark:text-brass-light font-normal tracking-tight mb-2">

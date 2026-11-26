@@ -6,6 +6,7 @@ import SectionHeading from '~/components/stays/SectionHeading.astro';
 import ScreenshotPlaceholder from '~/components/stays/ScreenshotPlaceholder.astro';
 import HeroLandscapeMockup from '~/components/stays/HeroLandscapeMockup.astro';
 import AppStoreBadge from '~/components/stays/AppStoreBadge.astro';
+import Faq from '~/components/stays/Faq.astro';
 import { stays } from '~/config/stays';
 import { SITE, I18N } from 'astrowind:config';
 
@@ -47,14 +48,14 @@ const structuredData = [
     <div class="max-w-7xl mx-auto px-4 sm:px-6">
       <!-- Hero Editorial Block (Top, Centered) -->
       <div class="relative z-20 max-w-4xl mx-auto text-center space-y-6 sm:space-y-8">
-        <div
-          class="font-sans text-xs sm:text-[0.8125rem] tracking-[0.18em] uppercase font-semibold text-brass-ink dark:text-brass-light"
+        <p
+          class="font-sans text-[0.8125rem] tracking-[0.16em] uppercase font-semibold text-brass-ink dark:text-brass-light"
         >
           Application iOS · Séjours & voyages
-        </div>
+        </p>
 
         <h1
-          class="font-display font-light text-4xl sm:text-5xl md:text-6xl lg:text-[4.25rem] leading-[1.08] tracking-tight text-ink text-balance max-w-4xl mx-auto"
+          class="font-display font-light text-[2.5rem] sm:text-5xl md:text-6xl lg:text-[4.25rem] leading-[1.08] tracking-tight text-ink text-balance max-w-4xl mx-auto"
         >
           Vos séjours passent. <em class="italic font-normal text-forest dark:text-brass-light"
             >Les souvenirs restent.</em
@@ -62,7 +63,7 @@ const structuredData = [
         </h1>
 
         <p
-          class="font-sans text-lg sm:text-xl text-ink-soft dark:text-sage leading-relaxed max-w-2xl mx-auto text-pretty"
+          class="font-sans text-[1.125rem] sm:text-xl text-ink-soft dark:text-sage leading-relaxed max-w-2xl mx-auto text-pretty"
         >
           Vos hôtels, vos souvenirs et votre passeport de voyage, réunis dans Stays. Une façon personnelle de garder une
           trace de vos escales et de les partager avec vos proches.
@@ -93,33 +94,32 @@ const structuredData = [
         <!-- Editorial Text Column (Clean & uncluttered) -->
         <div class="lg:col-span-6 space-y-6 lg:space-y-8">
           <SectionHeading
-            number="01"
             eyebrow="LE SÉJOUR"
             title="Chaque séjour, <em class='italic font-normal text-forest dark:text-brass-light'>dans les détails</em>."
             lede="Retrouvez vos hôtels, vos photos et vos notes personnelles. L’essentiel de vos séjours, réuni au même endroit."
           />
 
           <!-- Discreet, refined typographical cue list replacing the 3 redundant boxes -->
-          <div
-            class="pt-2 border-t border-rule/60 flex flex-wrap gap-x-6 gap-y-2 text-sm text-ink-soft dark:text-sage font-sans"
+          <ul
+            class="pt-4 border-t border-rule flex flex-wrap gap-x-6 gap-y-2 text-[0.9375rem] text-ink-soft dark:text-sage font-sans"
           >
-            <span class="inline-flex items-center gap-2">
+            <li class="inline-flex items-center gap-2">
               <span class="w-1.5 h-1.5 rounded-full bg-brass dark:bg-brass-light" aria-hidden="true"></span>
               Établissement & lieu
-            </span>
-            <span class="inline-flex items-center gap-2">
+            </li>
+            <li class="inline-flex items-center gap-2">
               <span class="w-1.5 h-1.5 rounded-full bg-brass dark:bg-brass-light" aria-hidden="true"></span>
               Photos personnelles
-            </span>
-            <span class="inline-flex items-center gap-2">
+            </li>
+            <li class="inline-flex items-center gap-2">
               <span class="w-1.5 h-1.5 rounded-full bg-brass dark:bg-brass-light" aria-hidden="true"></span>
               Notes & souvenirs
-            </span>
-            <span class="inline-flex items-center gap-2">
+            </li>
+            <li class="inline-flex items-center gap-2">
               <span class="w-1.5 h-1.5 rounded-full bg-brass dark:bg-brass-light" aria-hidden="true"></span>
               Repères d’escale
-            </span>
-          </div>
+            </li>
+          </ul>
         </div>
 
         <!-- Real Mockup Slot (Prominent and clear) -->
@@ -156,7 +156,6 @@ const structuredData = [
         <!-- Content & Typographical Stats (Right on desktop) -->
         <div class="lg:col-span-6 order-1 lg:order-2 space-y-8">
           <SectionHeading
-            number="02"
             eyebrow="LE PASSEPORT"
             title="Le passeport, <em class='italic font-normal text-forest dark:text-brass-light'>vos voyages réunis</em>."
             lede="Le passeport rassemble vos statistiques de voyage en un coup d’œil : pays explorés, villes d’escale, nombre de séjours et nuits cumulées au fil des années."
@@ -171,7 +170,9 @@ const structuredData = [
                 >
                   Pays
                 </span>
-                <span class="block font-sans text-xs tracking-wider uppercase text-ink-soft dark:text-sage mt-1">
+                <span
+                  class="block font-sans text-[0.8125rem] tracking-wider uppercase text-ink-soft dark:text-sage mt-1"
+                >
                   Traversés
                 </span>
               </div>
@@ -182,7 +183,9 @@ const structuredData = [
                 >
                   Villes
                 </span>
-                <span class="block font-sans text-xs tracking-wider uppercase text-ink-soft dark:text-sage mt-1">
+                <span
+                  class="block font-sans text-[0.8125rem] tracking-wider uppercase text-ink-soft dark:text-sage mt-1"
+                >
                   Explorées
                 </span>
               </div>
@@ -193,7 +196,9 @@ const structuredData = [
                 >
                   Séjours
                 </span>
-                <span class="block font-sans text-xs tracking-wider uppercase text-ink-soft dark:text-sage mt-1">
+                <span
+                  class="block font-sans text-[0.8125rem] tracking-wider uppercase text-ink-soft dark:text-sage mt-1"
+                >
                   Consignés
                 </span>
               </div>
@@ -204,14 +209,16 @@ const structuredData = [
                 >
                   Nuits
                 </span>
-                <span class="block font-sans text-xs tracking-wider uppercase text-ink-soft dark:text-sage mt-1">
+                <span
+                  class="block font-sans text-[0.8125rem] tracking-wider uppercase text-ink-soft dark:text-sage mt-1"
+                >
                   Cumulées
                 </span>
               </div>
             </div>
 
             <p
-              class="font-sans text-xs sm:text-sm text-ink-soft dark:text-sage border-t border-rule/60 pt-4 leading-relaxed"
+              class="font-sans text-[0.9375rem] text-ink-soft dark:text-sage border-t border-rule pt-4 leading-relaxed"
             >
               Une archive personnelle qui grandit à chaque escale, sans profil public ni mise en scène.
             </p>
@@ -221,15 +228,14 @@ const structuredData = [
     </div>
   </section>
 
-  <!-- 4. SECTION « FRIENDS » (#friends) -->
+  <!-- 4. SECTION « AMIS » (#amis) -->
   <!-- Intimate, centered showcase: short title, 2 sentences, 3 cues maximum, no technical CloudKit jargon -->
-  <section id="friends" class="relative py-20 sm:py-28 md:py-32 border-t border-rule scroll-mt-16">
+  <section id="amis" class="relative py-20 sm:py-28 md:py-32 border-t border-rule scroll-mt-16">
     <div class="max-w-4xl mx-auto px-4 sm:px-6 text-center">
       <SectionHeading
-        number="03"
-        eyebrow="FRIENDS"
+        eyebrow="AMIS"
         title="Partager ses séjours, <em class='italic font-normal text-forest dark:text-brass-light'>simplement avec ses proches</em>."
-        lede="Envoyez vos adresses et vos coups de cœur aux personnes de votre choix. Un partage choisi, privé et réciproque, loin de tout réseau social ouvert."
+        lede="Échangez vos séjours avec les personnes de votre choix, grâce à un code à 6 chiffres. Un partage privé et réciproque, loin de tout réseau social ouvert."
         align="center"
       />
 
@@ -237,35 +243,38 @@ const structuredData = [
       <div class="grid grid-cols-1 md:grid-cols-3 gap-6 pt-4 text-left">
         <div class="p-6 rounded-[20px] bg-ivory-2/60 dark:bg-ivory-2/20 border border-rule/70">
           <div class="w-6 h-[2px] bg-brass dark:bg-brass-light rounded-full mb-3" aria-hidden="true"></div>
-          <h3 class="font-display font-medium text-lg text-ink tracking-tight mb-1.5">Partage volontaire</h3>
-          <p class="font-sans text-sm text-ink-soft dark:text-sage leading-relaxed">
-            Vous choisissez séjour par séjour ce que vous souhaitez transmettre à vos invités.
+          <h3 class="font-display font-medium text-xl text-ink tracking-tight mb-1.5">Sur acceptation</h3>
+          <p class="font-sans text-[0.9375rem] text-ink-soft dark:text-sage leading-relaxed">
+            Rien n’est partagé tant que vous n’avez pas accepté la demande d’une personne.
           </p>
         </div>
 
         <div class="p-6 rounded-[20px] bg-ivory-2/60 dark:bg-ivory-2/20 border border-rule/70">
           <div class="w-6 h-[2px] bg-brass dark:bg-brass-light rounded-full mb-3" aria-hidden="true"></div>
-          <h3 class="font-display font-medium text-lg text-ink tracking-tight mb-1.5">Cercle privé</h3>
-          <p class="font-sans text-sm text-ink-soft dark:text-sage leading-relaxed">
-            Vos notes intimes et vos numéros de chambre ne sont jamais transmis.
+          <h3 class="font-display font-medium text-xl text-ink tracking-tight mb-1.5">L’essentiel seulement</h3>
+          <p class="font-sans text-[0.9375rem] text-ink-soft dark:text-sage leading-relaxed">
+            Hôtel, ville et dates. Jamais vos prix, photos, notes ni références de réservation.
           </p>
         </div>
 
         <div class="p-6 rounded-[20px] bg-ivory-2/60 dark:bg-ivory-2/20 border border-rule/70">
           <div class="w-6 h-[2px] bg-brass dark:bg-brass-light rounded-full mb-3" aria-hidden="true"></div>
-          <h3 class="font-display font-medium text-lg text-ink tracking-tight mb-1.5">Contrôle permanent</h3>
-          <p class="font-sans text-sm text-ink-soft dark:text-sage leading-relaxed">
-            Masquez un séjour partagé ou retirez un accès réciproque en un clic, à tout instant.
+          <h3 class="font-display font-medium text-xl text-ink tracking-tight mb-1.5">Contrôle permanent</h3>
+          <p class="font-sans text-[0.9375rem] text-ink-soft dark:text-sage leading-relaxed">
+            Retirez, bloquez ou signalez une personne à tout moment. Le retrait coupe l’accès dans les deux sens.
           </p>
         </div>
       </div>
 
-      <div class="mt-8 pt-2">
+      <div class="mt-8 space-y-2">
+        <p class="font-sans text-[0.9375rem] text-ink-soft dark:text-sage">
+          Amis est facultatif et demande iOS 26 et un compte iCloud. Le reste de l’app fonctionne sans.
+        </p>
         <a
-          href="/privacy/#c-données-friends-cloudkit"
-          class="font-sans text-sm text-forest dark:text-brass-light font-medium underline underline-offset-4 hover:text-forest-deep dark:hover:text-white transition duration-150"
+          href="/privacy/#c-amis--partage-de-vos-séjours-cloudkit"
+          class="inline-flex min-h-11 items-center font-sans text-[0.9375rem] text-forest dark:text-brass-light font-medium underline underline-offset-4 hover:text-forest-deep dark:hover:text-white transition-colors duration-150"
         >
-          En savoir plus sur le fonctionnement de Friends dans notre politique de confidentialité →
+          Le fonctionnement d’Amis en détail, dans la politique de confidentialité
         </a>
       </div>
     </div>
@@ -276,41 +285,42 @@ const structuredData = [
   <section
     id="confidentialite"
     class="relative py-20 sm:py-28 md:py-32 bg-forest dark:bg-forest-deep text-[#fbf8f2] scroll-mt-16 not-prose"
+    data-surface="inverse"
   >
     <div class="max-w-7xl mx-auto px-4 sm:px-6">
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center">
         <div class="lg:col-span-8 space-y-6">
-          <div class="font-sans text-xs sm:text-[0.8125rem] tracking-[0.18em] uppercase font-semibold text-brass-light">
-            04 · CONFIDENTIALITÉ
-          </div>
+          <p class="font-sans text-[0.8125rem] tracking-[0.14em] uppercase font-semibold text-brass-light">
+            Confidentialité
+          </p>
 
           <h2
-            class="font-display font-light text-3xl sm:text-4xl md:text-5xl leading-[1.08] tracking-tight text-[#fbf8f2] text-balance"
+            class="font-display font-light text-[2rem] sm:text-4xl md:text-5xl leading-[1.1] tracking-tight text-[#fbf8f2] text-balance"
           >
             Privé <em class="italic font-normal text-brass-light">par conception</em>.
           </h2>
 
-          <p class="font-sans text-base sm:text-lg text-sage leading-relaxed max-w-2xl text-pretty">
-            Vos séjours, vos notes et vos photos sont conservés sur votre iPhone. Aucun compte obligatoire, aucun
-            serveur pour analyser vos voyages et aucune revente de données.
+          <p class="font-sans text-[1.0625rem] sm:text-lg text-sage leading-relaxed max-w-2xl text-pretty">
+            Vos séjours, vos notes et vos photos sont conservés sur votre iPhone. Aucun compte à créer, aucun serveur
+            pour analyser vos voyages et aucune revente de données.
           </p>
 
           <div class="grid grid-cols-1 sm:grid-cols-3 gap-6 pt-4 border-t border-rule-inverse/25">
             <div>
-              <div class="font-display text-lg text-ivory mb-1">Sur votre appareil</div>
-              <p class="font-sans text-xs text-sage leading-relaxed">
+              <h3 class="font-display text-xl text-[#fbf8f2] mb-1">Sur votre appareil</h3>
+              <p class="font-sans text-[0.9375rem] text-sage leading-relaxed">
                 Stockage local sur votre iPhone, protégé par le chiffrement matériel d’iOS.
               </p>
             </div>
             <div>
-              <div class="font-display text-lg text-ivory mb-1">Sans intermédiaire</div>
-              <p class="font-sans text-xs text-sage leading-relaxed">
-                Aucun serveur propriétaire. Seul votre propre espace iCloud intervient si vous activez Friends.
+              <h3 class="font-display text-xl text-[#fbf8f2] mb-1">Sans intermédiaire</h3>
+              <p class="font-sans text-[0.9375rem] text-sage leading-relaxed">
+                Aucun serveur propriétaire. Seule la fonction Amis, si vous l’utilisez, passe par iCloud.
               </p>
             </div>
             <div>
-              <div class="font-display text-lg text-ivory mb-1">Sans pistage</div>
-              <p class="font-sans text-xs text-sage leading-relaxed">
+              <h3 class="font-display text-xl text-[#fbf8f2] mb-1">Sans pistage</h3>
+              <p class="font-sans text-[0.9375rem] text-sage leading-relaxed">
                 Aucune publicité, aucun outil de suivi d’activité et aucun ciblage.
               </p>
             </div>
@@ -327,15 +337,13 @@ const structuredData = [
           >
             <img
               src="/stays-logo.png"
-              alt="Stays"
+              alt=""
               class="w-20 h-20 rounded-[18px] object-cover mb-4 ring-1 ring-brass-light/20"
               width="80"
               height="80"
             />
             <span class="font-display italic text-lg text-brass-light">Mémoire privée</span>
-            <span class="font-sans text-[0.6875rem] text-sage/75 uppercase tracking-wider mt-1">
-              Sur votre appareil
-            </span>
+            <span class="font-sans text-[0.8125rem] text-sage uppercase tracking-wider mt-1"> Sur votre appareil </span>
           </div>
         </div>
       </div>
@@ -347,53 +355,31 @@ const structuredData = [
   <section id="faq" class="relative py-20 sm:py-28 md:py-32 border-t border-rule scroll-mt-16">
     <div class="max-w-3xl mx-auto px-4 sm:px-6">
       <SectionHeading
-        number="05"
         eyebrow="QUESTIONS FRÉQUENTES"
         title="Des réponses <em class='italic font-normal text-forest dark:text-brass-light'>courtes et utiles</em>."
-        lede="L’essentiel pour comprendre le positionnement et le fonctionnement de Stays."
+        lede="L’essentiel pour comprendre ce que fait Stays, et ce qu’elle ne fait pas."
         align="center"
       />
 
-      <div class="space-y-4 pt-2">
-        {
-          stays.faq.map((item) => (
-            <details class="group bg-ivory-2/60 dark:bg-ivory-2/20 border border-rule rounded-[20px] p-6 sm:p-7 transition duration-200">
-              <summary class="font-display font-medium text-xl sm:text-[1.375rem] text-ink flex justify-between items-center cursor-pointer list-none">
-                <span>{item.q}</span>
-                <span class="text-brass dark:text-brass-light text-xl transition-transform duration-200 group-open:rotate-180 shrink-0 ml-4 motion-reduce:transition-none">
-                  ↓
-                </span>
-              </summary>
-              <p class="font-sans text-base text-ink-soft dark:text-sage mt-4 leading-relaxed max-w-2xl">{item.a}</p>
-            </details>
-          ))
-        }
-      </div>
+      <Faq items={stays.faq} />
     </div>
   </section>
 
   <!-- 7. CTA FINAL & CLÔTURE (#contact) -->
   <section id="contact" class="relative py-20 sm:py-28 md:py-32 border-t border-rule scroll-mt-16">
     <div class="max-w-3xl mx-auto px-4 sm:px-6 text-center space-y-6">
-      <!-- Medallion -->
-      <div
-        class="inline-flex items-center justify-center w-16 h-16 rounded-[22px] bg-forest text-[#fbf8f2] font-display italic text-2xl shadow-card mb-2 ring-1 ring-forest/20 dark:ring-brass-light/20"
-      >
-        s
-      </div>
-
       <h2
-        class="font-display font-light text-3xl sm:text-4xl md:text-5xl leading-tight tracking-tight text-ink text-balance"
+        class="font-display font-light text-[2rem] sm:text-4xl md:text-5xl leading-tight tracking-tight text-ink text-balance"
       >
         Vos séjours passent. <em class="italic font-normal text-forest dark:text-brass-light">Les souvenirs restent.</em
         >
       </h2>
 
-      <p class="font-sans text-base sm:text-lg text-ink-soft dark:text-sage leading-relaxed max-w-lg mx-auto">
+      <p class="font-sans text-[1.0625rem] sm:text-lg text-ink-soft dark:text-sage leading-relaxed max-w-lg mx-auto">
         Une question, une remarque ou besoin d’aide ? Écrivez-nous à <a
           href={`mailto:${stays.supportEmail}`}
           class="text-forest dark:text-brass-light font-medium underline underline-offset-4">{stays.supportEmail}</a
-        >. Nous répondons directement à chaque message.
+        >. Réponse sous {stays.supportResponseTime}.
       </p>
 
       <div class="flex flex-wrap items-center justify-center gap-4 pt-4">
@@ -401,10 +387,10 @@ const structuredData = [
         <Button variant="secondary" href="/support/"> Page d’assistance </Button>
       </div>
 
-      <div class="pt-4">
+      <div class="pt-2">
         <a
           href="/privacy/"
-          class="font-sans text-xs sm:text-sm text-ink-soft/80 dark:text-sage/80 underline underline-offset-4 hover:text-ink dark:hover:text-ivory transition"
+          class="inline-flex min-h-11 items-center font-sans text-[0.9375rem] text-ink-soft dark:text-sage underline underline-offset-4 hover:text-ink dark:hover:text-ink transition-colors"
         >
           Consulter la politique de confidentialité
         </a>

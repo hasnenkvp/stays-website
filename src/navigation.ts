@@ -1,9 +1,12 @@
 import { getPermalink } from './utils/permalinks';
 import { stays } from './config/stays';
 
+// En-tête : deux liens seulement, les pages utiles hors de l'accueil.
 export const headerData = {
-  links: [] as Array<{ text?: string; href?: string; links?: Array<{ text?: string; href?: string }> }>,
-  actions: [] as Array<{ text?: string; href?: string; variant?: string }>,
+  links: [
+    { text: 'Assistance', href: getPermalink('/support') },
+    { text: 'Confidentialité', href: getPermalink('/privacy') },
+  ],
 };
 
 export const footerData = {
@@ -13,28 +16,24 @@ export const footerData = {
       links: [
         { text: 'Le séjour', href: '/#sejour' },
         { text: 'Le passeport', href: '/#passeport' },
-        { text: 'Friends', href: '/#friends' },
+        { text: 'Amis', href: '/#amis' },
         { text: 'Confidentialité', href: '/#confidentialite' },
       ],
     },
     {
       title: 'Assistance',
       links: [
-        { text: 'Support', href: getPermalink('/support') },
+        { text: 'Page d’assistance', href: getPermalink('/support') },
         { text: stays.supportEmail, href: `mailto:${stays.supportEmail}` },
       ],
     },
     {
       title: 'Confidentialité',
-      links: [{ text: 'Politique de confidentialité', href: getPermalink('/privacy') }],
+      links: [
+        { text: 'Politique de confidentialité', href: getPermalink('/privacy') },
+        { text: stays.privacyEmail, href: `mailto:${stays.privacyEmail}` },
+      ],
     },
   ],
-  secondaryLinks: [
-    { text: 'Support', href: getPermalink('/support') },
-    { text: 'Politique de confidentialité', href: getPermalink('/privacy') },
-  ],
-  socialLinks: [],
-  footNote: `
-    © ${new Date().getFullYear()} ${stays.publisher.name || 'staysapp.fr'}. Tous droits réservés.
-  `,
+  footNote: `© ${new Date().getFullYear()} ${stays.publisher.name}. Tous droits réservés.`,
 };

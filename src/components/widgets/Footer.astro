@@ -1,5 +1,4 @@
 ---
-import { Icon } from 'astro-icon/components';
 import { getHomePermalink } from '~/utils/permalinks';
 import Logo from '~/components/Logo.astro';
 
@@ -7,9 +6,6 @@ interface Link {
   text?: string;
   href?: string;
   ariaLabel?: string;
-  icon?: string;
-  target?: string;
-  rel?: string;
 }
 
 interface Links {
@@ -19,65 +15,44 @@ interface Links {
 
 export interface Props {
   links: Array<Links>;
-  secondaryLinks: Array<Link>;
-  socialLinks?: Array<Link>;
   footNote?: string;
-  theme?: string;
 }
 
-const { socialLinks = [], secondaryLinks = [], links = [], footNote = '' } = Astro.props;
+const { links = [], footNote = '' } = Astro.props;
 ---
 
-<footer class="relative bg-forest-deep text-ivory border-t border-rule-inverse not-prose">
+<footer class="relative bg-forest-deep text-[#fbf8f2] border-t border-rule-inverse not-prose" data-surface="inverse">
   <div class="relative max-w-7xl mx-auto px-4 sm:px-6 py-12 md:py-16">
     <div class="grid grid-cols-12 gap-8 lg:gap-12">
-      <!-- Brand column -->
       <div class="col-span-12 lg:col-span-4 space-y-4">
-        <div class="mb-3">
-          <a class="inline-block text-[#fbf8f2]" href={getHomePermalink()} aria-label="Stays, accueil">
-            <Logo inverse={true} />
-          </a>
-        </div>
-        <p class="text-sm text-sage max-w-sm leading-relaxed">
-          Stays est une application iOS privée pour conserver la mémoire de vos séjours : hôtels, lieux, dates et
+        <a
+          class="inline-flex min-h-11 items-center text-[#fbf8f2] rounded-md"
+          href={getHomePermalink()}
+          aria-label="Stays, accueil"
+        >
+          <Logo inverse={true} />
+        </a>
+        <p class="text-[0.9375rem] text-sage max-w-sm leading-relaxed">
+          Stays est une application iOS privée pour garder la mémoire de vos séjours : hôtels, lieux, dates et
           souvenirs.
         </p>
-        {
-          secondaryLinks && secondaryLinks.length > 0 && (
-            <div class="text-xs text-sage/70 flex flex-wrap gap-2 pt-2">
-              {secondaryLinks.map(({ text, href }, index) => (
-                <>
-                  {index !== 0 && <span>·</span>}
-                  <a
-                    class="hover:text-ivory underline-offset-4 hover:underline transition duration-150"
-                    href={href}
-                    set:html={text}
-                  />
-                </>
-              ))}
-            </div>
-          )
-        }
       </div>
 
-      <!-- Navigation columns -->
-      <div class="col-span-12 lg:col-span-8 grid grid-cols-2 sm:grid-cols-3 gap-8">
+      <nav class="col-span-12 lg:col-span-8 grid grid-cols-1 sm:grid-cols-3 gap-8" aria-label="Pied de page">
         {
           links.map(({ title, links }) => (
             <div>
-              <div class="font-display font-medium text-base text-ivory tracking-tight mb-3">{title}</div>
+              <h2 class="font-display font-medium text-lg text-[#fbf8f2] tracking-tight mb-2">{title}</h2>
               {links && links.length > 0 && (
-                <ul class="space-y-2 text-sm">
-                  {links.map(({ text, href, ariaLabel, target, rel }) => (
+                <ul class="text-[0.9375rem]">
+                  {links.map(({ text, href, ariaLabel }) => (
                     <li>
                       <a
-                        class="text-sage hover:text-ivory transition duration-150 ease-in-out inline-block py-0.5 focus-visible:outline-2 focus-visible:outline-brass-light focus-visible:outline-offset-2 rounded-xs"
+                        class="inline-flex min-h-11 items-center text-sage hover:text-[#fbf8f2] hover:underline underline-offset-4 transition-colors duration-150"
                         href={href}
                         aria-label={ariaLabel}
-                        target={target}
-                        rel={rel}
                       >
-                        <Fragment set:html={text} />
+                        {text}
                       </a>
                     </li>
                   ))}
@@ -86,34 +61,11 @@ const { socialLinks = [], secondaryLinks = [], links = [], footNote = '' } = Ast
             </div>
           ))
         }
-      </div>
+      </nav>
     </div>
 
-    <!-- Bottom rule and copyright -->
-    <div
-      class="border-t border-rule-inverse mt-12 pt-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-sage/80"
-    >
-      <div>
-        <Fragment set:html={footNote} />
-      </div>
-
-      {
-        socialLinks && socialLinks.length > 0 && (
-          <ul class="flex items-center gap-3">
-            {socialLinks.map(({ ariaLabel, href, icon }) => (
-              <li>
-                <a
-                  class="text-sage hover:text-ivory transition p-1.5 inline-flex items-center"
-                  aria-label={ariaLabel}
-                  href={href}
-                >
-                  {icon && <Icon name={icon} class="w-4 h-4" />}
-                </a>
-              </li>
-            ))}
-          </ul>
-        )
-      }
+    <div class="border-t border-rule-inverse mt-10 pt-6 text-sm text-sage">
+      <p>{footNote}</p>
     </div>
   </div>
 </footer>

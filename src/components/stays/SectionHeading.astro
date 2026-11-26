@@ -1,6 +1,5 @@
 ---
 export interface Props {
-  number?: string;
   eyebrow?: string;
   title?: string;
   lede?: string;
@@ -8,30 +7,22 @@ export interface Props {
   class?: string;
 }
 
-const { number, eyebrow, title, lede, align = 'left', class: className = '' } = Astro.props;
+const { eyebrow, title, lede, align = 'left', class: className = '' } = Astro.props;
 
 const isCenter = align === 'center';
 ---
 
-<div class:list={['mb-12 md:mb-16', { 'text-center mx-auto': isCenter }, className]}>
-  {
-    number && (
-      <div class="font-display italic text-brass dark:text-brass-light text-xl sm:text-2xl font-light mb-1">
-        {number}
-      </div>
-    )
-  }
-
+<div class:list={['mb-10 md:mb-14', { 'text-center mx-auto': isCenter }, className]}>
   {
     eyebrow && (
-      <div class="font-sans text-xs sm:text-[0.8125rem] tracking-[0.16em] uppercase font-semibold text-brass-ink dark:text-brass-light mb-3">
+      <p class="font-sans text-[0.8125rem] tracking-[0.14em] uppercase font-semibold text-brass-ink dark:text-brass-light mb-3">
         {eyebrow}
-      </div>
+      </p>
     )
   }
 
   <h2
-    class="font-display font-light text-3xl sm:text-4xl md:text-5xl leading-[1.08] tracking-tight text-ink text-balance"
+    class="font-display font-light text-[2rem] sm:text-4xl md:text-5xl leading-[1.1] tracking-tight text-ink text-balance"
   >
     {title ? <Fragment set:html={title} /> : <slot name="title" />}
   </h2>
@@ -40,7 +31,7 @@ const isCenter = align === 'center';
     lede && (
       <p
         class:list={[
-          'font-sans text-base sm:text-lg text-ink-soft dark:text-sage leading-relaxed text-pretty mt-4',
+          'font-sans text-[1.0625rem] sm:text-lg text-ink-soft dark:text-sage leading-relaxed text-pretty mt-4',
           { 'mx-auto': isCenter },
           'max-w-2xl',
         ]}

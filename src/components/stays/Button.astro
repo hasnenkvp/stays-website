@@ -15,15 +15,15 @@ const { variant = 'primary', href, target, rel, class: className = '', ...rest }
 const Tag = href ? 'a' : 'button';
 
 const baseStyles =
-  'inline-flex items-center justify-center font-sans font-medium text-sm md:text-[0.9375rem] transition-all duration-200 cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brass-ink dark:focus-visible:ring-brass-light focus-visible:ring-offset-2';
+  'inline-flex min-h-11 items-center justify-center text-center font-sans font-medium text-[0.9375rem] transition-all duration-200 cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brass-ink dark:focus-visible:ring-brass-light focus-visible:ring-offset-2';
 
 const variants = {
   primary:
-    'bg-forest text-[#fbf8f2] hover:bg-forest-deep dark:bg-forest dark:text-[#fbf8f2] dark:hover:bg-moss px-6 py-3.5 rounded-full shadow-card hover:-translate-y-0.5 active:translate-y-0',
+    'bg-forest text-[#fbf8f2] hover:bg-forest-deep dark:bg-forest dark:text-[#fbf8f2] dark:hover:bg-moss px-6 py-3.5 rounded-full shadow-card hover:-translate-y-0.5 active:translate-y-0 motion-reduce:hover:translate-y-0',
   secondary:
-    'border border-rule text-ink hover:border-ink dark:border-rule dark:text-ink dark:hover:border-brass-light bg-transparent px-6 py-3.5 rounded-full hover:bg-ivory/40 dark:hover:bg-ivory-2/20 hover:-translate-y-0.5 active:translate-y-0',
+    'border border-rule text-ink hover:border-ink dark:border-rule dark:text-ink dark:hover:border-brass-light bg-transparent px-6 py-3.5 rounded-full hover:bg-ivory/40 dark:hover:bg-ivory-2/20 hover:-translate-y-0.5 active:translate-y-0 motion-reduce:hover:translate-y-0',
   inverse:
-    'bg-[#fbf8f2] text-forest-deep hover:bg-white dark:bg-[#fbf8f2] dark:text-forest-deep px-6 py-3.5 rounded-full shadow-card hover:-translate-y-0.5 active:translate-y-0 font-semibold',
+    'bg-[#fbf8f2] text-forest-deep hover:bg-white dark:bg-[#fbf8f2] dark:text-forest-deep px-6 py-3.5 rounded-full shadow-card hover:-translate-y-0.5 active:translate-y-0 motion-reduce:hover:translate-y-0 font-semibold',
   link: 'text-forest dark:text-brass-light hover:underline underline-offset-4 p-0 bg-transparent font-normal',
 };
 
