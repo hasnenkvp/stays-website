@@ -11,8 +11,6 @@ import CustomStyles from '~/components/CustomStyles.astro';
 import ApplyColorMode from '~/components/common/ApplyColorMode.astro';
 import Metadata from '~/components/common/Metadata.astro';
 import SiteVerification from '~/components/common/SiteVerification.astro';
-import Analytics from '~/components/common/Analytics.astro';
-import Intersect from '~/components/common/Intersect.astro';
 
 // Comment the line below to disable View Transitions
 import { ClientRouter } from 'astro:transitions';
@@ -38,9 +36,6 @@ const { language, textDirection } = I18N;
     <ApplyColorMode />
     <Metadata {...metadata} />
     <SiteVerification />
-    <Analytics />
-
-    <link rel="preconnect" href="https://images.unsplash.com" />
 
     <!-- Comment the line below to disable View Transitions -->
     <ClientRouter fallback="swap" />
@@ -49,9 +44,7 @@ const { language, textDirection } = I18N;
     <slot name="head" />
   </head>
 
-  <body class="antialiased text-default bg-page tracking-tight min-h-screen flex flex-col">
+  <body class="antialiased text-default bg-page min-h-screen flex flex-col">
     <slot />
-
-    <Intersect />
   </body>
 </html>

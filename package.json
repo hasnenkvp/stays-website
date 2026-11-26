@@ -1,7 +1,8 @@
 {
   "name": "stays-website",
   "version": "1.0.0-beta.66",
-  "description": "AstroWind: A free template using Astro 7 and Tailwind CSS v4. Astro starter theme.",
+  "description": "Site officiel de Stays (staysapp.fr), construit avec Astro et Tailwind CSS.",
+  "private": true,
   "type": "module",
   "engines": {
     "node": ">=22.22.3"
