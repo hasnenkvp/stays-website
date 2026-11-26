@@ -1,17 +1,11 @@
 ---
 title: 'Politique de confidentialité'
-description: "Politique de confidentialité de l'application iOS Stays et du site web staysapp.fr"
-lastUpdated: '2026-10-28'
+description: "Politique de confidentialité de l'application iOS Stays et du site web staysapp.fr : données conservées sur l'iPhone, services Apple, fonction Amis, site web et droits RGPD."
+lastUpdated: '2026-11-26'
 layout: '~/layouts/MarkdownLayout.astro'
 ---
 
-# Politique de Confidentialité — Stays
-
-_Dernière mise à jour : 28 octobre 2026_
-
 La protection de vos données personnelles et le respect de votre vie privée sont au cœur de la conception de **Stays**. Cette politique de confidentialité détaille l'ensemble des flux de données, principes de sécurité et traitements appliqués dans l'application iOS Stays et sur le site officiel [staysapp.fr](https://staysapp.fr/).
-
----
 
 ## 1. Éditeur et contact
 
@@ -21,17 +15,14 @@ La protection de vos données personnelles et le respect de votre vie privée so
 
 Stays est une application de suivi et de cartographie de vos séjours personnels. Son utilisation ne nécessite **aucune création de compte utilisateur** auprès de l'éditeur. L'éditeur n'exploite aucun serveur applicatif propre destiné à collecter, héberger, analyser ou monétiser vos séjours.
 
----
-
 ## 2. Principes fondamentaux de Stays
 
-L'architecture technique de Stays repose sur trois principes stricts :
+L'architecture technique de Stays repose sur quatre principes stricts :
 
-1. **Local-First (Priorité au stockage local) :** Vos données (séjours, notes, photos, programmes de fidélité) sont créées et stockées directement sur votre appareil iOS via SwiftData.
-2. **Zéro serveur propriétaire :** Stays n'héberge aucune base de données centrale. Seuls les services natifs d'Apple (iCloud / CloudKit et Apple Plans) sont sollicités lorsque des fonctionnalités connectées sont expressément requises.
+1. **Local-First (Priorité au stockage local) :** Vos données (séjours, notes, photos) sont créées et stockées directement sur votre appareil iOS via SwiftData. Elles suivent la sauvegarde de votre appareil si vous l'avez activée (voir 3.A). Elles ne sont pas synchronisées entre vos appareils.
+2. **Zéro serveur propriétaire :** Stays n'héberge aucune base de données sur ses propres serveurs. Seuls les services natifs d'Apple (iCloud / CloudKit et Apple Plans) sont sollicités lorsque des fonctionnalités connectées sont expressément requises.
 3. **Zéro pistage tiers :** Aucun outil de mesure d'audience (Google Analytics, Firebase Analytics, Meta SDK, etc.), aucun traceur publicitaire et aucun identifiant inter-applications (IDFA) ne sont intégrés dans l'application.
-
----
+4. **Aucun achat ni paiement :** l'application ne propose aucun achat intégré ni abonnement et ne traite aucune donnée de paiement.
 
 ## 3. Traitements de données au sein de l'application iOS
 
@@ -40,15 +31,15 @@ L'architecture technique de Stays repose sur trois principes stricts :
 Les informations saisies dans Stays sont conservées localement dans la base de données privée de l'appareil :
 
 - **Détails des séjours :** nom de l’hôtel, dates d’arrivée et de départ, horaires, référence de réservation, type et numéro de chambre, plateforme de réservation, montant et devise, date limite et conditions d'annulation, notes personnelles, avantages et mentions de souvenirs.
-- **Voyages et regroupements :** intitulés de voyages, dates et notes associées.
-- **Fidélité hôtelière :** programmes, statuts, numéros de membre, soldes de points, échéances et objectifs.
 - **Photos personnelles :** photos de séjours conservées localement dans le conteneur sécurisé de l'application.
 - **Préférences :** devise d’affichage, réglages d'interface et d'export.
 
-**Sauvegardes de l’appareil :**  
-La base locale suit le comportement standard d'iOS. Si vous avez activé la sauvegarde globale de votre appareil (sur iCloud ou sur un ordinateur Mac/PC), les données locales de Stays sont intégrées à cette sauvegarde chiffrée gérée par Apple.
+**Voyages et comptes de fidélité :** ces deux fonctions ont été retirées de l'application. Les voyages et comptes de fidélité que vous aviez saisis ont été supprimés de votre appareil lors de la mise à jour, et Stays n'en conserve plus aucun. La ligne « Programme » d'une fiche de séjour reste une simple indication reconnue à partir du nom de l'hôtel : ce n'est pas un compte de fidélité et rien n'est envoyé à un programme.
 
----
+**Où vivent vos données :** sur votre appareil (base privée de Stays), puis, si vous l'avez activée, dans la sauvegarde de votre appareil. Stays ne synchronise pas aujourd'hui vos données entre vos appareils. Hors sauvegarde, export CSV et Amis (3.C), elles ne quittent pas votre appareil.
+
+**Sauvegardes de l’appareil (sauvegarde iCloud ou ordinateur) :**  
+La base locale suit le comportement standard d'iOS. Si vous avez activé la sauvegarde globale de votre appareil (sur iCloud ou sur un ordinateur Mac/PC), les données locales de Stays sont intégrées à cette sauvegarde chiffrée gérée par Apple.
 
 ### B. Services Apple de cartographie et de recherche (Plans / MapKit)
 
@@ -60,76 +51,81 @@ Pour faciliter la saisie de vos hôtels et afficher vos séjours sur une carte i
 
 Les requêtes sont traitées par Apple conformément à son propre [Engagement de confidentialité](https://www.apple.com/fr/legal/privacy/).
 
----
+### C. Amis : partage de vos séjours (CloudKit)
 
-### C. Données Friends (CloudKit)
+La fonctionnalité **Amis** permet d'échanger vos séjours, de manière réciproque, avec les personnes dont vous avez accepté la demande. Elle est disponible à partir d'iOS 26.
 
-La fonctionnalité **Friends** permet d'échanger des séjours de manière réciproque et privée avec des proches que vous invitez individuellement.
+#### 1. Facultatif et désactivé par défaut
 
-#### 1. Partage désactivé par défaut (Opt-in strict)
+Rien n'est publié tant que vous n'avez pas saisi votre prénom à la première ouverture de l'onglet Amis : un code à 6 chiffres est alors créé et publié avec ce prénom. Le prénom est vérifié sur votre appareil à la saisie (1 à 30 caractères ; lettres, espaces, tirets, apostrophes et points seulement ; ni chiffres, ni émojis, ni adresse ou lien, ni termes injurieux d'une liste locale). Un prénom reçu qui ne respecte pas ces règles est affiché « Ami ». Le reste de l'application fonctionne sans Amis. Un séjour n'est lisible par une personne qu'après votre acceptation de sa demande.
 
-Le partage Friends est totalement désactivé par défaut. Aucun séjour, aucune photo et aucune information de profil n'est synchronisé ou publié tant que vous n'avez pas expressément choisi d'activer Friends et d'inviter un ami via un lien privé temporaire et réciproque. Le reste de l'application fonctionne parfaitement sans Friends.
+#### 2. Informations de séjour partagées
 
-#### 2. Stockage dans votre iCloud personnel via CloudKit
+Une fois une demande acceptée, **tous vos séjours non annulés** (passés, en cours et à venir) sont lisibles par cet ami, et les siens par vous. Il n'existe pas de partage séjour par séjour. Seuls ces champs sont transmis :
 
-Toutes les données de la fonctionnalité Friends sont stockées et échangées directement au sein de votre espace iCloud personnel via le framework Apple CloudKit (zones privée et partagée `iCloud.com.stays.app`). Stays n'héberge aucune de ces données sur ses propres serveurs et n'agit à aucun moment comme intermédiaire technique.
+- nom de l'hôtel, ville, pays ;
+- position de l'hôtel (latitude et longitude) et fuseau horaire ;
+- marque, groupe hôtelier et nombre d'étoiles ;
+- dates d'arrivée et de départ, et heures si vous les avez précisées ;
+- deux identifiants techniques sans signification, propres à votre appareil (séjour et hôtel).
 
-#### 3. Informations de séjour partagées (`FriendStay`)
+**Jamais transmis :** prix, devise et toute donnée financière, photos, notes personnelles, souvenirs, références de réservation, type et numéro de chambre, plateforme de réservation, voyageurs, avantages hôteliers, conditions d'annulation.
 
-Pour chaque séjour que vous choisissez de partager, seules les informations suivantes sont lisibles par vos amis réciproques :
+Vos statistiques (séjours, nuits, pays) ne sont pas transmises : l'application de votre ami les calcule à partir des champs ci-dessus.
 
-- Nom de l'établissement hôtelier, ville, pays, fuseau horaire, dates d'arrivée et de départ ;
-- Type de chambre, plateforme de réservation, nom du voyageur, avantages hôteliers (_perks_) et date d'annulation gratuite ;
-- Coordonnées de l'hôtel pour l'affichage cartographique.
+#### 3. Profil public et code ami
 
-**Données strictement exclues du partage :** vos notes personnelles, mentions de souvenirs intimes, références confidentielles de réservation, numéros de chambre et comptes de fidélité ne sont **jamais** partagés.
+Votre code ami (6 chiffres, par exemple 839201) permet à une personne de vous envoyer une demande. Il est publié dans la base publique du conteneur iCloud de Stays, avec le **prénom ou pseudo que vous avez choisi** et l'**adresse technique de votre partage**. Toute personne utilisant Stays et connaissant votre code, ou l'identifiant technique de votre profil, peut lire ces trois informations, ainsi que l'identifiant opaque du compte qui les a créées. Le code ne comptant que 6 chiffres, il peut être deviné : une demande envoyée avec votre code n'ouvre aucun séjour sans votre acceptation. Cette adresse ne donne accès à aucun séjour sans votre acceptation. Cette base est administrée avec les outils d'Apple : l'éditeur y a techniquement accès.
 
-#### 4. Photos de séjour (`FriendPhoto`)
+#### 4. Où sont les données
 
-Les photos attachées à vos séjours restent strictement privées par défaut. Une photo n'est transmise que si vous choisissez individuellement de la rendre visible à vos amis, photo par photo. Avant tout transfert vers CloudKit, chaque photo est ré-encodée localement et purgée de l'ensemble de ses métadonnées sensibles (coordonnées GPS d'origine et horodatage de la prise de vue supprimés).
+Vos séjours partagés sont enregistrés dans votre espace iCloud personnel (zone privée partagée avec vos amis) et comptent dans votre stockage iCloud. Stays n'exploite aucun serveur propre. Sur votre appareil, l'application conserve votre code, votre prénom, ainsi que le prénom, le code et l'adresse de partage de vos amis. Les séjours de vos amis ne sont conservés qu'en mémoire, le temps d'utilisation de l'application.
 
-#### 5. Avatar et profil public (`FriendProfile.avatar`)
+#### 5. Identifiants iCloud reçus avec une demande
 
-Votre profil d'amitié (prénom ou pseudonyme, biographie, résidence, marque préférée et photo d'avatar) est stocké de manière sécurisée sous forme d'asset CloudKit et n'est partagé qu'avec vos amis mutuels confirmés.
+Lorsqu'une personne vous envoie une demande, Apple CloudKit transmet à votre appareil des informations sur son compte iCloud : selon le cas, son nom et son adresse e-mail ou son numéro de téléphone iCloud. **Il en va de même pour vos informations lorsque vous envoyez une demande : la personne visée, même si elle refuse, peut les recevoir sur son appareil par ce mécanisme d'Apple.**
 
-#### 6. Contrôle et suppression par l'utilisateur
+Stays n'affiche pas ces informations, ne les enregistre pas et ne les inscrit dans aucun journal. L'application les garde seulement en mémoire, le temps de traiter la demande. Pour rattacher une demande au bon profil, elle utilise l'identifiant opaque du compte iCloud, sous forme d'empreinte, conservée sur l'appareil. N'envoyez une demande qu'à une personne de confiance.
 
-Vous conservez la maîtrise permanente et absolue de vos données :
+#### 6. Contrôle et suppression
 
-- **Masquage ciblé :** vous pouvez masquer à tout moment un séjour précis (et ses photos associées) : il disparaît instantanément de la vue de vos amis ;
-- **Retrait d'un ami :** le retrait d'un ami révoque immédiatement et de manière bilatérale l'accès mutuel aux séjours et photos ;
-- **Arrêt de Friends :** vous pouvez désactiver Friends depuis les Réglages pour supprimer l'intégralité de vos enregistrements et zones partagées de votre iCloud.
+- **Retrait d'un ami :** coupe l'accès dans les deux sens et efface de votre appareil la copie de ses séjours. Ce qui a déjà été vu ne peut pas être repris.
+- **« Supprimer mes données Amis » (Réglages) :** supprime votre profil public, votre zone de séjours et votre partage, quitte les partages reçus, puis vérifie le résultat par relecture et efface l'état local. Vos séjours restent sur votre appareil.
+- **Réinstallation :** votre profil restant sur iCloud, l'application retrouve votre code et vos amis à l'ouverture de l'onglet Amis.
 
-#### 7. Absence totale d'hébergement sur des serveurs Stays
+#### 7. Blocage et signalement
 
-Stays n'exploite aucun serveur centralisé de stockage ou de base de données. L'intégralité des flux repose exclusivement sur l'infrastructure CloudKit fournie et sécurisée par Apple.
+- **Bloquer une demande :** la demande est refusée et la personne est bloquée sur votre partage par le mécanisme de CloudKit (Apple) ; ses demandes suivantes sont écartées. Rien n'est partagé.
+- **Retirer et bloquer un ami :** l'accès est retiré dans les deux sens (voir 6), puis sa prochaine demande est refusée d'office et bloquée de la même façon.
+- **Persistance :** le blocage enregistré sur votre partage CloudKit demeure. La liste des personnes bloquées conservée sur votre appareil est effacée à la réinstallation de l'application ; « Supprimer mes données Amis » efface cette liste et supprime votre partage, donc les blocages qui y sont enregistrés.
+- **Signaler :** l'application prépare un courriel vers [support@staysapp.fr](mailto:support@staysapp.fr), que vous envoyez vous-même depuis votre app de messagerie. Il contient le code et le prénom affiché de la personne signalée, le motif choisi et vos précisions facultatives. Il ne contient aucun séjour ni aucune identité iCloud. Votre adresse e-mail, comme pour tout courriel, est visible par l'éditeur.
+- **Traitement :** chaque signalement est examiné manuellement par l'éditeur, qui peut supprimer le profil public concerné (code et prénom) de la base publique du conteneur iCloud de Stays (CloudKit, environnement de production).
+- **Délai de traitement :** les signalements sont traités dans un délai de 5 jours ouvrés.
+- **Conservation :** les courriels de signalement sont conservés 12 mois, puis supprimés, sauf conservation nécessaire pour répondre à une demande d'une autorité ou pour un litige.
 
----
+#### 8. Ancienne version du partage (Friends)
 
-### D. Notifications locales
+Les anciennes données de la fonction Friends, si vous l'avez utilisée, restent dans votre iCloud jusqu'à leur suppression. « Supprimer les anciennes données Friends d'iCloud » (Réglages) les recherche et les supprime.
 
-- Stays peut programmer des rappels locaux sur votre appareil (échéances d'annulation gratuite, rappels de départ).
-- Ces notifications sont gérées **exclusivement en local par votre appareil** et nécessitent votre accord préalable au niveau d'iOS.
-- Aucun serveur distant de notifications push n'est utilisé (aucun jeton de push n'est collecté).
+### D. Notifications
 
----
+- **Locales :** Stays peut programmer des rappels sur votre appareil (veille de la fin de l'annulation gratuite, jour d'arrivée, jour de départ), avec votre accord préalable dans iOS. Rien n'est envoyé hors de l'appareil.
+- **Amis :** une fois votre code créé, et avec votre accord, CloudKit peut vous envoyer une alerte neutre (« Amis : une demande d'ami ou une réponse vous attend. ») par le service de notifications d'Apple lorsque vos données Amis changent. Quand Stays est actif, il remplace cette alerte par une notification locale plus précise, créée sur votre appareil, qui peut contenir le prénom de l'ami concerné (par exemple « Camille a accepté votre demande d'ami. »). Le jeton de notification est géré par iOS et CloudKit ; Stays ne le lit pas et ne le transmet à personne. Ces alertes n'ont ni garantie de délai ni garantie d'arrivée.
+- **Désactivation :** à tout moment dans Réglages de l'iPhone > Notifications > Stays.
 
 ### E. Exports, sauvegardes et portabilité (RGPD)
 
-- **Export à la demande :** vous pouvez générer à tout moment un export complet de vos séjours au format CSV ou une sauvegarde intégrale au format standard JSON depuis les Réglages.
-- **Portabilité :** le fichier JSON contient l'intégralité de vos séjours, hôtels, voyages, devises et notes, et peut être restauré sur un autre appareil.
+- **Export à la demande :** vous pouvez générer à tout moment un export de vos séjours au format CSV depuis les Réglages.
+- **Portabilité :** le fichier CSV contient vos séjours (hôtel, ville, pays, dates, réservation, prix, statut, privilèges) et peut être réimporté ; les photos et les notes n'y figurent pas.
 - **Nettoyage automatique :** les fichiers temporaires générés pour le partage iOS sont purgés au lancement suivant de l'application et lors de tout effacement des données.
-
----
 
 ### F. Modalités d’effacement des données
 
 L'application propose des options transparentes et directes pour réinitialiser ou purger vos données :
 
-1. **« Effacer les données de cet appareil » :** supprime immédiatement les bases locales, les photos, les historiques de célébration et suspend les publications Friends en tentant de retirer les séjours partagés sur iCloud.
-2. **« Arrêter Friends et effacer » :** ordonne la suppression des zones partagées CloudKit, résilie les partages réciproques, puis efface intégralement les bases locales de l'appareil.
-
----
+1. **« Effacer les données de cet appareil » :** supprime immédiatement les bases locales, les photos et les historiques de célébration. Les séjours partagés avec vos amis sont retirés d'iCloud dès que possible ; vos amis restent dans Amis.
+2. **« Supprimer mes données Amis » :** supprime votre profil public, votre zone de séjours et vos partages (voir C.6), sans toucher à vos séjours.
+3. **« Arrêter Friends et effacer » :** supprime d'abord vos données Amis, puis les anciennes zones Friends et les partages reçus, et efface enfin les bases locales de l'appareil. Si une suppression en ligne n'est pas confirmée, rien d'autre n'est effacé.
 
 ## 4. Données liées au site web (staysapp.fr)
 
@@ -139,15 +135,13 @@ Le site web [https://staysapp.fr/](https://staysapp.fr/) fonctionne de manière 
 - **Absence de traceurs et cookies :** aucun cookie publicitaire, aucun outil d'analyse d'audience tiers et aucun script de pistage n'est utilisé.
 - **Stockage local :** seul votre choix de thème d'affichage (mode clair ou sombre) est conservé localement dans votre navigateur (`localStorage.theme`).
 
----
-
 ## 5. Vos droits (Règlement Général sur la Protection des Données - RGPD)
 
 Conformément à la réglementation européenne sur la protection des données (RGPD) et à la loi française « Informatique et Libertés », vous disposez des droits suivants :
 
-- **Droit d'accès et de portabilité :** accès direct à vos données dans l'application et export complet en un clic au format JSON/CSV.
+- **Droit d'accès et de portabilité :** accès direct à vos données dans l'application et export en un clic au format CSV.
 - **Droit de rectification et d'effacement :** modification ou suppression directe de vos séjours, photos et profils directement dans l'interface de l'application.
-- **Droit de retrait du consentement :** désactivation de Friends à tout moment avec suppression des données partagées sur CloudKit.
+- **Droit de retrait du consentement :** retrait d'un ami ou suppression de vos données Amis à tout moment, avec suppression des données partagées sur CloudKit.
 
 Pour toute question ou pour exercer vos droits, vous pouvez contacter directement l'éditeur par courrier électronique à :
 **[privacy@staysapp.fr](mailto:privacy@staysapp.fr)** _(ou [support@staysapp.fr](mailto:support@staysapp.fr))_.

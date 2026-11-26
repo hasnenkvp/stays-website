@@ -1,36 +1,79 @@
 ---
+import type { MarkdownHeading } from 'astro';
 import Layout from '~/layouts/PageLayout.astro';
 import type { MetaData } from '~/types';
 
 export interface Props {
   frontmatter: {
     title?: string;
+    description?: string;
+    lastUpdated?: string;
   };
+  headings?: MarkdownHeading[];
 }
 
-const { frontmatter } = Astro.props;
+const { frontmatter, headings = [] } = Astro.props;
 
 const metadata: MetaData = {
   title: frontmatter?.title,
+  description: frontmatter?.description,
 };
+
+// Date affichée sous le titre, au format français (« 26 novembre 2026 »).
+const lastUpdated = frontmatter?.lastUpdated ? new Date(`${frontmatter.lastUpdated}T12:00:00Z`) : undefined;
+const lastUpdatedLabel = lastUpdated
+  ? new Intl.DateTimeFormat('fr-FR', { day: 'numeric', month: 'long', year: 'numeric', timeZone: 'UTC' }).format(
+      lastUpdated
+    )
+  : undefined;
+
+// Sommaire : un lien par section principale (titres de niveau 2).
+const sections = headings.filter((heading) => heading.depth === 2);
 ---
 
 <Layout metadata={metadata}>
-  <article class="py-16 sm:py-20 md:py-24">
+  <article class="py-12 sm:py-20 md:py-24">
     <div class="max-w-3xl mx-auto px-4 sm:px-6">
       <header class="mb-10 sm:mb-12">
-        <div
-          class="font-sans text-xs sm:text-[0.8125rem] tracking-[0.16em] uppercase font-semibold text-brass-ink dark:text-brass-light mb-3"
+        <p class="font-sans text-sm tracking-[0.12em] uppercase font-semibold text-brass-ink mb-3">Stays</p>
+        <h1
+          class="font-display font-light text-4xl sm:text-5xl md:text-6xl leading-[1.08] tracking-tight text-ink text-balance"
         >
-          Document d'information
-        </div>
-        <h1 class="font-display font-light text-4xl sm:text-5xl md:text-6xl leading-[1.08] tracking-tight text-ink">
           {frontmatter.title}
         </h1>
+        {
+          lastUpdated && lastUpdatedLabel && (
+            <p class="mt-4 font-sans text-base text-ink-soft">
+              Dernière mise à jour : <time datetime={frontmatter.lastUpdated}>{lastUpdatedLabel}</time>
+            </p>
+          )
+        }
       </header>
 
+      {
+        sections.length > 2 && (
+          <nav aria-labelledby="sommaire" class="mb-12 rounded-[20px] border border-rule bg-ivory/70 p-5 sm:p-6">
+            <h2 id="sommaire" class="font-sans text-sm font-semibold uppercase tracking-[0.12em] text-ink-soft mb-2">
+              Sommaire
+            </h2>
+            <ol class="font-sans text-base">
+              {sections.map((section) => (
+                <li>
+                  <a
+                    href={`#${section.slug}`}
+                    class="flex min-h-11 items-center text-forest underline-offset-4 hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brass-ink rounded-xs dark:text-brass-light"
+                  >
+                    {section.text}
+                  </a>
+                </li>
+              ))}
+            </ol>
+          </nav>
+        )
+      }
+
       <div
-        class="prose prose-lg max-w-none dark:prose-invert font-sans text-ink-soft dark:text-sage break-words [overflow-wrap:anywhere] prose-code:break-words prose-headings:font-display prose-headings:font-light prose-headings:text-ink prose-h2:text-2xl sm:prose-h2:text-3xl prose-h2:mt-12 prose-h2:mb-4 prose-h2:pb-2 prose-h2:border-b prose-h2:border-rule prose-h3:text-xl sm:prose-h3:text-2xl prose-h3:mt-8 prose-h3:mb-3 prose-p:leading-[1.75] prose-p:text-[1.0625rem] prose-li:text-[1.0625rem] prose-li:leading-relaxed prose-a:text-forest dark:prose-a:text-brass-light prose-a:underline prose-a:underline-offset-4 hover:prose-a:text-forest-deep dark:hover:prose-a:text-white prose-blockquote:border-l-4 prose-blockquote:border-brass dark:prose-blockquote:border-brass-light prose-blockquote:bg-ivory-2/70 dark:prose-blockquote:bg-ivory-2/20 prose-blockquote:rounded-r-2xl prose-blockquote:py-4 prose-blockquote:px-6 prose-blockquote:not-italic prose-blockquote:text-sm prose-hr:border-rule dark:prose-hr:border-rule-inverse"
+        class="prose prose-lg max-w-none dark:prose-invert font-sans text-ink-soft break-words prose-code:break-words prose-headings:font-display prose-headings:font-light prose-headings:text-ink prose-headings:scroll-mt-24 prose-h2:text-2xl sm:prose-h2:text-3xl prose-h2:mt-14 prose-h2:mb-4 prose-h2:pb-3 prose-h2:border-b prose-h2:border-rule prose-h3:text-xl sm:prose-h3:text-2xl prose-h3:mt-10 prose-h3:mb-3 prose-h4:font-sans prose-h4:font-semibold prose-h4:text-lg prose-h4:mt-8 prose-h4:mb-2 prose-p:leading-[1.7] prose-p:text-[1.0625rem] prose-li:text-[1.0625rem] prose-li:leading-relaxed prose-strong:text-ink prose-a:text-forest dark:prose-a:text-brass-light prose-a:underline prose-a:underline-offset-4 hover:prose-a:text-forest-deep dark:hover:prose-a:text-white prose-code:text-ink prose-code:font-normal prose-hr:border-rule"
       >
         <slot />
       </div>
