@@ -43,7 +43,7 @@ export default defineConfig({
       weights: [300, 400],
       styles: ['normal', 'italic'],
       subsets: ['latin'],
-      fallbacks: ['"Iowan Old Style"', 'Georgia', 'serif'],
+      fallbacks: ['Iowan Old Style', 'Georgia', 'serif'],
     },
     {
       provider: fontProviders.fontsource(),
@@ -52,7 +52,7 @@ export default defineConfig({
       weights: [400, 500, 600],
       styles: ['normal'],
       subsets: ['latin'],
-      fallbacks: ['-apple-system', '"Helvetica Neue"', 'Arial', 'sans-serif'],
+      fallbacks: ['-apple-system', 'Helvetica Neue', 'Arial', 'sans-serif'],
     },
   ],
 
