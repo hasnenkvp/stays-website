@@ -2,34 +2,22 @@
 import type { HTMLAttributes } from 'astro/types';
 
 export interface Props extends HTMLAttributes<'a'> {
-  variant?: 'primary' | 'secondary' | 'inverse' | 'link';
-  href?: string;
-  target?: string;
-  rel?: string;
+  variant?: 'primary' | 'secondary';
+  href: string;
   class?: string;
-  type?: 'button' | 'submit' | 'reset';
 }
 
-const { variant = 'primary', href, target, rel, class: className = '', ...rest } = Astro.props;
+const { variant = 'primary', href, class: className = '', ...rest } = Astro.props;
 
-const Tag = href ? 'a' : 'button';
-
-const baseStyles =
-  'inline-flex min-h-11 items-center justify-center text-center font-sans font-medium text-[0.9375rem] transition-all duration-200 cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brass-ink dark:focus-visible:ring-brass-light focus-visible:ring-offset-2';
+const base =
+  'inline-flex min-h-11 items-center justify-center rounded-full px-5 text-center text-body font-medium transition-colors duration-150 cursor-pointer';
 
 const variants = {
-  primary:
-    'bg-forest text-[#fbf8f2] hover:bg-forest-deep dark:bg-forest dark:text-[#fbf8f2] dark:hover:bg-moss px-6 py-3.5 rounded-full shadow-card hover:-translate-y-0.5 active:translate-y-0 motion-reduce:hover:translate-y-0',
-  secondary:
-    'border border-rule text-ink hover:border-ink dark:border-rule dark:text-ink dark:hover:border-brass-light bg-transparent px-6 py-3.5 rounded-full hover:bg-ivory/40 dark:hover:bg-ivory-2/20 hover:-translate-y-0.5 active:translate-y-0 motion-reduce:hover:translate-y-0',
-  inverse:
-    'bg-[#fbf8f2] text-forest-deep hover:bg-white dark:bg-[#fbf8f2] dark:text-forest-deep px-6 py-3.5 rounded-full shadow-card hover:-translate-y-0.5 active:translate-y-0 motion-reduce:hover:translate-y-0 font-semibold',
-  link: 'text-forest dark:text-brass-light hover:underline underline-offset-4 p-0 bg-transparent font-normal',
+  primary: 'bg-accent text-white hover:bg-accent-strong',
+  secondary: 'border border-rule text-accent hover:border-accent hover:text-accent-strong',
 };
-
-const combinedClass = [baseStyles, variants[variant], className].filter(Boolean).join(' ');
 ---
 
-<Tag href={href} target={target} rel={rel} class={combinedClass} {...rest}>
+<a href={href} class:list={[base, variants[variant], className]} {...rest}>
   <slot />
-</Tag>
+</a>

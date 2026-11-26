@@ -1,0 +1,31 @@
+---
+// Capture d'écran de l'app, droite et nette : coins d'un écran d'iPhone, un filet
+// et une ombre portée très légère. Pas de cadre de téléphone dessiné.
+import { Image } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
+
+export interface Props {
+  src: ImageMetadata;
+  alt: string;
+  class?: string;
+  /** Largeur affichée, pour le choix de la bonne résolution. */
+  sizes?: string;
+  /** Capture du premier écran : chargée tout de suite, en priorité. */
+  priority?: boolean;
+}
+
+const { src, alt, class: className = '', sizes = '(max-width: 640px) 260px, 300px', priority = false } = Astro.props;
+---
+
+<Image
+  src={src}
+  alt={alt}
+  widths={[260, 300, 340, 520, 600, 680, 900]}
+  sizes={sizes}
+  format="webp"
+  quality={82}
+  loading={priority ? 'eager' : 'lazy'}
+  fetchpriority={priority ? 'high' : 'auto'}
+  decoding="async"
+  class:list={['app-shot block h-auto w-full', className]}
+/>

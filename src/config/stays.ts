@@ -4,11 +4,11 @@ export const stays = {
   appStoreUrl: '', // vide = pas de badge App Store : la mention availabilityLabel s'affiche à la place
   appStoreId: '', // vide = pas de balise apple-itunes-app
   appStoreBadge: '/app-store-badge-fr.svg', // badge officiel Apple, en français
-  availabilityLabel: 'Bientôt sur l’App Store, pour iPhone', // affiché tant que appStoreUrl est vide
+  availabilityLabel: 'Bientôt sur l’App Store', // affiché tant que appStoreUrl est vide
+  platformLabel: 'Pour iPhone', // sous l'appel à l'action : l'app n'existe que sur iPhone
   supportEmail: 'support@staysapp.fr',
   privacyEmail: 'privacy@staysapp.fr', // contact « données personnelles » de la politique de confidentialité
   supportResponseTime: '5 jours ouvrés', // délai de réponse annoncé sur /support/ et dans la politique
-  publisher: { name: 'Hasnen Nourah' }, // affiché dans le pied de page
   // Questions fréquentes, affichées sur l'accueil et sur /support/.
   // Chaque réponse doit rester conforme à src/pages/privacy.md.
   faq: [
