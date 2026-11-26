@@ -14,24 +14,14 @@ const metadata = {
 ---
 
 <Layout metadata={metadata}>
-  <section class="min-h-[calc(100vh-280px)] flex items-center justify-center px-5 sm:px-8 py-20 md:py-28 text-center">
-    <div class="max-w-xl mx-auto space-y-6">
-      <div class="font-display italic text-brass dark:text-brass-light text-5xl sm:text-6xl font-light">404</div>
-
-      <h1
-        class="font-display font-light text-3xl sm:text-4xl md:text-5xl leading-tight tracking-tight text-ink text-balance"
-      >
-        Cette page <em class="italic font-normal text-forest dark:text-brass-light">s’est égarée</em>.
-      </h1>
-
-      <p class="font-sans text-base sm:text-lg text-ink-soft dark:text-sage leading-relaxed max-w-md mx-auto">
-        L’adresse demandée n’existe pas ou a été déplacée.
-      </p>
-
-      <div class="flex flex-wrap items-center justify-center gap-4 pt-4">
-        <Button variant="primary" href={getHomePermalink()}> Retour à l’accueil </Button>
-        <Button variant="secondary" href="/support/"> Assistance Stays </Button>
-      </div>
+  <section class="page-shell flex flex-col items-center pt-16 pb-24 text-center sm:pt-24 lg:pt-32 lg:pb-40">
+    <h1 class="text-display text-ink text-balance">Page introuvable</h1>
+    <p class="mt-5 max-w-[32rem] text-lead text-ink-soft text-pretty">
+      L’adresse demandée n’existe pas ou a été déplacée.
+    </p>
+    <div class="mt-8 flex flex-col items-center gap-3 sm:flex-row">
+      <Button variant="primary" href={getHomePermalink()}>Retour à l’accueil</Button>
+      <Button variant="secondary" href="/support/">Assistance</Button>
     </div>
   </section>
 </Layout>

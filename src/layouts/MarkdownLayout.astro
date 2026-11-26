@@ -32,19 +32,14 @@ const sections = headings.filter((heading) => heading.depth === 2);
 ---
 
 <Layout metadata={metadata}>
-  <article class="py-12 sm:py-20 md:py-24">
-    <div class="max-w-3xl mx-auto px-5 sm:px-8">
-      <header class="mb-10 sm:mb-12">
-        <p class="font-sans text-sm tracking-[0.12em] uppercase font-semibold text-brass-ink mb-3">Stays</p>
-        <h1
-          class="font-display font-light text-4xl sm:text-5xl md:text-6xl leading-[1.08] tracking-tight text-ink text-balance"
-        >
-          {frontmatter.title}
-        </h1>
+  <article class="page-shell pt-12 pb-20 sm:pt-16 lg:pt-24 lg:pb-32">
+    <div class="measure mx-auto">
+      <header class="mb-12">
+        <h1 class="text-display text-ink text-balance">{frontmatter.title}</h1>
         {
           lastUpdated && lastUpdatedLabel && (
-            <p class="mt-4 font-sans text-base text-ink-soft">
-              Dernière mise à jour : <time datetime={frontmatter.lastUpdated}>{lastUpdatedLabel}</time>
+            <p class="mt-4 text-small text-ink-soft">
+              Dernière mise à jour : <time datetime={frontmatter.lastUpdated}>{lastUpdatedLabel}</time>
             </p>
           )
         }
@@ -52,17 +47,14 @@ const sections = headings.filter((heading) => heading.depth === 2);
 
       {
         sections.length > 2 && (
-          <nav aria-labelledby="sommaire" class="mb-12 rounded-[20px] border border-rule bg-ivory/70 p-5 sm:p-6">
-            <h2 id="sommaire" class="font-sans text-sm font-semibold uppercase tracking-[0.12em] text-ink-soft mb-2">
+          <nav aria-labelledby="sommaire" class="mb-14 rounded-2xl bg-canvas-alt p-5 sm:p-6">
+            <h2 id="sommaire" class="text-small font-semibold text-ink-soft">
               Sommaire
             </h2>
-            <ol class="font-sans text-base">
+            <ol class="mt-2">
               {sections.map((section) => (
                 <li>
-                  <a
-                    href={`#${section.slug}`}
-                    class="block py-2 text-forest underline-offset-4 hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brass-ink rounded-xs dark:text-brass-light"
-                  >
+                  <a href={`#${section.slug}`} class="block rounded-md py-2.5 text-accent hover:text-accent-strong">
                     {section.text}
                   </a>
                 </li>
@@ -73,7 +65,7 @@ const sections = headings.filter((heading) => heading.depth === 2);
       }
 
       <div
-        class="prose prose-lg max-w-none dark:prose-invert font-sans text-ink-soft break-words prose-code:break-words prose-headings:font-display prose-headings:font-light prose-headings:text-ink prose-headings:scroll-mt-24 prose-h2:text-2xl sm:prose-h2:text-3xl prose-h2:mt-14 prose-h2:mb-4 prose-h2:pb-3 prose-h2:border-b prose-h2:border-rule prose-h3:text-xl sm:prose-h3:text-2xl prose-h3:mt-10 prose-h3:mb-3 prose-h4:font-sans prose-h4:font-semibold prose-h4:text-lg prose-h4:mt-8 prose-h4:mb-2 prose-p:leading-[1.7] prose-p:text-[1.0625rem] prose-li:text-[1.0625rem] prose-li:leading-relaxed prose-strong:text-ink prose-a:text-forest dark:prose-a:text-brass-light prose-a:underline prose-a:underline-offset-4 hover:prose-a:text-forest-deep dark:hover:prose-a:text-white prose-code:text-ink prose-code:font-normal prose-hr:border-rule"
+        class="prose max-w-none text-body break-words text-ink prose-headings:scroll-mt-8 prose-headings:font-semibold prose-headings:text-ink prose-h2:mt-20 prose-h2:mb-5 prose-h2:text-title prose-h3:mt-12 prose-h3:mb-3 prose-h3:text-heading prose-h4:mt-8 prose-h4:mb-2 prose-h4:text-body prose-p:my-4 prose-p:text-pretty prose-li:my-1.5 prose-ul:my-4 prose-ol:my-4 prose-strong:font-semibold prose-strong:text-ink prose-a:font-normal prose-a:text-accent prose-a:underline prose-a:decoration-accent/40 prose-a:underline-offset-[0.2em] hover:prose-a:decoration-accent prose-code:font-normal prose-code:text-ink prose-code:break-words prose-hr:border-rule marker:text-ink-soft"
       >
         <slot />
       </div>
