@@ -1,71 +1,32 @@
 ---
-import { getHomePermalink } from '~/utils/permalinks';
-import Logo from '~/components/Logo.astro';
-
-interface Link {
-  text?: string;
-  href?: string;
-  ariaLabel?: string;
-}
-
-interface Links {
-  title?: string;
-  links: Array<Link>;
-}
-
 export interface Props {
-  links: Array<Links>;
-  footNote?: string;
+  links: Array<{ text: string; href: string }>;
+  footNote: string;
 }
 
-const { links = [], footNote = '' } = Astro.props;
+const { links = [], footNote } = Astro.props;
 ---
 
-<footer class="relative bg-forest-deep text-[#fbf8f2] border-t border-rule-inverse not-prose" data-surface="inverse">
-  <div class="relative max-w-6xl mx-auto px-5 sm:px-8 py-12 md:py-16">
-    <div class="grid grid-cols-1 gap-8 lg:grid-cols-12 lg:gap-12">
-      <div class="lg:col-span-4 space-y-4">
-        <a
-          class="inline-flex min-h-11 items-center text-[#fbf8f2] rounded-md"
-          href={getHomePermalink()}
-          aria-label="Stays, accueil"
-        >
-          <Logo inverse={true} />
-        </a>
-        <p class="text-[0.9375rem] text-sage max-w-sm leading-relaxed">
-          Stays réunit vos séjours dans un carnet pour iPhone, où que vous les ayez réservés, et les partage avec ceux
-          qui voyagent avec vous.
-        </p>
-      </div>
-
-      <nav class="lg:col-span-8 grid grid-cols-1 sm:grid-cols-3 gap-8" aria-label="Pied de page">
+<footer class="border-t border-rule">
+  <div
+    class="page-shell flex flex-col gap-2 py-8 text-small text-ink-soft sm:flex-row sm:items-center sm:justify-between"
+  >
+    <p>{footNote}</p>
+    <nav aria-label="Pied de page">
+      <ul class="-mx-2 flex flex-wrap">
         {
-          links.map(({ title, links }) => (
-            <div>
-              <h2 class="font-display font-medium text-lg text-[#fbf8f2] tracking-tight mb-2">{title}</h2>
-              {links && links.length > 0 && (
-                <ul class="text-[0.9375rem]">
-                  {links.map(({ text, href, ariaLabel }) => (
-                    <li>
-                      <a
-                        class="inline-flex min-h-11 items-center text-sage hover:text-[#fbf8f2] hover:underline underline-offset-4 transition-colors duration-150"
-                        href={href}
-                        aria-label={ariaLabel}
-                      >
-                        {text}
-                      </a>
-                    </li>
-                  ))}
-                </ul>
-              )}
-            </div>
+          links.map(({ text, href }) => (
+            <li>
+              <a
+                class="inline-flex min-h-11 items-center rounded-md px-2 transition-colors duration-150 hover:text-ink"
+                href={href}
+              >
+                {text}
+              </a>
+            </li>
           ))
         }
-      </nav>
-    </div>
-
-    <div class="border-t border-rule-inverse mt-10 pt-6 text-sm text-sage">
-      <p>{footNote}</p>
-    </div>
+      </ul>
+    </nav>
   </div>
 </footer>

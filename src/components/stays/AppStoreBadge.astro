@@ -6,30 +6,26 @@ export interface Props {
 }
 
 const { class: className = '' } = Astro.props;
-const hasUrl = Boolean(stays.appStoreUrl);
 const badgeSrc = stays.appStoreBadge || '/app-store-badge-fr.svg';
 ---
 
 {
-  hasUrl && (
-    <div class:list={['inline-block', className]}>
-      <a
-        href={stays.appStoreUrl}
-        target="_blank"
-        rel="noopener"
-        class="inline-block transition-transform duration-200 hover:scale-105 focus-visible:outline-2 focus-visible:outline-brass-ink"
-        aria-label="Télécharger dans l’App Store"
-      >
-        <img
-          src={badgeSrc}
-          alt="Télécharger dans l’App Store"
-          width="127"
-          height="40"
-          class="h-10 w-auto block"
-          loading="eager"
-          decoding="async"
-        />
-      </a>
-    </div>
+  stays.appStoreUrl && (
+    <a
+      href={stays.appStoreUrl}
+      target="_blank"
+      rel="noopener"
+      class:list={['inline-block rounded-lg transition-opacity duration-150 hover:opacity-85', className]}
+    >
+      <img
+        src={badgeSrc}
+        alt="Télécharger dans l’App Store"
+        width="127"
+        height="40"
+        class="block h-11 w-auto"
+        loading="eager"
+        decoding="async"
+      />
+    </a>
   )
 }

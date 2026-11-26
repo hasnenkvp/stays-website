@@ -1,27 +1,8 @@
 ---
-export interface Props {
-  inverse?: boolean;
-}
-
-const { inverse = false } = Astro.props;
+// Icône de l'app et nom, dans la police système.
 ---
 
-<div class="inline-flex items-center gap-2.5 group">
-  <img
-    src="/stays-logo.png"
-    alt=""
-    class="w-7 h-7 rounded-[7px] object-cover shadow-xs transition duration-200 group-hover:scale-105"
-    width="28"
-    height="28"
-  />
-  <span
-    class:list={[
-      'self-center font-display font-medium text-xl md:text-2xl tracking-tight whitespace-nowrap transition duration-200',
-      inverse
-        ? 'text-[#fbf8f2] group-hover:text-brass-light'
-        : 'text-forest dark:text-ink group-hover:text-forest-deep dark:group-hover:text-brass-light',
-    ]}
-  >
-    stays
-  </span>
-</div>
+<span class="inline-flex items-center gap-2.5">
+  <img src="/stays-logo.png" alt="" class="h-7 w-7 rounded-[7px]" width="28" height="28" />
+  <span translate="no" class="text-lead font-semibold tracking-[-0.01em] text-ink">Stays</span>
+</span>
