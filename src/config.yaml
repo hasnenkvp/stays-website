@@ -7,9 +7,9 @@ site:
 # Métadonnées par défaut (SEO)
 metadata:
   title:
-    default: Stays — Gardez la mémoire de chaque séjour
+    default: Stays — Tous vos séjours, au même endroit
     template: '%s — Stays'
-  description: 'Stays réunit vos hôtels, vos dates, vos lieux et vos souvenirs dans une application privée, élégante et pensée pour iPhone.'
+  description: 'Stays réunit vos séjours dans un carnet pour iPhone, où que vous les ayez réservés, et les partage avec ceux qui voyagent avec vous.'
   robots:
     index: true
     follow: true

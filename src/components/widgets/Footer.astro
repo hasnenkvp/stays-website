@@ -22,9 +22,9 @@ const { links = [], footNote = '' } = Astro.props;
 ---
 
 <footer class="relative bg-forest-deep text-[#fbf8f2] border-t border-rule-inverse not-prose" data-surface="inverse">
-  <div class="relative max-w-7xl mx-auto px-4 sm:px-6 py-12 md:py-16">
-    <div class="grid grid-cols-12 gap-8 lg:gap-12">
-      <div class="col-span-12 lg:col-span-4 space-y-4">
+  <div class="relative max-w-6xl mx-auto px-5 sm:px-8 py-12 md:py-16">
+    <div class="grid grid-cols-1 gap-8 lg:grid-cols-12 lg:gap-12">
+      <div class="lg:col-span-4 space-y-4">
         <a
           class="inline-flex min-h-11 items-center text-[#fbf8f2] rounded-md"
           href={getHomePermalink()}
@@ -33,12 +33,12 @@ const { links = [], footNote = '' } = Astro.props;
           <Logo inverse={true} />
         </a>
         <p class="text-[0.9375rem] text-sage max-w-sm leading-relaxed">
-          Stays est une application iOS privée pour garder la mémoire de vos séjours : hôtels, lieux, dates et
-          souvenirs.
+          Stays réunit vos séjours dans un carnet pour iPhone, où que vous les ayez réservés, et les partage avec ceux
+          qui voyagent avec vous.
         </p>
       </div>
 
-      <nav class="col-span-12 lg:col-span-8 grid grid-cols-1 sm:grid-cols-3 gap-8" aria-label="Pied de page">
+      <nav class="lg:col-span-8 grid grid-cols-1 sm:grid-cols-3 gap-8" aria-label="Pied de page">
         {
           links.map(({ title, links }) => (
             <div>
