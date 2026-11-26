@@ -1,7 +1,7 @@
 import path from 'path';
 import { fileURLToPath } from 'url';
 
-import { defineConfig, fontProviders } from 'astro/config';
+import { defineConfig } from 'astro/config';
 
 import { unified } from '@astrojs/markdown-remark';
 
@@ -32,39 +32,12 @@ export default defineConfig({
     defaultStrategy: 'viewport',
   },
 
-  // API Fonts native : héberge, sous-ensemble et précharge Newsreader (titres)
-  // et Instrument Sans (texte), avec des polices de repli ajustées.
-  // Injectées par <Font /> dans Layout.astro, lues dans CustomStyles.astro.
-  fonts: [
-    {
-      provider: fontProviders.fontsource(),
-      name: 'Newsreader',
-      cssVariable: '--font-newsreader',
-      weights: [300, 400],
-      styles: ['normal', 'italic'],
-      subsets: ['latin'],
-      fallbacks: ['Iowan Old Style', 'Georgia', 'serif'],
-    },
-    {
-      provider: fontProviders.fontsource(),
-      name: 'Instrument Sans',
-      cssVariable: '--font-instrument-sans',
-      weights: [400, 500, 600],
-      styles: ['normal'],
-      subsets: ['latin'],
-      fallbacks: ['-apple-system', 'Helvetica Neue', 'Arial', 'sans-serif'],
-    },
-  ],
-
   integrations: [
     sitemap(),
     mdx(),
     icon({
       // Local SVG icons (used as <Icon name="file-name" />) live next to the other assets.
       iconDir: 'src/assets/icons',
-      include: {
-        tabler: ['sun', 'moon'],
-      },
     }),
 
     compress({
@@ -100,8 +73,8 @@ export default defineConfig({
       rehypePlugins: [responsiveTablesRehypePlugin],
     }),
     shikiConfig: {
-      // Code blocks follow the site theme; see the `.astro-code` rules in tailwind.css.
-      themes: { light: 'github-light', dark: 'github-dark' },
+      // Le site est en clair uniquement.
+      theme: 'github-light',
     },
   },
 

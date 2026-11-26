@@ -32,6 +32,6 @@ apps:
   blog:
     isEnabled: false
 
-# Thème : suit le réglage clair/sombre du système, sauf choix explicite du visiteur.
+# Thème : clair uniquement, sans bouton ni script (les captures de l'app sont en clair).
 ui:
-  theme: 'system'
+  theme: 'light:only'
