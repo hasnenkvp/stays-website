@@ -1,0 +1,265 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-11-26T15:29:07+00:00",
+  "title": "Design System: Stays",
+  "extensions": {
+    "colorMeta": {
+      "canvas": {
+        "role": "neutral",
+        "displayName": "Blanc page",
+        "canonical": "#ffffff",
+        "oklch": "oklch(100.0% 0.000 89.9)",
+        "tonalRamp": ["#0b0b0b", "#252525", "#424242", "#616161", "#828282", "#a5a5a5", "#c9c9c9", "#eeeeee"]
+      },
+      "canvas-alt": {
+        "role": "neutral",
+        "displayName": "Gris cassé",
+        "canonical": "#f9f9fb",
+        "oklch": "oklch(98.3% 0.003 286.4)",
+        "tonalRamp": ["#0b0b0c", "#252526", "#424243", "#616163", "#828284", "#a5a5a7", "#c9c9cb", "#eeeef0"]
+      },
+      "ink": {
+        "role": "neutral",
+        "displayName": "Anthracite",
+        "canonical": "#2b2b30",
+        "oklch": "oklch(29.1% 0.009 285.8)",
+        "tonalRamp": ["#0b0b0f", "#242429", "#414147", "#606166", "#828288", "#a4a4ab", "#c8c8cf", "#eeeef4"]
+      },
+      "ink-soft": {
+        "role": "neutral",
+        "displayName": "Gris secondaire",
+        "canonical": "#6a6a73",
+        "oklch": "oklch(52.7% 0.014 285.9)",
+        "tonalRamp": ["#0b0b0d", "#252528", "#414147", "#606068", "#81818a", "#a4a4ab", "#c8c8cd", "#eeeef1"]
+      },
+      "accent": {
+        "role": "primary",
+        "displayName": "Bleu lien",
+        "canonical": "#0066cc",
+        "oklch": "oklch(52.2% 0.177 255.8)",
+        "tonalRamp": ["#000b1f", "#02244d", "#074081", "#0e5fb8", "#3982df", "#70a7f0", "#a5ccff", "#daf1ff"]
+      },
+      "accent-strong": {
+        "role": "primary",
+        "displayName": "Bleu appuyé",
+        "canonical": "#0052a3",
+        "oklch": "oklch(44.6% 0.148 255.2)",
+        "tonalRamp": ["#020b1c", "#092546", "#164276", "#2461aa", "#4784d0", "#79a8e4", "#abccf7", "#ddf0ff"]
+      },
+      "accent-tint": {
+        "role": "primary",
+        "displayName": "Voile bleu",
+        "canonical": "#e6f0fa",
+        "oklch": "oklch(95.1% 0.017 248.0)",
+        "tonalRamp": ["#0a0b0d", "#222529", "#3d4348", "#5b626a", "#7b838b", "#9fa6ac", "#c5cace", "#eceff1"]
+      },
+      "rule": {
+        "role": "neutral",
+        "displayName": "Filet",
+        "canonical": "#e3e3e8",
+        "oklch": "oklch(91.7% 0.007 286.3)",
+        "tonalRamp": ["#0b0b0e", "#252528", "#414145", "#616165", "#828286", "#a4a4a9", "#c8c8cd", "#eeeef3"]
+      }
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "Display",
+        "purpose": "Titre unique de chaque page."
+      },
+      "title": {
+        "displayName": "Title",
+        "purpose": "Titres de section et h2 des pages de lecture."
+      },
+      "heading": {
+        "displayName": "Heading",
+        "purpose": "h3 de la politique de confidentialité."
+      },
+      "lead": {
+        "displayName": "Lead",
+        "purpose": "Chapeau gris sous le titre ; nom du logo en 600."
+      },
+      "body": {
+        "displayName": "Body",
+        "purpose": "Texte courant dans la mesure de 28rem ; 500 pour boutons et disponibilité, 600 pour questions et termes."
+      },
+      "small": {
+        "displayName": "Small",
+        "purpose": "Légendes, notes, navigation (500), pied de page."
+      }
+    },
+    "shadows": [
+      {
+        "name": "shot",
+        "value": "0 0 0 1px rgb(24 24 32 / 0.07), 0 2px 4px rgb(24 24 32 / 0.04), 0 28px 56px -32px rgb(24 24 32 / 0.24)",
+        "purpose": "Captures de l'app, icône de l'app, lien d'évitement focalisé. Seule ombre du système."
+      },
+      {
+        "name": "shot-contrast-more",
+        "value": "0 0 0 1px rgb(24 24 32 / 0.45)",
+        "purpose": "Remplace l'ombre de capture sous prefers-contrast: more."
+      }
+    ],
+    "motion": [
+      {
+        "name": "hover-color",
+        "value": "150ms ease",
+        "purpose": "Transitions de couleur, de bordure, de soulignement et d'opacité au survol."
+      },
+      {
+        "name": "faq-chevron",
+        "value": "transform 150ms",
+        "purpose": "Rotation du chevron de la FAQ à l'ouverture ; seule transition hors couleur et opacité."
+      },
+      {
+        "name": "reduced-motion",
+        "value": "transition-duration: 0.01ms",
+        "purpose": "Toutes les transitions coupées sous prefers-reduced-motion."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "sm",
+        "value": "640px"
+      },
+      {
+        "name": "lg",
+        "value": "1024px"
+      }
+    ],
+    "focus": {
+      "value": "outline: 2px solid var(--color-accent); outline-offset: 3px; border-radius: 4px",
+      "purpose": "Focus clavier global sur a, button, summary, [tabindex]."
+    },
+    "contrastMore": {
+      "ink": "#1a1a1e",
+      "ink-soft": "#46464e",
+      "accent": "#004c99",
+      "accent-strong": "#003d7a",
+      "rule": "#8e8e96"
+    },
+    "measure": {
+      "value": "28rem",
+      "purpose": "60 caractères au plus par ligne de corps."
+    },
+    "pageShell": {
+      "maxWidth": "1080px",
+      "paddingInline": "20px, 32px dès 640px"
+    }
+  },
+  "components": [
+    {
+      "name": "Bouton principal",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "Action principale d'un groupe : pilule bleue, texte blanc, 44 px.",
+      "html": "<a href=\"#\" class=\"ds-btn-primary\">Retour à l’accueil</a>",
+      "css": ":host{--color-canvas:#ffffff;--color-canvas-alt:#f9f9fb;--color-ink:#2b2b30;--color-ink-soft:#6a6a73;--color-accent:#0066cc;--color-accent-strong:#0052a3;--color-accent-tint:#e6f0fa;--color-rule:#e3e3e8;}.ds-btn-primary{display:inline-flex;align-items:center;justify-content:center;min-height:44px;padding:0 20px;border-radius:9999px;background:var(--color-accent,#0066cc);color:#fff;font-family:-apple-system, BlinkMacSystemFont, 'SF Pro Display', 'SF Pro Text', 'Helvetica Neue', 'Segoe UI', Roboto, Arial, sans-serif;font-size:17px;font-weight:500;text-decoration:none;transition:background-color 150ms;}.ds-btn-primary:hover{background:var(--color-accent-strong,#0052a3);}.ds-btn-primary:focus-visible{outline:2px solid var(--color-accent,#0066cc);outline-offset:3px;}"
+    },
+    {
+      "name": "Bouton secondaire",
+      "kind": "button",
+      "refersTo": "button-secondary",
+      "description": "Action secondaire : pilule à bordure filet, texte bleu.",
+      "html": "<a href=\"#\" class=\"ds-btn-secondary\">Assistance</a>",
+      "css": ":host{--color-canvas:#ffffff;--color-canvas-alt:#f9f9fb;--color-ink:#2b2b30;--color-ink-soft:#6a6a73;--color-accent:#0066cc;--color-accent-strong:#0052a3;--color-accent-tint:#e6f0fa;--color-rule:#e3e3e8;}.ds-btn-secondary{display:inline-flex;align-items:center;justify-content:center;min-height:44px;padding:0 20px;border-radius:9999px;border:1px solid var(--color-rule,#e3e3e8);background:transparent;color:var(--color-accent,#0066cc);font-family:-apple-system, BlinkMacSystemFont, 'SF Pro Display', 'SF Pro Text', 'Helvetica Neue', 'Segoe UI', Roboto, Arial, sans-serif;font-size:17px;font-weight:500;text-decoration:none;transition:color 150ms,border-color 150ms;}.ds-btn-secondary:hover{border-color:var(--color-accent,#0066cc);color:var(--color-accent-strong,#0052a3);}.ds-btn-secondary:focus-visible{outline:2px solid var(--color-accent,#0066cc);outline-offset:3px;}"
+    },
+    {
+      "name": "Lien dans le texte",
+      "kind": "custom",
+      "refersTo": "text-link",
+      "description": "Lien bleu souligné à 40 %, soulignement plein au survol.",
+      "html": "<p class=\"ds-p\">Lire la <a href=\"#\" class=\"ds-link\">politique de confidentialité</a>.</p>",
+      "css": ":host{--color-canvas:#ffffff;--color-canvas-alt:#f9f9fb;--color-ink:#2b2b30;--color-ink-soft:#6a6a73;--color-accent:#0066cc;--color-accent-strong:#0052a3;--color-accent-tint:#e6f0fa;--color-rule:#e3e3e8;}.ds-p{font-family:-apple-system, BlinkMacSystemFont, 'SF Pro Display', 'SF Pro Text', 'Helvetica Neue', 'Segoe UI', Roboto, Arial, sans-serif;font-size:17px;line-height:1.6;color:var(--color-ink,#2b2b30);}.ds-link{color:var(--color-accent,#0066cc);text-decoration:underline;text-decoration-thickness:1px;text-decoration-color:color-mix(in srgb,#0066cc 40%,transparent);text-underline-offset:0.2em;transition:text-decoration-color 150ms ease-out;}.ds-link:hover{text-decoration-color:currentColor;}.ds-link:focus-visible{outline:2px solid var(--color-accent,#0066cc);outline-offset:3px;border-radius:4px;}"
+    },
+    {
+      "name": "En-tête",
+      "kind": "nav",
+      "refersTo": "nav-link",
+      "description": "Logo à gauche, liens en petit texte gris à droite.",
+      "html": "<header class=\"ds-header\"><span class=\"ds-logo\"><span class=\"ds-logo-icon\"></span>Stays</span><nav><a href=\"#\" class=\"ds-nav\" aria-current=\"page\">Assistance</a><a href=\"#\" class=\"ds-nav\">Confidentialité</a></nav></header>",
+      "css": ":host{--color-canvas:#ffffff;--color-canvas-alt:#f9f9fb;--color-ink:#2b2b30;--color-ink-soft:#6a6a73;--color-accent:#0066cc;--color-accent-strong:#0052a3;--color-accent-tint:#e6f0fa;--color-rule:#e3e3e8;}.ds-header{display:flex;align-items:center;justify-content:space-between;min-height:64px;padding:0 20px;background:var(--color-canvas,#fff);font-family:-apple-system, BlinkMacSystemFont, 'SF Pro Display', 'SF Pro Text', 'Helvetica Neue', 'Segoe UI', Roboto, Arial, sans-serif;}.ds-logo{display:inline-flex;align-items:center;gap:10px;font-size:20px;font-weight:600;letter-spacing:-0.01em;color:var(--color-ink,#2b2b30);}.ds-logo-icon{width:28px;height:28px;border-radius:7px;background:var(--color-ink,#2b2b30);}.ds-nav{display:inline-flex;align-items:center;min-height:44px;padding:0 8px;margin-left:8px;font-size:14px;font-weight:500;color:var(--color-ink-soft,#6a6a73);text-decoration:none;border-radius:6px;transition:color 150ms;}.ds-nav:hover,.ds-nav[aria-current=page]{color:var(--color-ink,#2b2b30);}.ds-nav:focus-visible{outline:2px solid var(--color-accent,#0066cc);outline-offset:3px;}"
+    },
+    {
+      "name": "Capture de l'app",
+      "kind": "custom",
+      "refersTo": "app-shot",
+      "description": "Écran réel de l'app, droit, aux coins d'iPhone, avec l'ombre de capture.",
+      "html": "<div class=\"ds-stage\"><div class=\"ds-shot\"><div class=\"ds-shot-bar\"></div><div class=\"ds-shot-title\">Séjours</div></div></div>",
+      "css": ":host{--color-canvas:#ffffff;--color-canvas-alt:#f9f9fb;--color-ink:#2b2b30;--color-ink-soft:#6a6a73;--color-accent:#0066cc;--color-accent-strong:#0052a3;--color-accent-tint:#e6f0fa;--color-rule:#e3e3e8;}.ds-stage{padding:32px;background:var(--color-canvas,#fff);display:flex;justify-content:center;}.ds-shot{width:200px;aspect-ratio:1179/2556;border-radius:12.5% / 5.75%;background:#fff;box-shadow:0 0 0 1px rgb(24 24 32 / 0.07),0 2px 4px rgb(24 24 32 / 0.04),0 28px 56px -32px rgb(24 24 32 / 0.24);overflow:hidden;font-family:-apple-system, BlinkMacSystemFont, 'SF Pro Display', 'SF Pro Text', 'Helvetica Neue', 'Segoe UI', Roboto, Arial, sans-serif;}.ds-shot-bar{height:14%;background:linear-gradient(#3a8fd6,#6fb2e6);}.ds-shot-title{padding:16px;font-size:22px;font-weight:700;color:#000;}"
+    },
+    {
+      "name": "Question de FAQ",
+      "kind": "custom",
+      "description": "Élément details natif entre filets, chevron qui pivote.",
+      "html": "<details class=\"ds-faq\"><summary>L’app est-elle gratuite ?<svg width=\"16\" height=\"16\" viewBox=\"0 0 20 20\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.75\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M5 7.5l5 5 5-5\"/></svg></summary><p>Oui, sans achat intégré, abonnement ni publicité.</p></details>",
+      "css": ":host{--color-canvas:#ffffff;--color-canvas-alt:#f9f9fb;--color-ink:#2b2b30;--color-ink-soft:#6a6a73;--color-accent:#0066cc;--color-accent-strong:#0052a3;--color-accent-tint:#e6f0fa;--color-rule:#e3e3e8;}.ds-faq{border-top:1px solid var(--color-rule,#e3e3e8);border-bottom:1px solid var(--color-rule,#e3e3e8);font-family:-apple-system, BlinkMacSystemFont, 'SF Pro Display', 'SF Pro Text', 'Helvetica Neue', 'Segoe UI', Roboto, Arial, sans-serif;font-size:17px;line-height:1.6;color:var(--color-ink,#2b2b30);}.ds-faq summary{display:flex;align-items:center;justify-content:space-between;gap:16px;min-height:56px;padding:16px 0;font-weight:600;cursor:pointer;list-style:none;transition:color 150ms;}.ds-faq summary::-webkit-details-marker{display:none;}.ds-faq summary:hover{color:var(--color-accent,#0066cc);}.ds-faq summary:focus-visible{outline:2px solid var(--color-accent,#0066cc);outline-offset:3px;border-radius:4px;}.ds-faq svg{color:var(--color-ink-soft,#6a6a73);transition:transform 150ms;flex-shrink:0;}.ds-faq[open] svg{transform:rotate(180deg);}.ds-faq p{max-width:28rem;margin:0;padding-bottom:20px;}"
+    },
+    {
+      "name": "Sommaire",
+      "kind": "card",
+      "refersTo": "toc-panel",
+      "description": "Seul panneau du système : fond gris cassé, coins de 16 px, sans ombre.",
+      "html": "<nav class=\"ds-toc\"><h2>Sommaire</h2><ol><li><a href=\"#\">Données collectées</a></li><li><a href=\"#\">Fonction Amis</a></li></ol></nav>",
+      "css": ":host{--color-canvas:#ffffff;--color-canvas-alt:#f9f9fb;--color-ink:#2b2b30;--color-ink-soft:#6a6a73;--color-accent:#0066cc;--color-accent-strong:#0052a3;--color-accent-tint:#e6f0fa;--color-rule:#e3e3e8;}.ds-toc{background:var(--color-canvas-alt,#f9f9fb);border-radius:16px;padding:24px;font-family:-apple-system, BlinkMacSystemFont, 'SF Pro Display', 'SF Pro Text', 'Helvetica Neue', 'Segoe UI', Roboto, Arial, sans-serif;max-width:28rem;}.ds-toc h2{margin:0;font-size:14px;font-weight:600;color:var(--color-ink-soft,#6a6a73);}.ds-toc ol{margin:8px 0 0;padding-left:20px;}.ds-toc a{display:block;padding:10px 0;font-size:17px;color:var(--color-accent,#0066cc);text-decoration:none;border-radius:6px;}.ds-toc a:hover{color:var(--color-accent-strong,#0052a3);}.ds-toc a:focus-visible{outline:2px solid var(--color-accent,#0066cc);outline-offset:3px;}"
+    }
+  ],
+  "narrative": {
+    "northStar": "La page blanche de l'app",
+    "overview": "Le site s'efface devant l'app. Une page blanche, une colonne de 1 080 px, la police système d'Apple et un seul bleu : tout le reste est fourni par les captures réelles de Stays, posées droites, nettes, aux coins d'un écran d'iPhone. La référence est Things 3 de Cultured Code : de l'air, des titres courts, un texte posé, aucune décoration qui ne serve pas la lecture.\n\nLa densité est faible et le rythme régulier. Chaque section de fonction est un couple texte et capture sur deux colonnes, séparé du suivant par un filet de 1 px, avec un grand vide vertical (80 px, 128 px sur grand écran). La seule variation de fond est un gris cassé à peine perceptible, réservé au bloc vie privée et au sommaire de la politique. Le site est en clair uniquement, parce que les captures de l'app le sont ; il n'y a ni mode sombre, ni bouton de thème, ni JavaScript de thème.\n\nLe mouvement se limite à des transitions de couleur et d'opacité de 150 ms au survol, plus la rotation du chevron de la FAQ à l'ouverture (150 ms), le tout coupé sous `prefers-reduced-motion`. Sous `prefers-contrast: more`, les gris, le bleu et les filets se renforcent.",
+    "keyCharacteristics": [
+      "Page blanche, un seul accent bleu, aucune couleur de marque décorative.",
+      "Police système Apple, trois graisses (400, 500, 600), titres serrés.",
+      "Les captures de l'app sont la seule image : droites, sans cadre de téléphone dessiné.",
+      "Sections séparées par des filets fins et du vide, jamais par des cartes.",
+      "Clair uniquement ; accessibilité gérée par les préférences système (contraste, mouvement)."
+    ],
+    "rules": [
+      {
+        "name": "The One Blue Rule",
+        "body": "Le bleu ne sert qu'à ce qui agit : lien, bouton, focus, sélection. Il n'apparaît jamais en aplat décoratif, en dégradé ou en titre.",
+        "section": "colors"
+      },
+      {
+        "name": "The Two Whites Rule",
+        "body": "Le fond n'a que deux valeurs, blanc et gris cassé. Aucune autre teinte de surface, aucun dégradé.",
+        "section": "colors"
+      },
+      {
+        "name": "The Contrast Override Rule",
+        "body": "Sous `prefers-contrast: more`, ink passe à #1a1a1e, ink-soft à #46464e, accent à #004c99, accent-strong à #003d7a, rule à #8e8e96, et l'ombre des captures se réduit à un filet net (`0 0 0 1px rgb(24 24 32 / 0.45)`).",
+        "section": "colors"
+      },
+      {
+        "name": "The Three Weights Rule",
+        "body": "Seules 400, 500 et 600 existent. Pas de gras 700, pas de capitales espacées, pas de surtitre au-dessus des titres.",
+        "section": "typography"
+      },
+      {
+        "name": "The Sixty Characters Rule",
+        "body": "Un paragraphe ne dépasse jamais la mesure de 28rem ; les titres s'équilibrent (`text-wrap: balance`), les paragraphes se répartissent (`text-wrap: pretty`).",
+        "section": "typography"
+      },
+      {
+        "name": "The Only Screens Float Rule",
+        "body": "Seuls les écrans de l'app portent une ombre. Boutons, panneaux et textes restent à plat.",
+        "section": "elevation"
+      }
+    ],
+    "dos": [
+      "**Do** montrer l'app par ses vraies captures, droites, aux coins `12.5% / 5.75%` avec l'ombre de capture.",
+      "**Do** réserver le bleu (#0066cc) aux liens, boutons, focus et à la sélection.",
+      "**Do** séparer les sections par un filet de 1 px (#e3e3e8) et 80 px de vide (128 px sur grand écran).",
+      "**Do** garder chaque paragraphe dans la mesure de 28rem et chaque titre court et équilibré.",
+      "**Do** donner 44 px de cible à tout ce qui se touche, et un focus visible bleu de 2 px.",
+      "**Do** limiter le mouvement aux transitions de couleur et d'opacité de 150 ms (seule exception : la rotation du chevron de la FAQ), coupées sous `prefers-reduced-motion`."
+    ],
+    "donts": [
+      "**Don't** ajouter de mode sombre, de bouton de thème ou de JavaScript de thème tant que les captures sont en clair.",
+      "**Don't** dessiner de cadre d'iPhone ni incliner une capture.",
+      "**Don't** poser de dégradé, de hero promotionnel ou d'aplat coloré derrière le contenu.",
+      "**Don't** enfermer le texte dans des cartes ombrées ; le seul panneau est un fond gris cassé sans ombre.",
+      "**Don't** placer de surtitre (eyebrow) au-dessus des titres, ni de capitales espacées.",
+      "**Don't** utiliser de graisse au-delà de 600 ni de police autre que la pile système."
+    ]
+  }
+}
