@@ -17,18 +17,15 @@ const { metadata } = Astro.props;
 
 <Layout metadata={metadata}>
   <slot name="head" slot="head" />
-  {
-    /*
-    Slot fallbacks are rendered explicitly. With `<slot name="x">fallback</slot>`
-    Astro still evaluates the fallback when the page overrides the slot, and
-    astro-icon then believes the icons inside it (the RSS icon of the default
-    header, for instance) were already emitted, so their SVG sprite symbol
-    goes missing on that page.
-  */
-  }
+  <a
+    href="#contenu"
+    class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-50 focus:px-4 focus:py-2.5 focus:bg-forest focus:text-ivory focus:rounded-md focus:shadow-float focus:outline-none focus:ring-2 focus:ring-brass-light text-sm font-sans font-medium transition"
+  >
+    Aller au contenu principal
+  </a>
   {Astro.slots.has('announcement') ? <slot name="announcement" /> : <Announcement />}
-  {Astro.slots.has('header') ? <slot name="header" /> : <Header {...headerData} isSticky showRssFeed showToggleTheme />}
-  <main class="flex-1">
+  {Astro.slots.has('header') ? <slot name="header" /> : <Header {...headerData} isSticky showToggleTheme />}
+  <main id="contenu" class="flex-1 focus:outline-none">
     <slot />
   </main>
   {Astro.slots.has('footer') ? <slot name="footer" /> : <Footer {...footerData} />}

@@ -61,18 +61,29 @@ export const adaptOpenGraphImages = async (
       const resolved = await findImage(image.url);
       if (!resolved) return { url: '' };
 
+      if (typeof resolved === 'string') {
+        return {
+          url: String(new URL(resolved, astroSite)),
+          width: image.width,
+          height: image.height,
+        };
+      }
+
+      const width = image.width || OG_WIDTH;
+      const height = image.height || OG_HEIGHT;
+
       // Generate an optimized JPG via Astro's image service (Sharp by default).
       const optimized = await getImage({
         src: resolved,
-        width: OG_WIDTH,
-        height: OG_HEIGHT,
+        width,
+        height,
         format: 'jpg',
       });
 
       return {
         url: String(new URL(optimized.src, astroSite)),
-        width: Number(optimized.attributes.width) || OG_WIDTH,
-        height: Number(optimized.attributes.height) || OG_HEIGHT,
+        width: Number(optimized.attributes.width) || width,
+        height: Number(optimized.attributes.height) || height,
       };
     })
   );

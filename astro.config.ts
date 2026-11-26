@@ -25,6 +25,11 @@ const whenExternalScripts = (items: (() => AstroIntegration) | (() => AstroInteg
 
 export default defineConfig({
   output: 'static',
+  trailingSlash: 'always',
+  server: {
+    host: true,
+    port: 4321,
+  },
 
   // Prefetch links as they enter the viewport for snappier navigations
   // (works together with <ClientRouter />, which enables prefetch by default).
@@ -39,12 +44,21 @@ export default defineConfig({
   fonts: [
     {
       provider: fontProviders.fontsource(),
-      name: 'Inter',
-      cssVariable: '--font-inter',
-      weights: ['100 900'],
+      name: 'Newsreader',
+      cssVariable: '--font-newsreader',
+      weights: [300, 400],
+      styles: ['normal', 'italic'],
+      subsets: ['latin'],
+      fallbacks: ['"Iowan Old Style"', 'Georgia', 'serif'],
+    },
+    {
+      provider: fontProviders.fontsource(),
+      name: 'Instrument Sans',
+      cssVariable: '--font-instrument-sans',
+      weights: [400, 500, 600],
       styles: ['normal'],
       subsets: ['latin'],
-      fallbacks: ['sans-serif'],
+      fallbacks: ['-apple-system', '"Helvetica Neue"', 'Arial', 'sans-serif'],
     },
   ],
 

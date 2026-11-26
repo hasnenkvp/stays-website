@@ -1,9 +1,27 @@
 ---
-import { SITE } from 'astrowind:config';
+export interface Props {
+  inverse?: boolean;
+}
+
+const { inverse = false } = Astro.props;
 ---
 
-<span
-  class="self-center ml-2 rtl:ml-0 rtl:mr-2 text-2xl md:text-xl font-bold text-gray-900 whitespace-nowrap dark:text-white"
->
-  🚀 {SITE?.name}
-</span>
+<div class="inline-flex items-center gap-2.5 group">
+  <img
+    src="/stays-logo.png"
+    alt="Logo Stays"
+    class="w-7 h-7 rounded-[7px] object-cover shadow-xs transition duration-200 group-hover:scale-105"
+    width="28"
+    height="28"
+  />
+  <span
+    class:list={[
+      'self-center font-display font-medium text-xl md:text-2xl tracking-tight whitespace-nowrap transition duration-200',
+      inverse
+        ? 'text-[#fbf8f2] group-hover:text-brass-light'
+        : 'text-forest dark:text-ink group-hover:text-forest-deep dark:group-hover:text-brass-light',
+    ]}
+  >
+    stays
+  </span>
+</div>

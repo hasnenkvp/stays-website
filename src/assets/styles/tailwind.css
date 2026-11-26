@@ -18,11 +18,30 @@
   --color-muted: var(--aw-color-text-muted);
   --color-link: var(--aw-color-link, var(--aw-color-primary));
 
+  --color-paper: var(--color-paper);
+  --color-ivory: var(--color-ivory);
+  --color-ivory-2: var(--color-ivory-2);
+  --color-forest: var(--color-forest);
+  --color-forest-deep: var(--color-forest-deep);
+  --color-moss: var(--color-moss);
+  --color-sage: var(--color-sage);
+  --color-ink: var(--color-ink);
+  --color-ink-soft: var(--color-ink-soft);
+  --color-brass: var(--color-brass);
+  --color-brass-ink: var(--color-brass-ink);
+  --color-brass-light: var(--color-brass-light);
+  --color-rule: var(--color-rule);
+  --color-rule-inverse: var(--color-rule-inverse);
+
+  --font-display: var(--font-newsreader), 'Iowan Old Style', Georgia, serif;
   --font-sans:
-    var(--aw-font-sans, ui-sans-serif), ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
-    'Segoe UI Symbol', 'Noto Color Emoji';
-  --font-serif: var(--aw-font-serif, ui-serif), ui-serif, Georgia, Cambria, 'Times New Roman', Times, serif;
-  --font-heading: var(--aw-font-heading, ui-sans-serif), ui-sans-serif, system-ui, sans-serif;
+    var(--font-instrument-sans, var(--aw-font-sans, ui-sans-serif)), -apple-system, BlinkMacSystemFont, 'Segoe UI',
+    Roboto, ui-sans-serif, system-ui, sans-serif;
+  --font-serif: var(--font-newsreader), ui-serif, Georgia, Cambria, 'Times New Roman', Times, serif;
+  --font-heading: var(--font-newsreader), 'Iowan Old Style', Georgia, serif;
+
+  --radius-card: 24px;
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
 
   --animate-fade: fadeInUp 0.5s both;
 

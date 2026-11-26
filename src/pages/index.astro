@@ -1,32 +1,22 @@
 ---
 import Layout from '~/layouts/PageLayout.astro';
-
-import Hero from '~/components/widgets/Hero.astro';
-import Note from '~/components/widgets/Note.astro';
-import Features from '~/components/widgets/Features.astro';
-import QuickStart from '~/components/widgets/QuickStart.astro';
-import Features2 from '~/components/widgets/Features2.astro';
-import Timeline from '~/components/widgets/Timeline.astro';
-import Steps from '~/components/widgets/Steps.astro';
-import Content from '~/components/widgets/Content.astro';
-import BlogHighlightedPosts from '~/components/widgets/BlogHighlightedPosts.astro';
-import FAQs from '~/components/widgets/FAQs.astro';
-import Stats from '~/components/widgets/Stats.astro';
-import CallToAction from '~/components/widgets/CallToAction.astro';
-import SocialProof from '~/components/widgets/SocialProof.astro';
 import StructuredData from '~/components/common/StructuredData.astro';
-import { SITE, METADATA, I18N } from 'astrowind:config';
-import favIconSvg from '~/assets/favicons/favicon.svg';
+import Button from '~/components/stays/Button.astro';
+import SectionHeading from '~/components/stays/SectionHeading.astro';
+import ScreenshotPlaceholder from '~/components/stays/ScreenshotPlaceholder.astro';
+import HeroLandscapeMockup from '~/components/stays/HeroLandscapeMockup.astro';
+import AppStoreBadge from '~/components/stays/AppStoreBadge.astro';
+import { stays } from '~/config/stays';
+import { SITE, I18N } from 'astrowind:config';
 
 const metadata = {
-  title: 'AstroWind — Free template for creating websites with Astro + Tailwind CSS',
+  title: 'Stays — Gardez la mémoire de chaque séjour',
   ignoreTitleTemplate: true,
+  description:
+    'Conservez la mémoire de vos séjours à l’hôtel : établissements, photos, notes personnelles et passeport de voyage, dans une application privée pour iPhone.',
+  canonical: 'https://staysapp.fr/',
 };
 
-// Structured data for the site and its publisher, built only from
-// `src/config.yaml` (`site.name`, `site.site`, `metadata.twitter.handle`), so
-// it is correct for any site made with the template. Blog posts add
-// BlogPosting on their own; the FAQs widget adds FAQPage.
 const organizationId = `${SITE?.site}/#organization`;
 const structuredData = [
   {
@@ -44,516 +34,381 @@ const structuredData = [
     '@id': organizationId,
     name: SITE?.name,
     url: SITE?.site,
-    logo: new URL(favIconSvg.src, SITE?.site).toString(),
-    ...(METADATA?.twitter?.handle ? { sameAs: [`https://x.com/${METADATA.twitter.handle.replace(/^@/, '')}`] } : {}),
+    logo: new URL('/stays-logo.png', SITE?.site).toString(),
   },
 ];
 ---
 
 <Layout metadata={metadata}>
   <StructuredData slot="head" schema={structuredData} />
-  <!-- Hero Widget ******************* -->
 
-  <Hero
-    tagline="Free & open source"
-    actions={[
-      {
-        variant: 'primary',
-        text: 'Get template',
-        href: 'https://github.com/arthelokyo/astrowind',
-        target: '_blank',
-        icon: 'tabler:download',
-      },
-      { text: 'Learn more', href: '#features' },
-    ]}
-    image={{ src: '~/assets/images/hero-image.png', alt: 'AstroWind Hero Image' }}
-  >
-    <Fragment slot="title">
-      Free template for <span class="hidden xl:inline">creating websites with</span>
-      <span class="text-accent dark:text-white"> Astro v7</span> + Tailwind CSS
-    </Fragment>
+  <!-- 1. HERO SECTION (#haut) -->
+  <section id="haut" class="relative pt-16 pb-12 sm:pt-20 sm:pb-16 md:pt-28 md:pb-20 lg:pt-32 lg:pb-24 overflow-hidden">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6">
+      <!-- Hero Editorial Block (Top, Centered) -->
+      <div class="relative z-20 max-w-4xl mx-auto text-center space-y-6 sm:space-y-8">
+        <div
+          class="font-sans text-xs sm:text-[0.8125rem] tracking-[0.18em] uppercase font-semibold text-brass-ink dark:text-brass-light"
+        >
+          Application iOS · Séjours & voyages
+        </div>
 
-    <Fragment slot="subtitle">
-      <span class="hidden sm:inline">
-        <span class="font-semibold">AstroWind</span> is a free, customizable and production-ready template for Astro v7 +
-        Tailwind CSS v4.</span
-      >
-      <span class="block mb-1 sm:hidden font-bold text-blue-600">AstroWind: Production-ready.</span>
-      Suitable for Startups, Small Business, SaaS websites, Professional Portfolios, Marketing websites, Landing Pages & Blogs.
-    </Fragment>
-  </Hero>
+        <h1
+          class="font-display font-light text-4xl sm:text-5xl md:text-6xl lg:text-[4.25rem] leading-[1.08] tracking-tight text-ink text-balance max-w-4xl mx-auto"
+        >
+          Vos séjours passent. <em class="italic font-normal text-forest dark:text-brass-light"
+            >Les souvenirs restent.</em
+          >
+        </h1>
 
-  <!-- SocialProof Widget ************ -->
+        <p
+          class="font-sans text-lg sm:text-xl text-ink-soft dark:text-sage leading-relaxed max-w-2xl mx-auto text-pretty"
+        >
+          Vos hôtels, vos souvenirs et votre passeport de voyage, réunis dans Stays. Une façon personnelle de garder une
+          trace de vos escales et de les partager avec vos proches.
+        </p>
 
-  <SocialProof
-    id="proof"
-    classes={{ container: '!pb-14 md:!pb-20' }}
-    items={[
-      {
-        value: '#1',
-        label: 'most starred Astro theme',
-        icon: 'tabler:star-filled',
-        color: 'text-amber-400',
-        href: 'https://github.com/arthelokyo/astrowind',
-      },
-      { value: '100', label: 'Lighthouse score', icon: 'tabler:gauge', color: 'text-emerald-500' },
-      { value: 'MIT', label: 'licensed, free to use', icon: 'tabler:license', color: 'text-sky-500' },
-    ]}
-  />
-
-  <!-- QuickStart Widget ************* -->
-
-  <QuickStart
-    id="quick-start"
-    classes={{ icon: 'bg-green-600 dark:bg-green-700' }}
-    tagline="TL;DR"
-    title="One command. That is the whole setup."
-    subtitle="For the people who scroll past the features and ask “how do I run it?”. This is how."
-    commands={['npm create astro@latest -- --template arthelokyo/astrowind']}
-    items={[
-      {
-        title: 'Two minutes, one terminal',
-        description:
-          'Answer the prompts, run <code>npm run dev</code>, open localhost:4321. The demo site is now yours to edit. The only requirement is a current Node.js.',
-        icon: 'tabler:terminal-2',
-      },
-      {
-        title: 'AI-ready out of the box',
-        description:
-          'An <code>AGENTS.md</code> and step-by-step skills tell Claude Code, Cursor or any coding assistant how this template works. Ask it for a page; it knows where things go.',
-        icon: 'tabler:sparkles',
-      },
-      {
-        title: 'Free, MIT licensed, no strings',
-        description:
-          'Use it for client work, side projects or the company site. Star the repo if it saves you an afternoon.',
-        icon: 'tabler:license',
-      },
-    ]}
-  >
-    <Fragment slot="bg">
-      <div
-        class="absolute inset-0 bg-[radial-gradient(60%_55%_at_15%_20%,rgb(129_140_248/0.28),transparent_65%),radial-gradient(50%_50%_at_85%_25%,rgb(244_114_182/0.22),transparent_65%)] dark:bg-[radial-gradient(60%_55%_at_15%_20%,rgb(99_102_241/0.25),transparent_65%),radial-gradient(50%_50%_at_85%_25%,rgb(217_70_239/0.18),transparent_65%)]"
-      >
+        <!-- Action buttons -->
+        {
+          stays.appStoreUrl && (
+            <div class="flex items-center justify-center pt-2">
+              <AppStoreBadge />
+            </div>
+          )
+        }
       </div>
-    </Fragment>
-  </QuickStart>
 
-  <!-- Features Widget *************** -->
+      <!-- Hero Landscape Mockup Slot (Bottom, Deployed wide) -->
+      <div class="relative z-10 mt-8 sm:mt-12 lg:-mt-12 xl:-mt-16 flex justify-center">
+        <HeroLandscapeMockup priority="eager" />
+      </div>
+    </div>
+  </section>
 
-  <Features
-    id="features"
-    tagline="Features"
-    title="What you get with AstroWind"
-    subtitle="One of the most professional and comprehensive templates currently on the market. Most starred & forked Astro theme in 2022, 2023, 2024 and 2025."
-    items={[
-      {
-        title: 'Astro + Tailwind CSS Integration',
-        description:
-          'A seamless integration between two great frameworks that offer high productivity, performance and versatility. Now powered by Tailwind CSS v4.',
-        icon: 'tabler:brand-tailwind',
-      },
-      {
-        title: 'Ready-to-use Components',
-        description:
-          'Widgets made with Tailwind CSS v4 ready to be used in Marketing Websites, SaaS, Blogs, Personal Profiles, Small Business...',
-        icon: 'tabler:components',
-      },
-      {
-        title: 'Best Practices',
-        description:
-          'Creating secure, efficient, and user-friendly websites that deliver exceptional experiences and lasting value.',
-        icon: 'tabler:list-check',
-      },
-      {
-        title: 'Excellent Page Speed',
-        description:
-          'Having a good page speed impacts organic search ranking, improves user experience (UI/UX) and increase conversion rates.',
-        icon: 'tabler:rocket',
-      },
-      {
-        title: 'Search Engine Optimization (SEO)',
-        description:
-          "SEO lies in its ability to enhance a website's visibility, driving organic traffic and enabling it to reach a wider audience.",
-        icon: 'tabler:arrows-right-left',
-      },
-      {
-        title: 'Open to new ideas and contributions',
-        description:
-          'Embracing a culture that is open to new ideas and contributions is integral fostering innovation, collaboration, and a dynamic user experience.',
-        icon: 'tabler:bulb',
-      },
-    ]}
-  />
+  <!-- 2. SECTION « LE SÉJOUR » (#sejour) -->
+  <!-- Direct composition centered around the real mockup, title, and subtitle, without the 3 redundant card boxes -->
+  <section id="sejour" class="relative py-20 sm:py-28 md:py-32 border-t border-rule scroll-mt-16 overflow-hidden">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+        <!-- Editorial Text Column (Clean & uncluttered) -->
+        <div class="lg:col-span-6 space-y-6 lg:space-y-8">
+          <SectionHeading
+            number="01"
+            eyebrow="LE SÉJOUR"
+            title="Chaque séjour, <em class='italic font-normal text-forest dark:text-brass-light'>dans les détails</em>."
+            lede="Retrouvez vos hôtels, vos photos et vos notes personnelles. L’essentiel de vos séjours, réuni au même endroit."
+          />
 
-  <!-- Content Widget **************** -->
+          <!-- Discreet, refined typographical cue list replacing the 3 redundant boxes -->
+          <div
+            class="pt-2 border-t border-rule/60 flex flex-wrap gap-x-6 gap-y-2 text-sm text-ink-soft dark:text-sage font-sans"
+          >
+            <span class="inline-flex items-center gap-2">
+              <span class="w-1.5 h-1.5 rounded-full bg-brass dark:bg-brass-light" aria-hidden="true"></span>
+              Établissement & lieu
+            </span>
+            <span class="inline-flex items-center gap-2">
+              <span class="w-1.5 h-1.5 rounded-full bg-brass dark:bg-brass-light" aria-hidden="true"></span>
+              Photos personnelles
+            </span>
+            <span class="inline-flex items-center gap-2">
+              <span class="w-1.5 h-1.5 rounded-full bg-brass dark:bg-brass-light" aria-hidden="true"></span>
+              Notes & souvenirs
+            </span>
+            <span class="inline-flex items-center gap-2">
+              <span class="w-1.5 h-1.5 rounded-full bg-brass dark:bg-brass-light" aria-hidden="true"></span>
+              Repères d’escale
+            </span>
+          </div>
+        </div>
 
-  <Content
-    isReversed
-    tagline="Inside template"
-    title="AstroWind's Blueprint: Fun Meets Functionality!"
-    items={[
-      {
-        title: 'Built on top of Astro v7',
-        description:
-          'Benefiting from the performance and developer-friendly features of this modern static site generator.',
-      },
-      {
-        title: 'Styled using Tailwind CSS v4',
-        description:
-          'Facilitating rapid design and consistent styling with this highly popular utility-first CSS framework.',
-      },
-      {
-        title: 'Cross-browser compatibility',
-        description:
-          'Ensure your website looks and functions consistently across various web browsers, delivering a seamless experience to all users.',
-      },
-    ]}
-    image={{
-      src: 'https://images.unsplash.com/photo-1519389950473-47ba0277781c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80',
-      alt: 'Colorful Image',
-    }}
+        <!-- Real Mockup Slot (Prominent and clear) -->
+        <div class="lg:col-span-6 flex justify-center lg:justify-end">
+          <ScreenshotPlaceholder
+            id="sejour"
+            title="Fiche de séjour"
+            subtitle="Détails de l’hôtel, dates, photos et notes personnelles"
+            alt="Fiche détaillée d’un séjour dans l’application Stays"
+          />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3. SECTION « LE PASSEPORT » (#passeport) -->
+  <!-- Showcase of mockup and real available statistics: Pays, Villes, Séjours, Nuits -->
+  <section
+    id="passeport"
+    class="relative py-20 sm:py-28 md:py-32 border-t border-rule scroll-mt-16 bg-ivory/40 dark:bg-ivory-2/15 overflow-hidden"
   >
-    <Fragment slot="content">
-      <h3 class="text-2xl font-bold tracking-tight dark:text-white sm:text-3xl mb-2">Building on modern foundations</h3>
-      Gain a competitive advantage by incorporating industry leading practices
-    </Fragment>
+    <div class="max-w-7xl mx-auto px-4 sm:px-6">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+        <!-- Mockup Slot (Left on desktop) -->
+        <div class="lg:col-span-6 order-2 lg:order-1 flex justify-center lg:justify-start">
+          <ScreenshotPlaceholder
+            id="passeport"
+            title="Le Passeport"
+            subtitle="Synthèse de vos voyages, pays visités et nuits cumulées"
+            alt="Vue passeport de l’application Stays présentant les voyages et statistiques"
+          />
+        </div>
 
-    <Fragment slot="bg">
-      <div class="absolute inset-0 bg-blue-50 dark:bg-transparent"></div>
-    </Fragment>
-  </Content>
+        <!-- Content & Typographical Stats (Right on desktop) -->
+        <div class="lg:col-span-6 order-1 lg:order-2 space-y-8">
+          <SectionHeading
+            number="02"
+            eyebrow="LE PASSEPORT"
+            title="Le passeport, <em class='italic font-normal text-forest dark:text-brass-light'>vos voyages réunis</em>."
+            lede="Le passeport rassemble vos statistiques de voyage en un coup d’œil : pays explorés, villes d’escale, nombre de séjours et nuits cumulées au fil des années."
+          />
 
-  <!-- Content Widget **************** -->
+          <!-- Typographical Travel Statistics Strip (No fake numbers, just the real categories tracked by Stays) -->
+          <div class="p-6 sm:p-8 rounded-[24px] bg-paper dark:bg-forest-deep border border-rule/80 space-y-6">
+            <div class="grid grid-cols-2 sm:grid-cols-4 gap-6 text-center sm:text-left">
+              <div>
+                <span
+                  class="block font-display italic text-2xl sm:text-3xl text-forest dark:text-brass-light font-normal"
+                >
+                  Pays
+                </span>
+                <span class="block font-sans text-xs tracking-wider uppercase text-ink-soft dark:text-sage mt-1">
+                  Traversés
+                </span>
+              </div>
 
-  <Content
-    isAfterContent
-    items={[
-      {
-        title: 'High level of customization',
-        description: `Tailor the template effortlessly to match your brand's identity and requirements, making your website distinct and saving you time.`,
-      },
-      {
-        title: 'Multiple layout possibilities',
-        description:
-          'Explore various layout options to find the structure that best presents your content, enhancing user engagement and navigation.',
-      },
-      {
-        title: 'Fully responsive design',
-        description:
-          "Ensure your website's optimal performance on various devices and screen sizes, providing a consistent and enjoyable user experience.",
-      },
-      {
-        title: 'Integration of media',
-        description:
-          'Seamlessly incorporate images, videos, and multimedia elements that enhance your content and engage visitors effectively.',
-      },
-    ]}
-    image={{
-      src: 'https://images.unsplash.com/photo-1616674282942-2835e62d612e?auto=format&fit=crop&w=1600&q=80',
-      alt: 'Printed website wireframes on a black table',
-    }}
+              <div>
+                <span
+                  class="block font-display italic text-2xl sm:text-3xl text-forest dark:text-brass-light font-normal"
+                >
+                  Villes
+                </span>
+                <span class="block font-sans text-xs tracking-wider uppercase text-ink-soft dark:text-sage mt-1">
+                  Explorées
+                </span>
+              </div>
+
+              <div>
+                <span
+                  class="block font-display italic text-2xl sm:text-3xl text-forest dark:text-brass-light font-normal"
+                >
+                  Séjours
+                </span>
+                <span class="block font-sans text-xs tracking-wider uppercase text-ink-soft dark:text-sage mt-1">
+                  Consignés
+                </span>
+              </div>
+
+              <div>
+                <span
+                  class="block font-display italic text-2xl sm:text-3xl text-forest dark:text-brass-light font-normal"
+                >
+                  Nuits
+                </span>
+                <span class="block font-sans text-xs tracking-wider uppercase text-ink-soft dark:text-sage mt-1">
+                  Cumulées
+                </span>
+              </div>
+            </div>
+
+            <p
+              class="font-sans text-xs sm:text-sm text-ink-soft dark:text-sage border-t border-rule/60 pt-4 leading-relaxed"
+            >
+              Une archive personnelle qui grandit à chaque escale, sans profil public ni mise en scène.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4. SECTION « FRIENDS » (#friends) -->
+  <!-- Intimate, centered showcase: short title, 2 sentences, 3 cues maximum, no technical CloudKit jargon -->
+  <section id="friends" class="relative py-20 sm:py-28 md:py-32 border-t border-rule scroll-mt-16">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 text-center">
+      <SectionHeading
+        number="03"
+        eyebrow="FRIENDS"
+        title="Partager ses séjours, <em class='italic font-normal text-forest dark:text-brass-light'>simplement avec ses proches</em>."
+        lede="Envoyez vos adresses et vos coups de cœur aux personnes de votre choix. Un partage choisi, privé et réciproque, loin de tout réseau social ouvert."
+        align="center"
+      />
+
+      <!-- 3 Clear Cues (Cards replaced with an airy, refined trio) -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 pt-4 text-left">
+        <div class="p-6 rounded-[20px] bg-ivory-2/60 dark:bg-ivory-2/20 border border-rule/70">
+          <div class="w-6 h-[2px] bg-brass dark:bg-brass-light rounded-full mb-3" aria-hidden="true"></div>
+          <h3 class="font-display font-medium text-lg text-ink tracking-tight mb-1.5">Partage volontaire</h3>
+          <p class="font-sans text-sm text-ink-soft dark:text-sage leading-relaxed">
+            Vous choisissez séjour par séjour ce que vous souhaitez transmettre à vos invités.
+          </p>
+        </div>
+
+        <div class="p-6 rounded-[20px] bg-ivory-2/60 dark:bg-ivory-2/20 border border-rule/70">
+          <div class="w-6 h-[2px] bg-brass dark:bg-brass-light rounded-full mb-3" aria-hidden="true"></div>
+          <h3 class="font-display font-medium text-lg text-ink tracking-tight mb-1.5">Cercle privé</h3>
+          <p class="font-sans text-sm text-ink-soft dark:text-sage leading-relaxed">
+            Vos notes intimes et vos numéros de chambre ne sont jamais transmis.
+          </p>
+        </div>
+
+        <div class="p-6 rounded-[20px] bg-ivory-2/60 dark:bg-ivory-2/20 border border-rule/70">
+          <div class="w-6 h-[2px] bg-brass dark:bg-brass-light rounded-full mb-3" aria-hidden="true"></div>
+          <h3 class="font-display font-medium text-lg text-ink tracking-tight mb-1.5">Contrôle permanent</h3>
+          <p class="font-sans text-sm text-ink-soft dark:text-sage leading-relaxed">
+            Masquez un séjour partagé ou retirez un accès réciproque en un clic, à tout instant.
+          </p>
+        </div>
+      </div>
+
+      <div class="mt-8 pt-2">
+        <a
+          href="/privacy/#c-données-friends-cloudkit"
+          class="font-sans text-sm text-forest dark:text-brass-light font-medium underline underline-offset-4 hover:text-forest-deep dark:hover:text-white transition duration-150"
+        >
+          En savoir plus sur le fonctionnement de Friends dans notre politique de confidentialité →
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5. SECTION « CONFIDENTIALITÉ » (#confidentialite) -->
+  <!-- Shortened, technical jargon removed (no SwiftData, IDFA, SDK), confirmed guarantees only -->
+  <section
+    id="confidentialite"
+    class="relative py-20 sm:py-28 md:py-32 bg-forest dark:bg-forest-deep text-[#fbf8f2] scroll-mt-16 not-prose"
   >
-    <Fragment slot="content">Ensure your online presence truly represents you.</Fragment>
+    <div class="max-w-7xl mx-auto px-4 sm:px-6">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center">
+        <div class="lg:col-span-8 space-y-6">
+          <div class="font-sans text-xs sm:text-[0.8125rem] tracking-[0.18em] uppercase font-semibold text-brass-light">
+            04 · CONFIDENTIALITÉ
+          </div>
 
-    <Fragment slot="bg">
-      <div class="absolute inset-0 bg-blue-50 dark:bg-transparent"></div>
-    </Fragment>
-  </Content>
+          <h2
+            class="font-display font-light text-3xl sm:text-4xl md:text-5xl leading-[1.08] tracking-tight text-[#fbf8f2] text-balance"
+          >
+            Privé <em class="italic font-normal text-brass-light">par conception</em>.
+          </h2>
 
-  <!-- Content Widget **************** -->
+          <p class="font-sans text-base sm:text-lg text-sage leading-relaxed max-w-2xl text-pretty">
+            Vos séjours, vos notes et vos photos sont conservés sur votre iPhone. Aucun compte obligatoire, aucun
+            serveur pour analyser vos voyages et aucune revente de données.
+          </p>
 
-  <Content
-    isReversed
-    isAfterContent
-    items={[
-      {
-        title: 'Enhanced user engagement',
-        description:
-          'Captivate your audience with interactive elements, intuitive navigation, and visually appealing layouts, encouraging longer visits.',
-      },
-      {
-        title: 'Continuous improvement',
-        description:
-          'Ensure your website stays aligned with the latest trends and technologies through regular updates and enhancements.',
-      },
-      {
-        title: 'Time and resource efficiency',
-        description:
-          'Skip the time-consuming process of building a website from scratch and launch your online presence sooner with AstroWind.',
-      },
-      {
-        title: 'Community support',
-        description: `Join the growing AstroWind community for insights, resources, and assistance, ensuring you're never alone on your web development journey.`,
-      },
-    ]}
-    image={{
-      src: 'https://images.unsplash.com/photo-1611462985358-60d3498e0364?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80',
-      alt: 'Astronauts Image',
-    }}
-  >
-    <Fragment slot="content">Designed to foster growth and success.</Fragment>
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-6 pt-4 border-t border-rule-inverse/25">
+            <div>
+              <div class="font-display text-lg text-ivory mb-1">Sur votre appareil</div>
+              <p class="font-sans text-xs text-sage leading-relaxed">
+                Stockage local sur votre iPhone, protégé par le chiffrement matériel d’iOS.
+              </p>
+            </div>
+            <div>
+              <div class="font-display text-lg text-ivory mb-1">Sans intermédiaire</div>
+              <p class="font-sans text-xs text-sage leading-relaxed">
+                Aucun serveur propriétaire. Seul votre propre espace iCloud intervient si vous activez Friends.
+              </p>
+            </div>
+            <div>
+              <div class="font-display text-lg text-ivory mb-1">Sans pistage</div>
+              <p class="font-sans text-xs text-sage leading-relaxed">
+                Aucune publicité, aucun outil de suivi d’activité et aucun ciblage.
+              </p>
+            </div>
+          </div>
 
-    <Fragment slot="bg">
-      <div class="absolute inset-0 bg-blue-50 dark:bg-transparent"></div>
-    </Fragment>
-  </Content>
+          <div class="pt-4">
+            <Button variant="inverse" href="/privacy/"> Lire la politique de confidentialité </Button>
+          </div>
+        </div>
 
-  <!-- Steps Widget ****************** -->
+        <div class="lg:col-span-4 hidden lg:flex justify-end">
+          <div
+            class="relative w-56 h-56 rounded-[32px] bg-forest-deep dark:bg-black/50 border border-rule-inverse/30 p-8 flex flex-col items-center justify-center text-center shadow-float"
+          >
+            <img
+              src="/stays-logo.png"
+              alt="Stays"
+              class="w-20 h-20 rounded-[18px] object-cover mb-4 ring-1 ring-brass-light/20"
+              width="80"
+              height="80"
+            />
+            <span class="font-display italic text-lg text-brass-light">Mémoire privée</span>
+            <span class="font-sans text-[0.6875rem] text-sage/75 uppercase tracking-wider mt-1">
+              Sur votre appareil
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
-  <Steps
-    title="Get your dream website up and running in no time with AstroWind."
-    items={[
-      {
-        title: 'Step 1: <span class="font-medium">Download</span>',
-        description:
-          "Kickstart with GitHub! Either fork the AstroWind template or simply click 'Use this template'. Your canvas awaits, ready for your digital masterpiece. In just a few clicks, you've already set the foundation.",
-        icon: 'tabler:package',
-      },
-      {
-        title: 'Step 2: <span class="font-medium">Add content</span>',
-        description:
-          "Pour your vision into it. Add images, text, and all that jazz to breathe life into your digital space. Remember, it's the content that tells your story, so make it captivating.",
-        icon: 'tabler:letter-case',
-      },
-      {
-        title: 'Step 3: <span class="font-medium">Customize styles</span>',
-        description:
-          'Give it your personal touch. Tailor colors, fonts, and layouts until it feels just right. Your unique flair, amplified by AstroWind! Precision in design ensures a seamless user experience.',
-        icon: 'tabler:paint',
-      },
-      {
-        title: 'Ready!',
-        icon: 'tabler:check',
-      },
-    ]}
-    image={{
-      src: 'https://images.unsplash.com/photo-1616198814651-e71f960c3180?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=987&q=80',
-      alt: 'Steps image',
-    }}
-  />
+  <!-- 6. SECTION « QUESTIONS FRÉQUENTES » (#faq) -->
+  <!-- Concise, useful, no repetition with sections above -->
+  <section id="faq" class="relative py-20 sm:py-28 md:py-32 border-t border-rule scroll-mt-16">
+    <div class="max-w-3xl mx-auto px-4 sm:px-6">
+      <SectionHeading
+        number="05"
+        eyebrow="QUESTIONS FRÉQUENTES"
+        title="Des réponses <em class='italic font-normal text-forest dark:text-brass-light'>courtes et utiles</em>."
+        lede="L’essentiel pour comprendre le positionnement et le fonctionnement de Stays."
+        align="center"
+      />
 
-  <!-- Features2 Widget ************** -->
+      <div class="space-y-4 pt-2">
+        {
+          stays.faq.map((item) => (
+            <details class="group bg-ivory-2/60 dark:bg-ivory-2/20 border border-rule rounded-[20px] p-6 sm:p-7 transition duration-200">
+              <summary class="font-display font-medium text-xl sm:text-[1.375rem] text-ink flex justify-between items-center cursor-pointer list-none">
+                <span>{item.q}</span>
+                <span class="text-brass dark:text-brass-light text-xl transition-transform duration-200 group-open:rotate-180 shrink-0 ml-4 motion-reduce:transition-none">
+                  ↓
+                </span>
+              </summary>
+              <p class="font-sans text-base text-ink-soft dark:text-sage mt-4 leading-relaxed max-w-2xl">{item.a}</p>
+            </details>
+          ))
+        }
+      </div>
+    </div>
+  </section>
 
-  <Features2
-    title="Most used widgets"
-    subtitle="Provides frequently used components for building websites using Tailwind CSS v4"
-    tagline="Components"
-    items={[
-      {
-        title: 'Headers',
-        description: "Ever tried driving without GPS? Boom! That's why websites need headers for direction.",
-        icon: 'flat-color-icons:template',
-      },
-      {
-        title: 'Heros',
-        description:
-          "Picture a superhero landing – epic, right? That's the job of a Hero section, making grand entrances!",
-        icon: 'flat-color-icons:gallery',
-      },
-      {
-        title: 'Features',
-        description:
-          'Where websites strut their stuff and show off superpowers. No holding back on the bragging rights here!',
-        icon: 'flat-color-icons:approval',
-      },
-      {
-        title: 'Content',
-        description:
-          "Dive into the meat and potatoes of a site; without it, you'd just be window shopping. Content is king.",
-        icon: 'flat-color-icons:document',
-      },
-      {
-        title: 'Call-to-Action',
-        description:
-          'That enthusiastic friend who\'s always urging, "Do it! Do it!"? Yeah, that\'s this button nudging you towards adventure.',
-        icon: 'flat-color-icons:advertising',
-      },
-      {
-        title: 'Pricing',
-        description: 'Behold the dessert menu of the website world. Tempting choices await, can you resist?',
-        icon: 'flat-color-icons:currency-exchange',
-      },
-      {
-        title: 'Testimonial',
-        description: 'Step into the gossip corner! Here, other visitors spill the beans and share the juicy details.',
-        icon: 'flat-color-icons:voice-presentation',
-      },
-      {
-        title: 'Contact',
-        description:
-          'Like a digital mailbox, but faster! Drop a line, ask a question, or send a virtual high-five. Ding! Message in.',
-        icon: 'flat-color-icons:business-contact',
-      },
-      {
-        title: 'Footers',
-        description: "The footer's like the credits of a movie but sprinkled with easter eggs. Time to hunt!",
-        icon: 'flat-color-icons:database',
-      },
-    ]}
-  >
-    <Fragment slot="bg">
-      <div class="absolute inset-0 bg-blue-50 dark:bg-transparent"></div>
-    </Fragment>
-  </Features2>
+  <!-- 7. CTA FINAL & CLÔTURE (#contact) -->
+  <section id="contact" class="relative py-20 sm:py-28 md:py-32 border-t border-rule scroll-mt-16">
+    <div class="max-w-3xl mx-auto px-4 sm:px-6 text-center space-y-6">
+      <!-- Medallion -->
+      <div
+        class="inline-flex items-center justify-center w-16 h-16 rounded-[22px] bg-forest text-[#fbf8f2] font-display italic text-2xl shadow-card mb-2 ring-1 ring-forest/20 dark:ring-brass-light/20"
+      >
+        s
+      </div>
 
-  <!-- Timeline Widget **************** -->
+      <h2
+        class="font-display font-light text-3xl sm:text-4xl md:text-5xl leading-tight tracking-tight text-ink text-balance"
+      >
+        Vos séjours passent. <em class="italic font-normal text-forest dark:text-brass-light">Les souvenirs restent.</em
+        >
+      </h2>
 
-  <Timeline
-    id="story"
-    layout="alternate"
-    tagline="Our story"
-    title="One template, since 2022"
-    subtitle="Started before Astro 1.0 shipped, shaped by every Astro release since, and by the people who kept sending pull requests."
-    items={[
-      {
-        date: 'June 2022',
-        title: 'A template for a framework still in beta',
-        description:
-          'AstroWind starts on Astro 1.0 beta with a handful of pages, a few widgets and one idea: a website can be fast, simple and good-looking at the same time.',
-        icon: 'tabler:rocket',
-      },
-      {
-        date: '2022',
-        title: 'The most starred Astro theme, in its first year',
-        description:
-          'By December it is the most starred theme in the Astro ecosystem, a place it would hold year after year. The first pull requests from strangers arrive, and they keep coming.',
-        icon: 'tabler:star-filled',
-      },
-      {
-        date: '2022–2023',
-        title: 'The busiest stretch',
-        description:
-          'Astro grows fast and the template grows with it: collections for content, better images, page transitions. The blog matures, the widgets double, the road to 1.0 begins, and more people than ever send pull requests.',
-        icon: 'tabler:users-group',
-      },
-      {
-        date: '2024',
-        title: 'Polish',
-        description:
-          'Astro 4, and a year of small, careful improvements, most of them sent in by contributors: accessibility, tooling, ways to edit and ways to deploy. Three thousand stars by September.',
-        icon: 'tabler:puzzle',
-      },
-      {
-        date: '2025',
-        title: 'Steady, and quieter',
-        description:
-          'Astro 5 and regular updates. Fewer commits, nothing broken, and the stars kept coming: five thousand by October.',
-        icon: 'tabler:refresh',
-      },
-      {
-        date: '2026',
-        title: 'Astro 7 and Tailwind CSS 4',
-        description:
-          'Two framework majors in one year. The template gets a new generation of widgets, complete landing pages, a blog that finally reads like documentation, and a guide so coding assistants know their way around.',
-        icon: 'tabler:sparkles',
-      },
-      {
-        date: '2026',
-        title: 'Release v1',
-        description:
-          'Four years after the first commit, the demo has no placeholders left: every page, every landing page and every post is real, and the template is ready for whatever comes next.',
-        icon: 'tabler:circle-check-filled',
-        highlight: true,
-      },
-      { icon: 'tabler:dots', ghost: true },
-    ]}
-  />
+      <p class="font-sans text-base sm:text-lg text-ink-soft dark:text-sage leading-relaxed max-w-lg mx-auto">
+        Une question, une remarque ou besoin d’aide ? Écrivez-nous à <a
+          href={`mailto:${stays.supportEmail}`}
+          class="text-forest dark:text-brass-light font-medium underline underline-offset-4">{stays.supportEmail}</a
+        >. Nous répondons directement à chaque message.
+      </p>
 
-  <!-- Note Widget ******************* -->
+      <div class="flex flex-wrap items-center justify-center gap-4 pt-4">
+        {stays.appStoreUrl && <AppStoreBadge />}
+        <Button variant="secondary" href="/support/"> Page d’assistance </Button>
+      </div>
 
-  <Note title="Philosophy:" description="Simplicity, Best Practices and High Performance" />
-
-  <!-- HighlightedPosts Widget ******* -->
-
-  <BlogHighlightedPosts
-    title="Find out more content in our Blog"
-    postIds={[
-      'get-started-website-with-astro-tailwind-css',
-      'how-to-customize-astrowind-to-your-brand',
-      'useful-resources-to-create-websites',
-      'landing',
-    ]}
-    information={`The blog is used to display AstroWind documentation.
-                        Each new article will be an important step that you will need to know to be an expert in creating a website using Astro v7 + Tailwind CSS v4.
-                        Astro is a very interesting technology. Thanks.
-                `}
-  />
-
-  <!-- FAQs Widget ******************* -->
-
-  <FAQs
-    id="faqs"
-    title="Frequently Asked Questions"
-    subtitle="The questions people ask before they clone the repository, answered briefly. For step-by-step tasks, the repository ships skills your AI coding assistant can follow."
-    tagline="FAQs"
-    schema
-    items={[
-      {
-        title: 'What is AstroWind?',
-        description:
-          'A free, open-source template for Astro and Tailwind CSS: a static site with a header, footer, twenty-plus reusable widgets, a Markdown/MDX blog, dark mode, RTL support, image optimisation, SEO metadata and an RSS feed, ready to be customised and deployed anywhere static files are served.',
-      },
-      {
-        title: 'What do I need to start?',
-        description:
-          'A current Node.js (the exact minimum is in <code>package.json</code>) and a terminal. Run <code>npm create astro@latest -- --template arthelokyo/astrowind</code>, then <code>npm run dev</code>. Site name, URL, metadata and blog options live in <code>src/config.yaml</code>; colours and fonts in <code>src/components/CustomStyles.astro</code>.',
-      },
-      {
-        title: 'Can I use it for a site without a blog?',
-        description:
-          'Yes. Set <code>apps.blog.isEnabled: false</code> in <code>src/config.yaml</code> and the blog routes, the RSS feed and the post widgets disappear from the build. The rest of the template is unaffected.',
-      },
-      {
-        title: 'How do I change colours, fonts and the logo?',
-        description:
-          'Colours are CSS variables in <code>src/components/CustomStyles.astro</code> (light and dark), fonts are configured in <code>astro.config.ts</code> through Astro’s Fonts API, and the logo is <code>src/components/Logo.astro</code>. The same variables also feed the shadcn/ui-compatible tokens, so shadcn-style components pick up your theme.',
-      },
-      {
-        title: 'Does it work with an AI coding assistant?',
-        description:
-          'It is built for it. The repository includes <code>AGENTS.md</code> with the project conventions and a <code>.agents/skills/</code> folder with step-by-step guides for common tasks (disable the blog, set an Open Graph image, deploy under a base path, connect a CMS, deploy to Cloudflare…), so tools like Claude Code, Codex or Cursor can do them reliably.',
-      },
-      {
-        title: 'Where can I deploy it and what does it cost?',
-        description:
-          'Anywhere that serves static files: Vercel, Netlify, Cloudflare, GitHub Pages, an nginx container (a Dockerfile is included) or your own server. The template is MIT licensed and free for personal and commercial projects.',
-      },
-    ]}
-  />
-
-  <!-- Stats Widget ****************** -->
-
-  <Stats
-    id="stats"
-    countUp
-    stats={[
-      { title: 'GitHub stars', amount: '6K' },
-      { title: 'Forks', amount: '1.7K' },
-      { title: 'Ready-made widgets', amount: '34' },
-      { title: 'Lighthouse score', amount: '100' },
-    ]}
-  />
-
-  <!-- CallToAction Widget *********** -->
-
-  <CallToAction
-    actions={[
-      {
-        variant: 'primary',
-        text: 'Get template',
-        href: 'https://github.com/arthelokyo/astrowind',
-        target: '_blank',
-        icon: 'tabler:download',
-      },
-    ]}
-  >
-    <Fragment slot="title">
-      Astro&nbsp;+&nbsp;<br class="block sm:hidden" /><span class="sm:whitespace-nowrap">Tailwind CSS</span>
-    </Fragment>
-
-    <Fragment slot="subtitle">
-      Free, open source and production-ready. <br class="hidden md:inline" />Clone it, replace the content and deploy.
-    </Fragment>
-  </CallToAction>
+      <div class="pt-4">
+        <a
+          href="/privacy/"
+          class="font-sans text-xs sm:text-sm text-ink-soft/80 dark:text-sage/80 underline underline-offset-4 hover:text-ink dark:hover:text-ivory transition"
+        >
+          Consulter la politique de confidentialité
+        </a>
+      </div>
+    </div>
+  </section>
 </Layout>
