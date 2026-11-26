@@ -38,12 +38,12 @@ Un carnet personnel, pas une app de réservation : on ajoute ses séjours soi-m�
 
 - Nom : Stays. Éditeur : Hasnen Nourah.
 - Ton : français naturel, posé, humain et factuel, sans superlatif ni jargon marketing.
-- Site en clair uniquement tant qu'il n'existe pas de captures sombres : ni bouton de thème, ni JavaScript de thème. Le site n'enregistre rien dans le navigateur (ni cookie, ni `localStorage`).
+- Le site suit le mode clair ou sombre du système, en CSS seul : ni bouton de thème, ni JavaScript de thème. Le site n'enregistre rien dans le navigateur (ni cookie, ni `localStorage`).
 - Les textes de /privacy/ et /support/ ne changent pas sur le fond ; les liens vers Apple et la CNIL restent valides.
 
 ## Evidence on Hand
 
-- Captures d'écran de l'app (données d'exemple) : `src/assets/images/app/` ; jeu complet dans le dépôt de l'app, `docs/app-store/captures-6.9/` (Séjours, Fiche, Globe, Passeport, Amis, Demande d'ami). Elles seront remplacées par l'éditeur ; la fiche montre la référence d'exemple « DEMO-4100 ».
+- Captures d'écran définitives de l'app, en clair et en sombre (données d'exemple) : `src/assets/images/app/` (Séjours, Fiche, Passeport, Amis), copiées depuis `website-screenshots/` dans le dépôt de l'app.
 - Icône : `public/stays-logo.png`, `public/apple-touch-icon.png`.
 - Aucun avis, aucune note, aucun chiffre d'utilisateurs, aucune presse : n'en inventer aucun.
 

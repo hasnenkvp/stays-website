@@ -103,7 +103,7 @@ components:
 
 Le site s'efface devant l'app. Une page blanche, une colonne de 1 080 px, la police système d'Apple et un seul bleu : tout le reste est fourni par les captures réelles de Stays, posées droites, nettes, aux coins d'un écran d'iPhone. La référence est Things 3 de Cultured Code : de l'air, des titres courts, un texte posé, aucune décoration qui ne serve pas la lecture.
 
-La densité est faible et le rythme régulier. Chaque section de fonction est un couple texte et capture sur deux colonnes, séparé du suivant par un filet de 1 px, avec un grand vide vertical (80 px, 128 px sur grand écran). La seule variation de fond est un gris cassé à peine perceptible, réservé au bloc vie privée et au sommaire de la politique. Le site est en clair uniquement, parce que les captures de l'app le sont ; il n'y a ni mode sombre, ni bouton de thème, ni JavaScript de thème.
+La densité est faible et le rythme régulier. Chaque section de fonction est un couple texte et capture sur deux colonnes, séparé du suivant par un filet de 1 px, avec un grand vide vertical (80 px, 128 px sur grand écran). La seule variation de fond est un gris cassé à peine perceptible, réservé au bloc vie privée et au sommaire de la politique. Le site suit le mode clair ou sombre du système, en CSS seul (`prefers-color-scheme`), avec une capture claire et une capture sombre de chaque écran ; il n'y a ni bouton de thème, ni JavaScript de thème, ni rien d'enregistré dans le navigateur.
 
 Le mouvement se limite à des transitions de couleur et d'opacité de 150 ms au survol, plus la rotation du chevron de la FAQ à l'ouverture (150 ms), le tout coupé sous `prefers-reduced-motion`. Sous `prefers-contrast: more`, les gris, le bleu et les filets se renforcent.
 
@@ -113,7 +113,7 @@ Le mouvement se limite à des transitions de couleur et d'opacité de 150 ms au 
 - Police système Apple, trois graisses (400, 500, 600), titres serrés.
 - Les captures de l'app sont la seule image : droites, sans cadre de téléphone dessiné.
 - Sections séparées par des filets fins et du vide, jamais par des cartes.
-- Clair uniquement ; accessibilité gérée par les préférences système (contraste, mouvement).
+- Clair ou sombre selon le système, en CSS seul ; accessibilité gérée par les préférences système (contraste, mouvement).
 
 ## Colors
 
@@ -132,6 +132,15 @@ Une palette neutre et froide, presque monochrome, où un seul bleu système sign
 - **Anthracite** (#2b2b30) : titres et texte courant (14,1:1).
 - **Gris secondaire** (#6a6a73) : chapeaux, petits textes, navigation au repos, pied de page, puces de liste (5,4:1).
 - **Filet** (#e3e3e8) : séparateurs de sections, bordure du bouton secondaire, lignes de la FAQ et des listes de définitions.
+
+### Mode sombre
+
+Sous `prefers-color-scheme: dark`, les jetons changent de valeur et chaque capture passe à sa version sombre (`<source media="(prefers-color-scheme: dark)">`).
+
+- **Fond** (#161618) et **fond alterné** (#1e1e21).
+- **Texte** (#ececef, 15,3:1) et **texte secondaire** (#a0a0a8, 7,0:1).
+- **Accent** (#4c9eff, 6,6:1), survol #7ab6ff ; le texte du bouton principal passe en #161618 (6,6:1), le blanc n'atteignant pas 3:1 sur ce bleu.
+- **Filet** (#2e2e33) ; le filet des captures devient blanc à 10 % et leur ombre plus sombre.
 
 ### Named Rules
 
@@ -239,7 +248,7 @@ Calmes et natifs, à la manière des boutons système d'iOS.
 
 ### Don't:
 
-- **Don't** ajouter de mode sombre, de bouton de thème ou de JavaScript de thème tant que les captures sont en clair.
+- **Don't** ajouter de bouton de thème, de JavaScript de thème ou de `localStorage.theme` : le mode sombre suit le système, en CSS seul.
 - **Don't** dessiner de cadre d'iPhone ni incliner une capture.
 - **Don't** poser de dégradé, de hero promotionnel ou d'aplat coloré derrière le contenu.
 - **Don't** enfermer le texte dans des cartes ombrées ; le seul panneau est un fond gris cassé sans ombre.

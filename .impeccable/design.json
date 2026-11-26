@@ -205,7 +205,7 @@
   ],
   "narrative": {
     "northStar": "La page blanche de l'app",
-    "overview": "Le site s'efface devant l'app. Une page blanche, une colonne de 1 080 px, la police système d'Apple et un seul bleu : tout le reste est fourni par les captures réelles de Stays, posées droites, nettes, aux coins d'un écran d'iPhone. La référence est Things 3 de Cultured Code : de l'air, des titres courts, un texte posé, aucune décoration qui ne serve pas la lecture.\n\nLa densité est faible et le rythme régulier. Chaque section de fonction est un couple texte et capture sur deux colonnes, séparé du suivant par un filet de 1 px, avec un grand vide vertical (80 px, 128 px sur grand écran). La seule variation de fond est un gris cassé à peine perceptible, réservé au bloc vie privée et au sommaire de la politique. Le site est en clair uniquement, parce que les captures de l'app le sont ; il n'y a ni mode sombre, ni bouton de thème, ni JavaScript de thème.\n\nLe mouvement se limite à des transitions de couleur et d'opacité de 150 ms au survol, plus la rotation du chevron de la FAQ à l'ouverture (150 ms), le tout coupé sous `prefers-reduced-motion`. Sous `prefers-contrast: more`, les gris, le bleu et les filets se renforcent.",
+    "overview": "Le site s'efface devant l'app. Une page blanche, une colonne de 1 080 px, la police système d'Apple et un seul bleu : tout le reste est fourni par les captures réelles de Stays, posées droites, nettes, aux coins d'un écran d'iPhone. La référence est Things 3 de Cultured Code : de l'air, des titres courts, un texte posé, aucune décoration qui ne serve pas la lecture.\n\nLa densité est faible et le rythme régulier. Chaque section de fonction est un couple texte et capture sur deux colonnes, séparé du suivant par un filet de 1 px, avec un grand vide vertical (80 px, 128 px sur grand écran). La seule variation de fond est un gris cassé à peine perceptible, réservé au bloc vie privée et au sommaire de la politique. Le site suit le mode clair ou sombre du système, en CSS seul (`prefers-color-scheme`), avec une capture claire et une capture sombre de chaque écran ; il n'y a ni bouton de thème, ni JavaScript de thème, ni rien d'enregistré dans le navigateur.\n\nLe mouvement se limite à des transitions de couleur et d'opacité de 150 ms au survol, plus la rotation du chevron de la FAQ à l'ouverture (150 ms), le tout coupé sous `prefers-reduced-motion`. Sous `prefers-contrast: more`, les gris, le bleu et les filets se renforcent.",
     "keyCharacteristics": [
       "Page blanche, un seul accent bleu, aucune couleur de marque décorative.",
       "Police système Apple, trois graisses (400, 500, 600), titres serrés.",
@@ -254,7 +254,7 @@
       "**Do** limiter le mouvement aux transitions de couleur et d'opacité de 150 ms (seule exception : la rotation du chevron de la FAQ), coupées sous `prefers-reduced-motion`."
     ],
     "donts": [
-      "**Don't** ajouter de mode sombre, de bouton de thème ou de JavaScript de thème tant que les captures sont en clair.",
+      "**Don't** ajouter de bouton de thème, de JavaScript de thème ou de `localStorage.theme` : le mode sombre suit le système, en CSS seul.",
       "**Don't** dessiner de cadre d'iPhone ni incliner une capture.",
       "**Don't** poser de dégradé, de hero promotionnel ou d'aplat coloré derrière le contenu.",
       "**Don't** enfermer le texte dans des cartes ombrées ; le seul panneau est un fond gris cassé sans ombre.",

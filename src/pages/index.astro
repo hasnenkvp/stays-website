@@ -5,16 +5,20 @@ import AppScreenshot from '~/components/stays/AppScreenshot.astro';
 import Availability from '~/components/stays/Availability.astro';
 import { SITE, I18N } from 'astrowind:config';
 
-import capSejours from '~/assets/images/app/01-sejours.png';
-import capFiche from '~/assets/images/app/02-fiche.png';
-import capPasseport from '~/assets/images/app/04-passeport.png';
-import capAmis from '~/assets/images/app/05-amis.png';
+import sejoursLight from '~/assets/images/app/01-sejours-light.png';
+import sejoursDark from '~/assets/images/app/01-sejours-dark.png';
+import ficheLight from '~/assets/images/app/02-fiche-light.png';
+import ficheDark from '~/assets/images/app/02-fiche-dark.png';
+import passeportLight from '~/assets/images/app/04-passeport-light.png';
+import passeportDark from '~/assets/images/app/04-passeport-dark.png';
+import amisLight from '~/assets/images/app/05-amis-light.png';
+import amisDark from '~/assets/images/app/05-amis-dark.png';
 
 const metadata = {
   title: 'Stays — Tous vos séjours, au même endroit',
   ignoreTitleTemplate: true,
   description:
-    'Booking, Airbnb ou le site de l’hôtel : Stays réunit vos séjours dans un carnet pour iPhone, les partage avec ceux qui voyagent avec vous et en tire vos statistiques de voyage.',
+    'Booking, Airbnb ou en direct : Stays réunit vos séjours dans un carnet pour iPhone, les partage avec ceux qui voyagent avec vous et en tire vos statistiques de voyage.',
   canonical: 'https://staysapp.fr/',
 };
 
@@ -55,13 +59,14 @@ const shotSizes = '(max-width: 640px) 260px, (max-width: 1024px) 300px, 320px';
     <div class="page-shell flex flex-col items-center text-center">
       <h1 id="titre" class="max-w-[12em] text-display text-ink text-balance">Tous vos séjours, au même endroit.</h1>
       <p class="mt-5 max-w-[34rem] text-lead text-ink-soft text-balance">
-        Booking, Airbnb ou le site de l’hôtel : où que vous ayez réservé, Stays réunit vos séjours dans un carnet.
+        Booking, Airbnb ou en direct, chaque séjour se retrouve dans l’app.
       </p>
       <Availability class="mt-8" />
       <figure class="mt-12 w-[260px] sm:mt-16 sm:w-[300px] lg:w-[360px]">
         <AppScreenshot
-          src={capSejours}
-          alt="Stays sur iPhone : la liste des séjours à venir, du Park Hyatt Tokyo à l’InterContinental Bora-Bora."
+          light={sejoursLight}
+          dark={sejoursDark}
+          alt="Stays sur iPhone : la liste des séjours à venir, du Park Hyatt Paris-Vendôme au Mystique de Santorin."
           class="w-full"
           sizes="(max-width: 640px) 260px, (max-width: 1024px) 300px, 360px"
           priority
@@ -78,16 +83,17 @@ const shotSizes = '(max-width: 640px) 260px, (max-width: 1024px) 300px, 320px';
         <h2 id="jour-j-titre" class="text-title text-ink text-balance">Le jour J, tout est déjà là.</h2>
         <p class="mt-5 text-pretty">
           Ajoutez un séjour en cherchant l’hôtel, puis gardez ce qui vous sera utile : dates et heures, référence,
-          plateforme, montant, notes.
+          plateforme, montant.
         </p>
         <p class="mt-4 text-pretty">
-          Le jour de l’arrivée, la fiche réunit l’adresse sur le plan, l’heure d’arrivée, la référence à donner à la
-          réception et le numéro de l’hôtel. Sans mail à retrouver, ni autre application à ouvrir.
+          Le jour de l’arrivée, la fiche réunit l’adresse et le plan, l’heure d’arrivée et la référence à donner à la
+          réception. Sans mail à retrouver, ni autre application à ouvrir.
         </p>
       </div>
       <AppScreenshot
-        src={capFiche}
-        alt="Fiche du Park Hyatt Tokyo dans Stays : dates, arrivée à 15 h, départ à 12 h, référence de réservation, montant réglé et plan."
+        light={ficheLight}
+        dark={ficheDark}
+        alt="Fiche du Park Hyatt Paris-Vendôme dans Stays : du 3 au 6 décembre 2026, arrivée à 15 h, départ à 12 h, référence de réservation, montant réglé, plan et adresse."
         class={shot}
         sizes={shotSizes}
       />
@@ -98,7 +104,9 @@ const shotSizes = '(max-width: 640px) 260px, (max-width: 1024px) 300px, 320px';
   <section id="amis" aria-labelledby="amis-titre" class:list={[section, 'border-t border-rule']}>
     <div class={grid}>
       <div class={copy}>
-        <h2 id="amis-titre" class="text-title text-ink text-balance">Partir à plusieurs, sans transférer de mails.</h2>
+        <h2 id="amis-titre" class="text-title text-ink text-balance">
+          Partager vos séjours, sans transférer de mails.
+        </h2>
         <p class="mt-5 text-pretty">
           Vous partez en Grèce à deux. Votre ami a réservé l’hôtel sur Booking ; vous n’avez que le nom de l’île.
           D’habitude, il faut qu’il vous transfère le mail ou une capture d’écran.
@@ -113,8 +121,9 @@ const shotSizes = '(max-width: 640px) 260px, (max-width: 1024px) 300px, 320px';
         </p>
       </div>
       <AppScreenshot
-        src={capAmis}
-        alt="Onglet Amis de Stays : les séjours en cours et à venir de Camille, partagés sans prix, photo, note ni référence."
+        light={amisLight}
+        dark={amisDark}
+        alt="Onglet Amis de Stays : les séjours de Camille, en cours à Santorin et à venir à Kyoto et Milan, partagés sans prix, photo, note ni référence."
         class:list={[shot, 'lg:order-first']}
         sizes={shotSizes}
       />
@@ -133,8 +142,9 @@ const shotSizes = '(max-width: 640px) 260px, (max-width: 1024px) 300px, 320px';
         <p class="mt-4 text-pretty">Une belle année ? Stays en fait une image à partager.</p>
       </div>
       <AppScreenshot
-        src={capPasseport}
-        alt="Passeport de Stays : 31 nuits, 7 pays, 9 villes et 9 hôtels sur 2 années, sous le globe des séjours."
+        light={passeportLight}
+        dark={passeportDark}
+        alt="Passeport de Stays : 34 nuits, 9 pays, 10 villes et 10 hôtels sur 2 années, sous le globe des séjours."
         class={shot}
         sizes={shotSizes}
       />
