@@ -7,21 +7,21 @@ site:
 # Métadonnées par défaut (SEO)
 metadata:
   title:
-    default: Stays — Tous vos séjours, au même endroit
+    default: Stays — Carnet de séjours hôteliers pour iPhone
     template: '%s — Stays'
-  description: 'Stays réunit vos séjours dans un carnet pour iPhone, où que vous les ayez réservés, et les partage avec ceux qui voyagent avec vous.'
+  description: 'Stays réunit votre historique hôtelier sur iPhone : vos hôtels sur un globe, un passeport de voyage chiffré (nuits, pays, villes, chaînes) et le partage entre amis.'
   robots:
     index: true
     follow: true
   openGraph:
     site_name: Stays
     images:
-      - url: '/stays-logo.png'
-        width: 512
-        height: 512
+      - url: '/og-image.png'
+        width: 1200
+        height: 630
     type: website
   twitter:
-    cardType: summary
+    cardType: summary_large_image
 
 i18n:
   language: fr

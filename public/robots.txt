@@ -1,2 +1,4 @@
 User-agent: *
 Disallow:
+
+Sitemap: https://staysapp.fr/sitemap-index.xml

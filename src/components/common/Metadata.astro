@@ -62,17 +62,23 @@ function buildOpenGraph(og: MetaDataOpenGraph): SEOProps['openGraph'] | undefine
       url: imageUrl,
       width: firstImage?.width,
       height: firstImage?.height,
-      alt: 'Stays — Carnet de séjours',
+      alt: 'Stays, carnet de séjours hôteliers pour iPhone : la liste des séjours et le Passeport',
     },
     ...(og.type === 'article' && og.article ? { article: og.article } : {}),
   };
 }
 
+// Titre complet (avec le gabarit « %s — Stays » hors accueil), repris par la carte Twitter / X.
+const pageTitle = title || METADATA?.title?.default || '';
+const fullTitle = ignoreTitleTemplate ? pageTitle : (METADATA?.title?.template || '%s').replace('%s', pageTitle);
+
 const mergedTwitter = merge(
   {
     card: (METADATA?.twitter?.cardType || 'summary') as 'summary_large_image' | 'summary',
+    title: fullTitle,
+    description: description || METADATA?.description,
     image: firstImage?.url,
-    imageAlt: 'Stays — Carnet de séjours',
+    imageAlt: 'Stays, carnet de séjours hôteliers pour iPhone : la liste des séjours et le Passeport',
   },
   METADATA?.twitter
     ? {
