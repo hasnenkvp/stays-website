@@ -35,7 +35,7 @@ const [lightImage, darkImage] = await Promise.all([
 ]);
 ---
 
-<picture>
+<picture class:list={['block', className]}>
   <source media="(prefers-color-scheme: dark)" type="image/webp" srcset={darkImage.srcSet.attribute} sizes={sizes} />
   <img
     src={lightImage.src}
@@ -47,6 +47,6 @@ const [lightImage, darkImage] = await Promise.all([
     loading={priority ? 'eager' : 'lazy'}
     fetchpriority={priority ? 'high' : 'auto'}
     decoding="async"
-    class:list={['app-shot block h-auto w-full', className]}
+    class="app-shot block h-auto w-full"
   />
 </picture>

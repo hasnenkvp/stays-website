@@ -1,31 +1,29 @@
 ---
+// Badge officiel Apple « Télécharger dans l'App Store », lien vers la fiche de Stays.
+// L'URL vient de APP_STORE_URL (src/config/stays.ts).
 import { stays } from '~/config/stays';
 
 export interface Props {
   class?: string;
+  /** Taille du badge : 'lg' dans le hero et la fin de page, 'md' ailleurs. */
+  size?: 'md' | 'lg';
 }
 
-const { class: className = '' } = Astro.props;
+const { class: className = '', size = 'md' } = Astro.props;
 const badgeSrc = stays.appStoreBadge || '/app-store-badge-fr.svg';
 ---
 
-{
-  stays.appStoreUrl && (
-    <a
-      href={stays.appStoreUrl}
-      target="_blank"
-      rel="noopener"
-      class:list={['inline-block rounded-lg transition-opacity duration-150 hover:opacity-85', className]}
-    >
-      <img
-        src={badgeSrc}
-        alt="Télécharger dans l’App Store"
-        width="127"
-        height="40"
-        class="block h-11 w-auto"
-        loading="eager"
-        decoding="async"
-      />
-    </a>
-  )
-}
+<a
+  href={stays.appStoreUrl}
+  class:list={['inline-block rounded-[10px] transition-opacity duration-150 hover:opacity-80', className]}
+>
+  <img
+    src={badgeSrc}
+    alt="Télécharger dans l’App Store"
+    width="127"
+    height="40"
+    class:list={['block w-auto', size === 'lg' ? 'h-[52px]' : 'h-11']}
+    loading="eager"
+    decoding="async"
+  />
+</a>

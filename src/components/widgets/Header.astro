@@ -1,6 +1,7 @@
 ---
 import Logo from '~/components/Logo.astro';
 import { getHomePermalink } from '~/utils/permalinks';
+import { stays } from '~/config/stays';
 
 export interface Props {
   links?: Array<{ text: string; href: string }>;
@@ -13,8 +14,9 @@ const currentPath = Astro.url.pathname.replace(/\/?$/, '/');
 const isCurrent = (href: string) => href !== '/' && currentPath === href.replace(/\/?$/, '/');
 ---
 
-<header class="w-full">
-  <div class="page-shell flex min-h-16 items-center justify-between gap-4">
+<!-- En-tête collant, effet verre (fond plein si « Réduire la transparence » est activé). -->
+<header class="glass sticky top-0 z-40 w-full border-b border-rule/70 pt-[env(safe-area-inset-top)]">
+  <div class="page-shell flex min-h-14 items-center justify-between gap-3">
     <a
       class="-ml-1 flex min-h-11 items-center rounded-lg px-1 transition-opacity duration-150 hover:opacity-80"
       href={getHomePermalink()}
@@ -23,27 +25,34 @@ const isCurrent = (href: string) => href !== '/' && currentPath === href.replace
       <Logo />
     </a>
 
-    {
-      links.length > 0 && (
-        <nav aria-label="Navigation principale">
-          <ul class="-mr-2 flex items-center gap-1 sm:gap-4">
-            {links.map(({ text, href }, index) => (
-              <li class:list={[{ 'hidden sm:block': index > 0 }]}>
-                <a
-                  href={href}
-                  aria-current={isCurrent(href) ? 'page' : undefined}
-                  class:list={[
-                    'inline-flex min-h-11 items-center rounded-md px-2 text-small font-medium transition-colors duration-150',
-                    isCurrent(href) ? 'text-ink' : 'text-ink-soft hover:text-ink',
-                  ]}
-                >
-                  {text}
-                </a>
-              </li>
-            ))}
-          </ul>
-        </nav>
-      )
-    }
+    <nav aria-label="Navigation principale">
+      <ul class="-mr-1 flex items-center gap-1 sm:gap-3">
+        {
+          links.map(({ text, href }) => (
+            <li class="hidden sm:block">
+              <a
+                href={href}
+                aria-current={isCurrent(href) ? 'page' : undefined}
+                class:list={[
+                  'inline-flex min-h-11 items-center rounded-md px-2 text-small font-medium transition-colors duration-150',
+                  isCurrent(href) ? 'text-ink' : 'text-ink-soft hover:text-ink',
+                ]}
+              >
+                {text}
+              </a>
+            </li>
+          ))
+        }
+        <li>
+          <a href={stays.appStoreUrl} class="group inline-flex min-h-11 items-center rounded-full px-1">
+            <span
+              class="inline-flex h-8 items-center rounded-full bg-accent px-3.5 text-small font-medium text-on-accent transition-colors duration-150 group-hover:bg-accent-strong"
+            >
+              Télécharger
+            </span>
+          </a>
+        </li>
+      </ul>
+    </nav>
   </div>
 </header>

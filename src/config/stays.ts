@@ -1,11 +1,21 @@
 // Réglages propres à Stays, lus par les pages et composants du site.
+
+// URL de la fiche App Store de Stays : À REMPLACER au lancement par la vraie adresse
+// (App Store Connect > Informations sur l'app > Identifiant Apple, au format id1234567890).
+// Tant que l'identifiant fictif id0000000000 est présent, le build affiche un avertissement
+// et les données structurées n'annoncent pas de lien de téléchargement.
+export const APP_STORE_URL = 'https://apps.apple.com/fr/app/stays/id0000000000';
+export const isAppStoreUrlPlaceholder = APP_STORE_URL.includes('id0000000000');
+if (isAppStoreUrlPlaceholder && import.meta.env.PROD) {
+  console.warn('[stays] APP_STORE_URL contient encore l’identifiant fictif id0000000000 (src/config/stays.ts).');
+}
+
 export const stays = {
   siteUrl: 'https://staysapp.fr',
-  appStoreUrl: '', // vide = pas de badge App Store : la mention availabilityLabel s'affiche à la place
-  appStoreId: '', // vide = pas de balise apple-itunes-app
+  appStoreUrl: APP_STORE_URL,
+  appStoreId: '', // identifiant numérique de l'app (sans « id ») : active la bannière Safari apple-itunes-app
   appStoreBadge: '/app-store-badge-fr.svg', // badge officiel Apple, en français
-  availabilityLabel: 'Bientôt sur l’App Store', // affiché tant que appStoreUrl est vide
-  platformLabel: 'Pour iPhone', // sous l'appel à l'action : l'app n'existe que sur iPhone
+  ctaNote: 'Gratuit, pour iPhone', // sous le badge App Store
   supportEmail: 'support@staysapp.fr',
   privacyEmail: 'privacy@staysapp.fr', // contact « données personnelles » de la politique de confidentialité
   supportResponseTime: '5 jours ouvrés', // délai de réponse annoncé sur /support/ et dans la politique
@@ -38,3 +48,27 @@ export const stays = {
     },
   ],
 };
+
+// FAQ courte de l'accueil. Chaque réponse doit rester conforme à src/pages/privacy.md.
+export const homeFaq = [
+  {
+    q: 'Sur quels appareils fonctionne Stays ?',
+    a: 'Stays est une app pour iPhone. Elle demande iOS 18.6 ou une version plus récente ; la fonction Amis demande iOS 26 et iCloud.',
+  },
+  {
+    q: 'Combien coûte Stays ?',
+    a: 'Rien. Stays se télécharge gratuitement sur l’App Store, sans achat intégré, sans abonnement et sans publicité.',
+  },
+  {
+    q: 'Où sont stockées mes données ?',
+    a: 'Sur votre iPhone, et dans sa sauvegarde si vous l’avez activée. Stays n’exploite aucun serveur et ne revend aucune donnée. Seule la fonction Amis, si vous l’utilisez, passe par votre iCloud.',
+  },
+  {
+    q: 'Stays fonctionne-t-elle avec tous les hôtels ?',
+    a: 'Oui. Cherchez l’hôtel dans Plans : Stays complète la ville, le pays et la chaîne, et affiche le logo des grands groupes comme Marriott, Hyatt, Hilton, Accor ou IHG. Un hôtel indépendant s’ajoute aussi, au besoin à la main.',
+  },
+  {
+    q: 'Stays lit-elle mes mails ou mes comptes de réservation ?',
+    a: 'Non. Vous ajoutez chaque séjour vous-même, ou importez un historique depuis un fichier CSV. Stays n’accède ni à vos mails, ni à vos comptes Booking, Airbnb ou autres.',
+  },
+];

@@ -9,7 +9,7 @@ const { links = [], footNote } = Astro.props;
 
 <footer class="border-t border-rule">
   <div
-    class="page-shell flex flex-col gap-2 py-8 text-small text-ink-soft sm:flex-row sm:items-center sm:justify-between"
+    class="page-shell flex flex-col gap-2 pt-8 pb-[max(2rem,env(safe-area-inset-bottom))] text-small text-ink-soft sm:flex-row sm:items-center sm:justify-between"
   >
     <p>{footNote}</p>
     <nav aria-label="Pied de page">
