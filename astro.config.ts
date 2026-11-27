@@ -19,6 +19,11 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 export default defineConfig({
   output: 'static',
+
+  // CSS intégré dans chaque page : supprime la requête qui bloquait le premier affichage.
+  build: {
+    inlineStylesheets: 'always',
+  },
   trailingSlash: 'always',
   server: {
     host: true,

@@ -4,6 +4,8 @@ import StructuredData from '~/components/common/StructuredData.astro';
 import AppScreenshot from '~/components/stays/AppScreenshot.astro';
 import Availability from '~/components/stays/Availability.astro';
 import Faq from '~/components/stays/Faq.astro';
+import { Image } from 'astro:assets';
+import stayIcon from '~/assets/images/stays-icon.png';
 import { stays, homeFaq, isAppStoreUrlPlaceholder } from '~/config/stays';
 import { SITE, I18N } from 'astrowind:config';
 
@@ -319,7 +321,15 @@ const comparison = [
   <!-- Fin : rappel du téléchargement -->
   <section aria-labelledby="fin-titre" class="border-t border-rule py-20 lg:py-32">
     <div class="page-shell reveal flex flex-col items-center text-center">
-      <img src="/stays-logo.png" alt="" width="72" height="72" class="h-18 w-18 rounded-[16px] shadow-shot" />
+      <Image
+        src={stayIcon}
+        alt=""
+        width={72}
+        height={72}
+        densities={[1, 2, 3]}
+        format="webp"
+        class="h-18 w-18 rounded-[16px] shadow-shot"
+      />
       <h2 id="fin-titre" class="mt-6 text-title text-ink text-balance">Stays, l’essentiel de vos séjours.</h2>
       <p class="mt-4 max-w-[30rem] text-ink-soft text-pretty">Téléchargez Stays et ajoutez votre prochain séjour.</p>
       <Availability class="mt-8" />

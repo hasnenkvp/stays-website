@@ -1,4 +1,5 @@
-@import 'tailwindcss';
+/* Classes lues dans src/ uniquement : la documentation du dépôt n'alourdit pas la feuille de style. */
+@import 'tailwindcss' source('../../');
 
 @plugin "@tailwindcss/typography";
 

@@ -1,8 +1,20 @@
 ---
-// Icône de l'app et nom, dans la police système.
+// Icône de l'app et nom, dans la police système. L'icône est optimisée au build
+// (WebP en 1x, 2x et 3x) au lieu du PNG de 512 px.
+import { Image } from 'astro:assets';
+import stayIcon from '~/assets/images/stays-icon.png';
 ---
 
 <span class="inline-flex items-center gap-2.5">
-  <img src="/stays-logo.png" alt="" class="h-7 w-7 rounded-[7px]" width="28" height="28" />
+  <Image
+    src={stayIcon}
+    alt=""
+    width={28}
+    height={28}
+    densities={[1, 2, 3]}
+    format="webp"
+    loading="eager"
+    class="h-7 w-7 rounded-[7px]"
+  />
   <span translate="no" class="text-lead font-semibold tracking-[-0.01em] text-ink">Stays</span>
 </span>
