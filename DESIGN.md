@@ -99,21 +99,21 @@ components:
 
 ## Overview
 
-**Creative North Star: "La page blanche de l'app"**
+**Creative North Star: "Le carnet du voyageur fréquent"**
 
-Le site s'efface devant l'app. Une page blanche, une colonne de 1 080 px, la police système d'Apple et un seul bleu : tout le reste est fourni par les captures réelles de Stays, posées droites, nettes, aux coins d'un écran d'iPhone. La référence est Things 3 de Cultured Code : de l'air, des titres courts, un texte posé, aucune décoration qui ne serve pas la lecture.
+Un site sobre et précis, dans l'esprit des Human Interface Guidelines d'Apple : police système, un seul bleu, les captures réelles de l'app au premier plan. Le ton est celui d'un luxe discret, pour des voyageurs qui passent beaucoup de nuits à l'hôtel.
 
-La densité est faible et le rythme régulier. Chaque section de fonction est un couple texte et capture sur deux colonnes, séparé du suivant par un filet de 1 px, avec un grand vide vertical (80 px, 128 px sur grand écran). La seule variation de fond est un gris cassé à peine perceptible, réservé au bloc vie privée et au sommaire de la politique. Le site suit le mode clair ou sombre du système, en CSS seul (`prefers-color-scheme`), avec une capture claire et une capture sombre de chaque écran ; il n'y a ni bouton de thème, ni JavaScript de thème, ni rien d'enregistré dans le navigateur.
+La page d'accueil enchaîne un hero centré (titre, chapeau, badge App Store, capture Séjours), une grille de six tuiles (bento) qui présente les fonctions, une comparaison « Pourquoi pas un tableur ? », une FAQ courte et un rappel du téléchargement. Les sections sont séparées par un filet de 1 px et du vide (80 px, 112 à 128 px sur grand écran). Le site suit le mode clair ou sombre du système, en CSS seul (`prefers-color-scheme`), avec une capture claire et une capture sombre de chaque écran ; il n'y a ni bouton de thème, ni JavaScript de thème, ni rien d'enregistré dans le navigateur.
 
-Le mouvement se limite à des transitions de couleur et d'opacité de 150 ms au survol, plus la rotation du chevron de la FAQ à l'ouverture (150 ms), le tout coupé sous `prefers-reduced-motion`. Sous `prefers-contrast: more`, les gris, le bleu et les filets se renforcent.
+L'effet verre (fond translucide flouté) est réservé à l'en-tête collant ; il devient un fond plein sous `prefers-reduced-transparency`. Les tuiles et la fin de page apparaissent au défilement, en CSS seul (`animation-timeline: view()`) : le contenu reste visible sans prise en charge, et l'effet est coupé sous `prefers-reduced-motion`. Les autres mouvements sont des transitions de couleur et d'opacité de 150 ms. Sous `prefers-contrast: more`, les gris, le bleu et les filets se renforcent.
 
 **Key Characteristics:**
 
-- Page blanche, un seul accent bleu, aucune couleur de marque décorative.
+- Fond blanc ou anthracite selon le système, un seul accent bleu, aucune couleur de marque décorative.
 - Police système Apple, trois graisses (400, 500, 600), titres serrés.
-- Les captures de l'app sont la seule image : droites, sans cadre de téléphone dessiné.
-- Sections séparées par des filets fins et du vide, jamais par des cartes.
-- Clair ou sombre selon le système, en CSS seul ; accessibilité gérée par les préférences système (contraste, mouvement).
+- Les captures de l'app sont la seule image : droites, sans cadre de téléphone dessiné, jamais recadrées.
+- Les fonctions vivent dans des tuiles pleines aux grands coins ; ailleurs, filets fins et vide.
+- Un seul appel à l'action : le badge officiel App Store, relayé par « Télécharger » dans l'en-tête.
 
 ## Colors
 
@@ -195,7 +195,7 @@ Le système est plat. La profondeur n'existe que sur les captures de l'app (et l
 
 ## Shapes
 
-Les formes viennent de l'iPhone. Les captures prennent le coin d'un écran d'iPhone en proportion (`12.5% / 5.75%`), quelle que soit leur taille, sans cadre de téléphone dessiné. Les boutons sont des pilules. Le seul panneau, le sommaire de la politique, a des coins de 16 px, comme l'icône de l'app en fin de page. Le focus clavier est un contour bleu de 2 px décalé de 3 px, aux coins de 4 px. Les séparations sont des filets de 1 px, jamais des cadres.
+Les formes viennent de l'iPhone. Les captures prennent le coin d'un écran d'iPhone en proportion (`12.5% / 5.75%`), quelle que soit leur taille, sans cadre de téléphone dessiné. Les boutons sont des pilules. Les tuiles ont des coins de 28 px ; le sommaire de la politique et l'icône de l'app en fin de page, 16 px. Le focus clavier est un contour bleu de 2 px décalé de 3 px, aux coins de 4 px. Les séparations sont des filets de 1 px, jamais des cadres.
 
 ## Components
 
@@ -212,15 +212,23 @@ Calmes et natifs, à la manière des boutons système d'iOS.
 
 - Bleu lien, soulignés d'un trait de 1 px à 40 % d'opacité, décalé de 0,2em ; le soulignement devient plein au survol. Le soulignement reste toujours, pour ne pas dépendre de la couleur seule.
 
-### Cards / Containers
+### Tuiles (bento)
 
-- **Corner Style:** 16 px, sur le seul sommaire de la politique.
-- **Background:** gris cassé, sans bordure ni ombre.
-- **Internal Padding:** 20 px, 24 px dès 640 px.
+- **Grille:** une colonne sur mobile ; 12 colonnes dès 1 024 px (7 + 5, 6 + 6, 6 + 6), 16 à 20 px d'écart.
+- **Surface:** fond de tuile (#f4f4f6, #1e1e21 en sombre), filet de 1 px à 70 %, coins de 28 px, sans ombre ; 24 px de marge intérieure, 32 px dès 640 px.
+- **Contenu:** titre en heading, texte en gris secondaire ; capture de 200 px à côté du texte dès 640 px, sous le texte dans les tuiles de demi-largeur dès 1 024 px ; tuile Passeport avec quatre chiffres en display à chiffres tabulaires ; tuiles texte avec une icône SVG en trait bleu de 28 px.
+
+### Sommaire de la politique
+
+- Coins de 16 px, fond gris cassé, sans bordure ni ombre ; 20 px de marge intérieure, 24 px dès 640 px.
+
+### Tableau « Pourquoi pas un tableur ? »
+
+- Vrai tableau (`caption` masquée, en-têtes de colonne et de ligne) séparé par des filets ; la colonne tableur en gris secondaire, la colonne Stays en anthracite. Sous 640 px, chaque ligne devient un bloc avec l'étiquette de chaque colonne au-dessus du texte.
 
 ### Navigation
 
-- **En-tête:** logo (icône de 28 px aux coins de 7 px et nom « Stays » en lead 600) à gauche, liens à droite en petit texte 500, gris secondaire au repos, anthracite au survol et sur la page courante (`aria-current`). Cible de 44 px. Sur mobile, seul le premier lien reste visible.
+- **En-tête:** collant, effet verre (fond à 72 % flouté et saturé, filet de 1 px en bas), marge haute `env(safe-area-inset-top)`. Logo (icône de 28 px et nom « Stays » en lead 600) à gauche ; à droite, Assistance et Confidentialité en petit texte 500 dès 640 px, puis une pilule bleue « Télécharger » de 32 px de haut dans une cible de 44 px.
 - **Pied de page:** filet en haut, petit texte gris secondaire, liens qui passent à l'anthracite au survol.
 
 ### FAQ
@@ -231,9 +239,9 @@ Calmes et natifs, à la manière des boutons système d'iOS.
 
 - Image réelle de l'app, droite, coins d'écran d'iPhone, ombre de capture, fond blanc. Jamais inclinée, jamais dans un cadre de téléphone, jamais recadrée en vignette. Une légende en petit texte gris signale les données d'exemple.
 
-### Disponibilité
+### Téléchargement
 
-- Mention « Bientôt sur l'App Store » en corps 500 anthracite, remplacée automatiquement par le badge officiel App Store (44 px de haut) quand l'app est publiée ; dessous, « Pour iPhone » en petit texte gris précédé d'une icône d'iPhone en trait de 14 px.
+- Badge officiel Apple « Télécharger dans l'App Store » (52 px de haut dans le hero et la fin de page), lien vers `APP_STORE_URL` (`src/config/stays.ts`) ; dessous, « Gratuit, pour iPhone » en petit texte gris précédé d'une icône d'iPhone en trait de 14 px.
 
 ## Do's and Don'ts
 
@@ -244,13 +252,14 @@ Calmes et natifs, à la manière des boutons système d'iOS.
 - **Do** séparer les sections par un filet de 1 px (#e3e3e8) et 80 px de vide (128 px sur grand écran).
 - **Do** garder chaque paragraphe dans la mesure de 28rem et chaque titre court et équilibré.
 - **Do** donner 44 px de cible à tout ce qui se touche, et un focus visible bleu de 2 px.
-- **Do** limiter le mouvement aux transitions de couleur et d'opacité de 150 ms (seule exception : la rotation du chevron de la FAQ), coupées sous `prefers-reduced-motion`.
+- **Do** limiter le mouvement aux transitions de 150 ms, à la rotation du chevron de la FAQ et à l'apparition des tuiles au défilement en CSS, le tout coupé sous `prefers-reduced-motion`.
 
 ### Don't:
 
 - **Don't** ajouter de bouton de thème, de JavaScript de thème ou de `localStorage.theme` : le mode sombre suit le système, en CSS seul.
 - **Don't** dessiner de cadre d'iPhone ni incliner une capture.
-- **Don't** poser de dégradé, de hero promotionnel ou d'aplat coloré derrière le contenu.
-- **Don't** enfermer le texte dans des cartes ombrées ; le seul panneau est un fond gris cassé sans ombre.
+- **Don't** poser de dégradé ou d'aplat coloré derrière le contenu, ni d'effet verre hors de l'en-tête.
+- **Don't** ombrer les tuiles : seules les captures ont une ombre.
+- **Don't** annoncer ce que l'app ne fait pas : pas de synchronisation iCloud des séjours, pas de programmes de fidélité, pas d'import depuis les mails.
 - **Don't** placer de surtitre (eyebrow) au-dessus des titres, ni de capitales espacées.
 - **Don't** utiliser de graisse au-delà de 600 ni de police autre que la pile système.

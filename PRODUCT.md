@@ -31,13 +31,16 @@ Un carnet personnel, pas une app de réservation : on ajoute ses séjours soi-m�
 - Gratuite : aucun achat intégré actif, aucun abonnement, aucune publicité.
 - Export CSV depuis les Réglages.
 - Partage : le Passeport crée une image à partager (rapport de nuits, passeport), enregistrable dans Photos.
-- Pas encore publiée sur l'App Store et pas de lien TestFlight public (au 26/11/2026) : le site affiche « Bientôt sur l'App Store » jusqu'à ce que `appStoreUrl` soit renseigné dans `src/config/stays.ts`.
+- Le site sort en même temps que l'app sur l'App Store : pas de bêta, de TestFlight ni de liste d'attente. Le badge App Store pointe vers `APP_STORE_URL` (`src/config/stays.ts`), à remplacer par la vraie fiche au lancement ; tant que l'identifiant fictif `id0000000000` est présent, le build l'indique.
+- Ce que l'app ne fait pas (à ne jamais annoncer) : synchronisation iCloud des séjours (ils restent sur l'iPhone ; seule la fonction Amis passe par iCloud), suivi des programmes de fidélité (fonction retirée), import depuis les mails ou les comptes de réservation (l'import se fait depuis un fichier CSV).
+- Ajout rapide : la recherche d'hôtel via Plans complète la ville, le pays et la chaîne ; un hôtel indépendant s'ajoute à la main.
+- Statistiques : nuits, pays, villes, hôtels, années, chaînes et records (plus long séjour, ville, pays et hôtel les plus fréquentés).
 - Site : Astro statique sur GitHub Pages, 4 pages au plus (accueil, /privacy/, /support/, 404), aucune bibliothèque d'animation.
 
 ## Brand Commitments
 
 - Nom : Stays. Éditeur : Hasnen Nourah.
-- Ton : français naturel, posé, humain et factuel, sans superlatif ni jargon marketing.
+- Ton : luxe discret, précis et épuré, pour des voyageurs fréquents et passionnés d'hôtellerie ; français naturel et factuel, sans superlatif ni jargon marketing. Aucun concurrent n'est cité sur le site.
 - Le site suit le mode clair ou sombre du système, en CSS seul : ni bouton de thème, ni JavaScript de thème. Le site n'enregistre rien dans le navigateur (ni cookie, ni `localStorage`).
 - Les textes de /privacy/ et /support/ ne changent pas sur le fond ; les liens vers Apple et la CNIL restent valides.
 
